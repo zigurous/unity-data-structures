@@ -1,0 +1,15 @@
+{
+    "name": "Zigurous.DataStructures.Editor",
+    "references": [
+        "GUID:a421f28dfcb15d14e80bdc058713e344"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

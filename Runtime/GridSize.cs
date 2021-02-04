@@ -26,82 +26,82 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Shorthand for writing GridSize(0, 0).
         /// </summary>
-        public static GridSize Zero => new GridSize(0, 0);
+        public static GridSize zero => new GridSize(0, 0);
 
         /// <summary>
         /// Shorthand for writing GridSize(1, 1).
         /// </summary>
-        public static GridSize One => new GridSize(1, 1);
+        public static GridSize one => new GridSize(1, 1);
 
         /// <summary>
         /// Shorthand for writing GridSize(int.MaxValue, int.MaxValue).
         /// </summary>
-        public static GridSize Max => new GridSize(int.MaxValue, int.MaxValue);
+        public static GridSize max => new GridSize(int.MaxValue, int.MaxValue);
 
         /// <summary>
         /// Shorthand for writing GridSize(2).
         /// </summary>
-        public static GridSize Sq2 => new GridSize(2);
+        public static GridSize sq2 => new GridSize(2);
 
         /// <summary>
         /// Shorthand for writing GridSize(4).
         /// </summary>
-        public static GridSize Sq4 => new GridSize(4);
+        public static GridSize sq4 => new GridSize(4);
 
         /// <summary>
         /// Shorthand for writing GridSize(8).
         /// </summary>
-        public static GridSize Sq8 => new GridSize(8);
+        public static GridSize sq8 => new GridSize(8);
 
         /// <summary>
         /// Shorthand for writing GridSize(16).
         /// </summary>
-        public static GridSize Sq16 => new GridSize(16);
+        public static GridSize sq16 => new GridSize(16);
 
         /// <summary>
         /// Shorthand for writing GridSize(32).
         /// </summary>
-        public static GridSize Sq32 => new GridSize(32);
+        public static GridSize sq32 => new GridSize(32);
 
         /// <summary>
         /// Shorthand for writing GridSize(64).
         /// </summary>
-        public static GridSize Sq64 => new GridSize(64);
+        public static GridSize sq64 => new GridSize(64);
 
         /// <summary>
         /// Shorthand for writing GridSize(128).
         /// </summary>
-        public static GridSize Sq128 => new GridSize(128);
+        public static GridSize sq128 => new GridSize(128);
 
         /// <summary>
         /// Shorthand for writing GridSize(256).
         /// </summary>
-        public static GridSize Sq256 => new GridSize(256);
+        public static GridSize sq256 => new GridSize(256);
 
         /// <summary>
         /// Shorthand for writing GridSize(512).
         /// </summary>
-        public static GridSize Sq512 => new GridSize(512);
+        public static GridSize sq512 => new GridSize(512);
 
         /// <summary>
         /// Shorthand for writing GridSize(1024).
         /// </summary>
-        public static GridSize Sq1024 => new GridSize(1024);
+        public static GridSize sq1024 => new GridSize(1024);
 
         /// <summary>
         /// Shorthand for writing GridSize(2048).
         /// </summary>
-        public static GridSize Sq2048 => new GridSize(2048);
+        public static GridSize sq2048 => new GridSize(2048);
 
         /// <summary>
         /// Shorthand for writing GridSize(4096).
         /// </summary>
-        public static GridSize Sq4096 => new GridSize(4096);
+        public static GridSize sq4096 => new GridSize(4096);
 
         /// <summary>
         /// Shorthand for writing GridSize(8192).
         /// </summary>
-        public static GridSize Sq8192 => new GridSize(8192);
+        public static GridSize sq8192 => new GridSize(8192);
 
         /// <summary>
         /// Creates a new GridSize with given rows and columns.

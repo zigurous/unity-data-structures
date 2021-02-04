@@ -19,24 +19,89 @@ namespace Zigurous.DataStructures
         public int height;
 
         /// <summary>
-        /// Calculates the area of the dimensions (width * height).
+        /// Calculates the area (width * height).
         /// </summary>
         public int Area => System.Math.Abs(this.width * this.height);
 
         /// <summary>
         /// Shorthand for writing Size(0, 0).
         /// </summary>
-        public static Size Zero => new Size(0, 0);
+        public static Size zero => new Size(0, 0);
 
         /// <summary>
         /// Shorthand for writing Size(1, 1).
         /// </summary>
-        public static Size One => new Size(1, 1);
+        public static Size one => new Size(1, 1);
 
         /// <summary>
         /// Shorthand for writing Size(int.MaxValue, int.MaxValue).
         /// </summary>
-        public static Size Max => new Size(int.MaxValue, int.MaxValue);
+        public static Size max => new Size(int.MaxValue, int.MaxValue);
+
+        /// <summary>
+        /// Shorthand for writing Size(2).
+        /// </summary>
+        public static Size sq2 => new Size(2);
+
+        /// <summary>
+        /// Shorthand for writing Size(4).
+        /// </summary>
+        public static Size sq4 => new Size(4);
+
+        /// <summary>
+        /// Shorthand for writing Size(8).
+        /// </summary>
+        public static Size sq8 => new Size(8);
+
+        /// <summary>
+        /// Shorthand for writing Size(16).
+        /// </summary>
+        public static Size sq16 => new Size(16);
+
+        /// <summary>
+        /// Shorthand for writing Size(32).
+        /// </summary>
+        public static Size sq32 => new Size(32);
+
+        /// <summary>
+        /// Shorthand for writing Size(64).
+        /// </summary>
+        public static Size sq64 => new Size(64);
+
+        /// <summary>
+        /// Shorthand for writing Size(128).
+        /// </summary>
+        public static Size sq128 => new Size(128);
+
+        /// <summary>
+        /// Shorthand for writing Size(256).
+        /// </summary>
+        public static Size sq256 => new Size(256);
+
+        /// <summary>
+        /// Shorthand for writing Size(512).
+        /// </summary>
+        public static Size sq512 => new Size(512);
+
+        /// <summary>
+        /// Shorthand for writing Size(1024).
+        /// </summary>
+        public static Size sq1024 => new Size(1024);
+
+        /// <summary>
+        /// Shorthand for writing Size(2048).
+        /// </summary>
+        public static Size sq2048 => new Size(2048);
+
+        /// <summary>
+        /// Shorthand for writing Size(4096).
+        /// </summary>
+        public static Size sq4096 => new Size(4096);
+
+        /// <summary>
+        /// Shorthand for writing Size(8192).
+        /// </summary>
+        public static Size sq8192 => new Size(8192);
 
         /// <summary>
         /// Creates a new Size of given width and height.

@@ -99,6 +99,41 @@ namespace Zigurous.DataStructures
             !a.y,
             !a.z);
 
+        public bool this[int index]
+        {
+            get
+            {
+                switch (index)
+                {
+                    case 0:
+                        return this.x;
+                    case 1:
+                        return this.y;
+                    case 2:
+                        return this.z;
+                    default:
+                        throw new IndexOutOfRangeException();
+                }
+            }
+            set
+            {
+                switch (index)
+                {
+                    case 0:
+                        this.x = value;
+                        break;
+                    case 1:
+                        this.y = value;
+                        break;
+                    case 2:
+                        this.z = value;
+                        break;
+                    default:
+                        throw new IndexOutOfRangeException();
+                }
+            }
+        }
+
     }
 
 }

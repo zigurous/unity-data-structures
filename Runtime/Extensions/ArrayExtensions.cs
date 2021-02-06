@@ -285,38 +285,6 @@ namespace Zigurous.DataStructures
             return output;
         }
 
-        public static T Max<T>(this T[] array) where T: IComparable<T>
-        {
-            T max = default(T);
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                T element = array[i];
-
-                if (element.CompareTo(max) > 0) {
-                    max = element;
-                }
-            }
-
-            return max;
-        }
-
-        public static T Min<T>(this T[] array) where T: IComparable<T>
-        {
-            T min = default(T);
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                T element = array[i];
-
-                if (element.CompareTo(min) < 0) {
-                    min = element;
-                }
-            }
-
-            return min;
-        }
-
         public static T[] NonNull<T>(this T[] array) where T: class
         {
             if (array.Length > 0) {

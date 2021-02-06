@@ -91,34 +91,6 @@ namespace Zigurous.DataStructures
         public static List<TOutput> Map<TInput, TOutput>(this List<TInput> list, Converter<TInput, TOutput> converter) =>
             list.ConvertAll(converter);
 
-        public static T Max<T>(this List<T> list) where T: IComparable<T>
-        {
-            T max = default(T);
-
-            foreach (T item in list)
-            {
-                if (item.CompareTo(max) > 0) {
-                    max = item;
-                }
-            }
-
-            return max;
-        }
-
-        public static T Min<T>(this List<T> list) where T: IComparable<T>
-        {
-            T min = default(T);
-
-            foreach (T item in list)
-            {
-                if (item.CompareTo(min) < 0) {
-                    min = item;
-                }
-            }
-
-            return min;
-        }
-
         public static T Random<T>(this List<T> list) => list[UnityEngine.Random.Range(0, list.Count)];
 
         public delegate TSum Reducer<TSum, TItem>(TSum sum, TItem item);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Zigurous
+namespace Zigurous.DataStructures
 {
     public static class ListExtensions
     {

@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Zigurous
+namespace Zigurous.DataStructures
 {
     public static class StringExtensions
     {

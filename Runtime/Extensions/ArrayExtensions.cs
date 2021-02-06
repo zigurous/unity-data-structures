@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -351,15 +351,6 @@ namespace Zigurous.DataStructures
             return reversed;
         }
 
-        public static int RotatedIndex(this Array array, int index)
-        {
-            int length = array.Length;
-            if (length == 0) return 0;
-            while (index < 0) index += length;
-            while (index >= length) index -= length;
-            return index;
-        }
-
         public static T[] Slice<T>(this T[] array, int amount)
         {
             T[] slice = new T[amount];
@@ -379,6 +370,11 @@ namespace Zigurous.DataStructures
         public static T[] Where<T>(this T[] array, Predicate<T> match)
         {
             return Filter(array, match);
+        }
+
+        public static int WrapIndex(this Array array, int index)
+        {
+            return ((index % array.Length) + array.Length) % array.Length;
         }
 
     }

@@ -3,26 +3,45 @@ using UnityEngine;
 namespace Zigurous.DataStructures
 {
     [System.Serializable]
-    public struct EulerRange : IRange<float>
+    public struct EulerRange : INumberRange<float>
     {
-        /// <summary>
-        /// The minimum value of the range.
-        /// </summary>
-        [Tooltip("The minimum value of the range.")]
+        [Tooltip("The lower bound of the range.")]
         [Range(-360.0f, 360.0f)]
-        public float min;
+        [SerializeField]
+        private float _min;
 
         /// <summary>
-        /// The maximum value of the range.
+        /// The lower bound of the range.
         /// </summary>
-        [Tooltip("The maximum value of the range.")]
+        public float min
+        {
+            get => _min;
+            set => _min = EulerRange.Wrap(value, -360.0f, 360.0f);
+        }
+
+        [Tooltip("The upper bound of the range.")]
         [Range(-360.0f, 360.0f)]
-        public float max;
+        [SerializeField]
+        private float _max;
 
         /// <summary>
-        /// The difference between the min and max value.
+        /// The upper bound of the range.
         /// </summary>
-        public float Delta => this.max - this.min;
+        public float max
+        {
+            get => _max;
+            set => _max = EulerRange.Wrap(value, -360.0f, 360.0f);
+        }
+
+        /// <summary>
+        /// The difference between the range min and max.
+        /// </summary>
+        public float Delta => _max - _min;
+
+        /// <summary>
+        /// The number in the middle of the range min and max.
+        /// </summary>
+        public float Median => (_min + _max) / 2;
 
         /// <summary>
         /// Shorthand for writing EulerRange(0.0f, 0.0f).
@@ -42,57 +61,53 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Shorthand for writing EulerRange(-180.0f, 180.0f).
         /// </summary>
-        public static EulerRange halfCycle => new EulerRange(-180.0f, 180.0f);
+        public static EulerRange halfRange => new EulerRange(-180.0f, 180.0f);
 
         /// <summary>
         /// Shorthand for writing EulerRange(-360.0f, 360.0f).
         /// </summary>
-        public static EulerRange fullCycle => new EulerRange(-360.0f, 360.0f);
+        public static EulerRange fullRange => new EulerRange(-360.0f, 360.0f);
 
         /// <summary>
         /// Creates a new EulerRange with given min and max values.
         /// </summary>
         public EulerRange(float min = -360.0f, float max = 360.0f)
         {
-            this.min = min;
-            this.max = max;
+            _min = EulerRange.Wrap(min, -360.0f, 360.0f);
+            _max = EulerRange.Wrap(max, -360.0f, 360.0f);
         }
 
         /// <summary>
-        /// Returns a random value within the euler range.
+        /// Determines if the given value is between the range
+        /// [inclusive, inclusive].
         /// </summary>
-        public float Random() => UnityEngine.Random.Range(this.min, this.max);
+        public bool Includes(float value) => value >= _min && value <= _max;
 
         /// <summary>
-        /// Clamps a value within the euler range.
+        /// Returns a random value between the range
+        /// [inclusive, inclusive].
         /// </summary>
-        public float Clamp(float value) => Mathf.Clamp(value, this.min, this.max);
+        public float Random() => UnityEngine.Random.Range(_min, _max);
 
         /// <summary>
-        /// Determines if a value is within the euler range
-        /// (inclusive, inclusive).
+        /// Clamps the given value between the range.
         /// </summary>
-        public bool Includes(float value) => value >= this.min && value <= this.max;
+        public float Clamp(float value) => Mathf.Clamp(value, _min, _max);
 
         /// <summary>
-        /// Determines if a value is within the euler range
-        /// using a custom inclusive/exclusive combination.
+        /// Wraps the given value between the range.
         /// </summary>
-        public bool Includes(float value, bool includeMin, bool includeMax)
+        public float Wrap(float value) => EulerRange.Wrap(value, _min, _max);
+
+        private static float Wrap(float value, float min, float max)
         {
-            if (value < this.min || value > this.max) {
-                return false;
+            if (value < min) {
+                return max - (min - value) % (max - min);
+            } else if (value > max) {
+                return min + (value - min) % (max - min);
+            } else {
+                return value;
             }
-
-            if (!includeMin && value == this.min) {
-                return false;
-            }
-
-            if (!includeMax && value == this.max) {
-                return false;
-            }
-
-            return true;
         }
 
     }

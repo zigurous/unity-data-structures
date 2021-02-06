@@ -3,24 +3,43 @@
 namespace Zigurous.DataStructures
 {
     [System.Serializable]
-    public struct ColorRange
+    public struct ColorRange : INumberRange<Color>
     {
-        /// <summary>
-        /// The minimum color of the range.
-        /// </summary>
-        [Tooltip("The minimum color of the range.")]
-        public Color min;
+        [Tooltip("The lower bound of the range.")]
+        [SerializeField]
+        private Color _min;
 
         /// <summary>
-        /// The maximum color of the range.
+        /// The lower bound of the range.
         /// </summary>
-        [Tooltip("The maximum color of the range.")]
-        public Color max;
+        public Color min
+        {
+            get => _min;
+            set => _min = value;
+        }
+
+        [Tooltip("The upper bound of the range.")]
+        [SerializeField]
+        private Color _max;
 
         /// <summary>
-        /// The difference between the min and max value.
+        /// The upper bound of the range.
         /// </summary>
-        public Color Delta => this.max - this.min;
+        public Color max
+        {
+            get => _max;
+            set => _max = value;
+        }
+
+        /// <summary>
+        /// The difference between the range min and max.
+        /// </summary>
+        public Color Delta => _max - _min;
+
+        /// <summary>
+        /// The color in the middle of the range min and max.
+        /// </summary>
+        public Color Median => (_min + _max) / 2;
 
         /// <summary>
         /// Shorthand for writing ColorRange(Color.black, Color.black).
@@ -62,14 +81,37 @@ namespace Zigurous.DataStructures
         /// </summary>
         public ColorRange(Color min, Color max)
         {
-            this.min = min;
-            this.max = max;
+            _min = min;
+            _max = max;
         }
 
         /// <summary>
-        /// Returns a random color within the color range.
+        /// Determines if the given color is between the range
+        /// min [inclusive] and max [inclusive].
         /// </summary>
-        public Color Random() => Color.Lerp(this.min, this.max, UnityEngine.Random.value);
+        public bool Includes(Color value) =>
+            value.r >= _min.r && value.r <= _max.r &&
+            value.g >= _min.g && value.g <= _max.g &&
+            value.b >= _min.b && value.b <= _max.b &&
+            value.a >= _min.a && value.a <= _max.a;
+
+        /// <summary>
+        /// Returns a random color between the range
+        /// min [inclusive] and max [inclusive].
+        /// </summary>
+        public Color Random() => Color.Lerp(_min, _max, UnityEngine.Random.value);
+
+        /// <summary>
+        /// Clamps the given color between the range min and max.
+        /// </summary>
+        public Color Clamp(Color value)
+        {
+            value.r = Mathf.Clamp(value.r, _min.r, _max.r);
+            value.g = Mathf.Clamp(value.g, _min.g, _max.g);
+            value.b = Mathf.Clamp(value.b, _min.b, _max.b);
+            value.a = Mathf.Clamp(value.a, _min.a, _max.a);
+            return value;
+        }
 
     }
 

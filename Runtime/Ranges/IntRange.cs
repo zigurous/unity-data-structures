@@ -3,24 +3,43 @@ using UnityEngine;
 namespace Zigurous.DataStructures
 {
     [System.Serializable]
-    public struct IntRange : IRange<int>
+    public struct IntRange : INumberRange<int>
     {
-        /// <summary>
-        /// The minimum value of the range.
-        /// </summary>
-        [Tooltip("The minimum value of the range.")]
-        public int min;
+        [Tooltip("The lower bound of the range.")]
+        [SerializeField]
+        private int _min;
 
         /// <summary>
-        /// The maximum value of the range.
+        /// The lower bound of the range.
         /// </summary>
-        [Tooltip("The maximum value of the range.")]
-        public int max;
+        public int min
+        {
+            get => _min;
+            set => _min = value;
+        }
+
+        [Tooltip("The upper bound of the range.")]
+        [SerializeField]
+        private int _max;
 
         /// <summary>
-        /// The difference between the min and max value.
+        /// The upper bound of the range.
         /// </summary>
-        public int Delta => this.max - this.min;
+        public int max
+        {
+            get => _max;
+            set => _max = value;
+        }
+
+        /// <summary>
+        /// The difference between the range min and max.
+        /// </summary>
+        public int Delta => _max - _min;
+
+        /// <summary>
+        /// The number in the middle of the range min and max.
+        /// </summary>
+        public int Median => (_min + _max) / 2;
 
         /// <summary>
         /// Shorthand for writing IntRange(0, 0).
@@ -52,46 +71,32 @@ namespace Zigurous.DataStructures
         /// </summary>
         public IntRange(int min, int max)
         {
-            this.min = min;
-            this.max = max;
+            _min = min;
+            _max = max;
         }
 
         /// <summary>
-        /// Returns a random value within the range.
+        /// Determines if the given value is between the range
+        /// [inclusive, exclusive).
         /// </summary>
-        public int Random() => UnityEngine.Random.Range(this.min, this.max + 1);
+        public bool Includes(int value) => value >= _min && value < _max;
 
         /// <summary>
-        /// Clamps a value within the range.
-        /// </summary>
-        public int Clamp(int value) => Mathf.Clamp(value, this.min, this.max);
-
-        /// <summary>
-        /// Determines if a value is within the range
-        /// (inlcusive, exclusive).
-        /// </summary>
-        public bool Includes(int value) => value >= this.min && value < this.max;
-
-        /// <summary>
-        /// Determines if a value is within the range
+        /// Determines if the given value is between the range
         /// using a custom inclusive/exclusive combination.
         /// </summary>
-        public bool Includes(int value, bool includeMin, bool includeMax)
-        {
-            if (value < this.min || value > this.max) {
-                return false;
-            }
+        public bool Includes(int value, bool includeMin, bool includeMax) => value.IsBetween(_min, _max, includeMin, includeMax);
 
-            if (!includeMin && value == this.min) {
-                return false;
-            }
+        /// <summary>
+        /// Returns a random value between the range
+        /// [inclusive, exclusive).
+        /// </summary>
+        public int Random() => UnityEngine.Random.Range(_min, _max);
 
-            if (!includeMax && value == this.max) {
-                return false;
-            }
-
-            return true;
-        }
+        /// <summary>
+        /// Clamps the given value between the range.
+        /// </summary>
+        public int Clamp(int value) => Mathf.Clamp(value, _min, _max);
 
     }
 

@@ -34,7 +34,7 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// The maximum number of objects that can be generated.
         /// </summary>
-        public int capacity { get; private set; }
+        public int maxCapacity { get; private set; }
 
         /// <summary>
         /// Whether active objects should be reused when
@@ -52,63 +52,63 @@ namespace Zigurous.DataStructures
         /// </summary>
         public int AvailableCount => _pool.Count;
 
+        // Prevent use of default constructor.
+        private ObjectPool() {}
+
         /// <summary>
-        /// Creates a new ObjectPool with no capacity.
-        /// New objects are created using the default
-        /// value of the object type.
+        /// Creates a new ObjectPool with an initial capacity.
+        /// New objects are created as needed using the object type default value.
         /// </summary>
-        public ObjectPool()
+        public ObjectPool(int initialCapacity)
         {
-            _pool = new Queue<T>();
-            _activeItems = new List<T>();
+            _pool = new Queue<T>(initialCapacity);
+            _activeItems = new List<T>(initialCapacity);
             _generator = () => default(T);
 
-            this.capacity = int.MaxValue;
+            this.maxCapacity = int.MaxValue;
             this.reuseActive = false;
         }
 
         /// <summary>
-        /// Creates a new ObjectPool with a given object capacity.
-        /// Optionally, active objects can be reused when the pool
-        /// has reached capacity. New objects are created using the
-        /// default value of the object type.
+        /// Creates a new ObjectPool with an initial capacity and max capacity.
+        /// Optionally active objects can be reused when the pool has reached max capacity.
+        /// New objects are created as needed using the object type default value.
         /// </summary>
-        public ObjectPool(int capacity, bool reuseActive = false)
+        public ObjectPool(int initialCapacity, int maxCapacity, bool reuseActive = false)
         {
-            _pool = new Queue<T>(capacity);
-            _activeItems = new List<T>(capacity);
+            _pool = new Queue<T>(initialCapacity);
+            _activeItems = new List<T>(initialCapacity);
             _generator = () => default(T);
 
-            this.capacity = capacity;
+            this.maxCapacity = maxCapacity;
             this.reuseActive = reuseActive;
         }
 
         /// <summary>
-        /// Creates a new ObjectPool with a given generator function
-        /// and no object capacity.
+        /// Creates a new ObjectPool with a given generator function and initial capacity.
+        /// New objects are created as needed with no max capacity.
         /// </summary>
-        public ObjectPool(Generator generator)
+        public ObjectPool(Generator generator, int initialCapacity)
         {
-            _pool = new Queue<T>();
-            _activeItems = new List<T>();
+            _pool = new Queue<T>(initialCapacity);
+            _activeItems = new List<T>(initialCapacity);
             _generator = generator;
 
-            this.capacity = int.MaxValue;
+            this.maxCapacity = int.MaxValue;
             this.reuseActive = false;
         }
 
         /// <summary>
-        /// Creates a new ObjectPool with a given generator function
-        /// and a set object capacity. Optionally, active objects
-        /// can be reused when the pool has reached capacity.
+        /// Creates a new ObjectPool with a given generator function and set capacity limits.
+        /// Optionally active objects can be reused when the pool has reached max capacity.
         /// </summary>
-        public ObjectPool(Generator generator, int capacity, bool reuseActive = false)
+        public ObjectPool(Generator generator, int initialCapacity, int maxCapacity, bool reuseActive = false)
         {
-            _pool = new Queue<T>(capacity);
-            _activeItems = new List<T>(capacity);
+            _pool = new Queue<T>(initialCapacity);
+            _activeItems = new List<T>(initialCapacity);
             _generator = generator;
 
-            this.capacity = capacity;
+            this.maxCapacity = maxCapacity;
             this.reuseActive = reuseActive;
         }
 
@@ -180,7 +180,7 @@ namespace Zigurous.DataStructures
         {
             T item;
 
-            if (_activeItems.Count >= this.capacity)
+            if (_activeItems.Count >= this.maxCapacity)
             {
                 if (this.reuseActive)
                 {

@@ -94,6 +94,12 @@ namespace Zigurous.DataStructures
         public int Random() => UnityEngine.Random.Range(_min, _max);
 
         /// <summary>
+        /// Returns a random value between the range
+        /// [inclusive, inclusive].
+        /// </summary>
+        public int RandomInclusive() => UnityEngine.Random.Range(_min, _max + 1);
+
+        /// <summary>
         /// Clamps the given value between the range.
         /// </summary>
         public int Clamp(int value) => Mathf.Clamp(value, _min, _max);

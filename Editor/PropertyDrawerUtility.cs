@@ -1,4 +1,4 @@
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Zigurous.DataStructures.Editor
@@ -6,6 +6,17 @@ namespace Zigurous.DataStructures.Editor
     public static class PropertyDrawerUtility
     {
         public static float standardHorizontalSpacing = 4.0f;
+
+        public static void BoolFieldWithChangeCheck(PropertyField field, Rect position)
+        {
+            EditorGUI.BeginChangeCheck();
+
+            bool value = EditorGUI.Toggle(position, field.label, field.property.boolValue);
+
+            if (EditorGUI.EndChangeCheck()) {
+                field.property.boolValue = value;
+            }
+        }
 
         public static void FloatFieldWithChangeCheck(PropertyField field, Rect position)
         {

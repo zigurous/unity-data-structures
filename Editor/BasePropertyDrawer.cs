@@ -6,7 +6,7 @@ namespace Zigurous.DataStructures.Editor
     public abstract class BasePropertyDrawer : PropertyDrawer
     {
         protected PropertyField[] _fields;
-        protected virtual int fieldColumns => 2;
+        protected virtual int fieldColumns => 3;
         protected virtual bool drawPropertyLabel => true;
         protected virtual bool indentChildFields => false;
 
@@ -23,13 +23,11 @@ namespace Zigurous.DataStructures.Editor
             }
 
             // Store orginal sizes so they can be set back to their original values
-            int indent = EditorGUI.indentLevel;
-            float labelWidth = EditorGUIUtility.labelWidth;
+            int originalIndent = EditorGUI.indentLevel;
+            float originalLabelWidth = EditorGUIUtility.labelWidth;
 
-            // Do not make child fields indented
-            if (!this.indentChildFields) {
-                EditorGUI.indentLevel = 0;
-            }
+            // Set indent level of child fields
+            EditorGUI.indentLevel = this.indentChildFields ? 1 : 0;
 
             // Create references to child fields
             if (_fields == null) {
@@ -44,13 +42,13 @@ namespace Zigurous.DataStructures.Editor
 
                 for (int i = 0; i < _fields.Length; i++)
                 {
-                    // Draw the current field
                     PropertyField field = _fields[i];
 
                     // Calculate the width of the field label
-                    float fieldLabelWidth = EditorStyles.label.CalcSize(new GUIContent(field.label)).x;
-                    EditorGUIUtility.labelWidth = fieldLabelWidth;
+                    float labelWidth = EditorStyles.label.CalcSize(field.label).x;
+                    EditorGUIUtility.labelWidth = labelWidth;
 
+                    // Draw the property field
                     field.Draw(rect);
 
                     // Move the field rect to the next position
@@ -59,8 +57,8 @@ namespace Zigurous.DataStructures.Editor
             }
 
             // Set sizes back to their original values
-            EditorGUI.indentLevel = indent;
-            EditorGUIUtility.labelWidth = labelWidth;
+            EditorGUI.indentLevel = originalIndent;
+            EditorGUIUtility.labelWidth = originalLabelWidth;
 
             // Finish drawing the property
             EditorGUI.EndProperty();

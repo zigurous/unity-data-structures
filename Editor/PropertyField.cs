@@ -9,16 +9,23 @@ namespace Zigurous.DataStructures.Editor
 
         public SerializedProperty property;
         public DrawFunction draw;
-        public string label;
+        public GUIContent label;
 
         public PropertyField(SerializedProperty property, DrawFunction draw)
         {
             this.property = property;
             this.draw = draw;
-            this.label = property.displayName;
+            this.label = new GUIContent(property.displayName);
         }
 
         public PropertyField(SerializedProperty property, DrawFunction draw, string label)
+        {
+            this.property = property;
+            this.draw = draw;
+            this.label = new GUIContent(label);
+        }
+
+        public PropertyField(SerializedProperty property, DrawFunction draw, GUIContent label)
         {
             this.property = property;
             this.draw = draw;

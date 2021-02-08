@@ -6,6 +6,8 @@ namespace Zigurous.DataStructures.Editor
     {
         protected abstract PropertyField.DrawFunction draw { get; }
 
+        protected override int fieldColumns => 2;
+
         protected override PropertyField[] GetChildFields(SerializedProperty property) => new PropertyField[] {
             new PropertyField(property.FindPropertyRelative("_min"), this.draw),
             new PropertyField(property.FindPropertyRelative("_max"), this.draw),

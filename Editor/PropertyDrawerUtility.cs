@@ -1,10 +1,12 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 
 namespace Zigurous.DataStructures.Editor
 {
     public static class PropertyDrawerUtility
     {
+        public static float standardHorizontalSpacing = 4.0f;
+
         public static void FloatFieldWithChangeCheck(PropertyField field, Rect position)
         {
             EditorGUI.BeginChangeCheck();
@@ -53,7 +55,6 @@ namespace Zigurous.DataStructures.Editor
         {
             EditorGUI.BeginChangeCheck();
 
-            EditorGUIUtility.labelWidth = 24.0f;
             Vector3 value = EditorGUI.Vector3Field(position, field.label, field.property.vector3Value);
 
             if (EditorGUI.EndChangeCheck()) {
@@ -65,14 +66,16 @@ namespace Zigurous.DataStructures.Editor
         {
             int column = index % columns;
 
-            if (column == 0) // Advance row
+            if (column == 0)
             {
+                // Advance row
                 field.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
                 field.x = position.x;
             }
-            else // Advance column
+            else
             {
-                field.x += field.width + (EditorGUIUtility.standardVerticalSpacing * 2);
+                // Advance column
+                field.x += field.width + standardHorizontalSpacing;
             }
 
             return field;
@@ -80,7 +83,7 @@ namespace Zigurous.DataStructures.Editor
 
         public static float CalculateFieldWidth(Rect position, int columns)
         {
-            return (position.width / columns) - (EditorGUIUtility.standardVerticalSpacing * (columns - 1));
+            return (position.width - (standardHorizontalSpacing * (columns - 1))) / columns;
         }
 
     }

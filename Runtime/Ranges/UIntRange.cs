@@ -66,26 +66,24 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Determines if the given value is between the range
-        /// [inclusive, exclusive).
+        /// Determines if the given value is between the range [inclusive,
+        /// exclusive).
         /// </summary>
         public bool Includes(uint value) => value >= _min && value < _max;
 
         /// <summary>
-        /// Determines if the given value is between the range
-        /// using a custom inclusive/exclusive combination.
+        /// Determines if the given value is between the range using a custom
+        /// inclusive/exclusive combination.
         /// </summary>
         public bool Includes(uint value, bool includeMin, bool includeMax) => value.IsBetween(_min, _max, includeMin, includeMax);
 
         /// <summary>
-        /// Returns a random value between the range
-        /// [inclusive, exclusive).
+        /// Returns a random value between the range [inclusive, exclusive).
         /// </summary>
         public uint Random() => (uint)UnityEngine.Random.Range((int)_min, (int)_max);
 
         /// <summary>
-        /// Returns a random value between the range
-        /// [inclusive, inclusive].
+        /// Returns a random value between the range [inclusive, inclusive].
         /// </summary>
         public uint RandomInclusive() => (uint)UnityEngine.Random.Range((int)_min, (int)_max + 1);
 

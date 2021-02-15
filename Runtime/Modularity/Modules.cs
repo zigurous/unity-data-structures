@@ -36,8 +36,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Creates a new Modules instance and
-        /// pre-registers a list of given items.
+        /// Creates a new Modules instance and pre-registers a list of given
+        /// items.
         /// </summary>
         public Modules(T[] items, Action<T> registered = null, Action<T> unregistered = null)
         {
@@ -74,8 +74,8 @@ namespace Zigurous.DataStructures
         public int Length => this.items?.Count ?? 0;
 
         /// <summary>
-        /// Registers an item to the entity.
-        /// Returns false if the item cannot be registered.
+        /// Registers an item to the entity. Returns false if the item cannot be
+        /// registered.
         /// </summary>
         public bool Register(T item)
         {
@@ -90,8 +90,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Unregisters an item from the entity.
-        /// Returns true if the item is unregistered.
+        /// Unregisters an item from the entity. Returns true if the item is
+        /// unregistered.
         /// </summary>
         public bool Unregister(T item)
         {

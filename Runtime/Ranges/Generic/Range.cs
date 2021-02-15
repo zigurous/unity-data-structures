@@ -36,14 +36,14 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Determines if the given value is between the range
-        /// [inclusive, inclusive].
+        /// Determines if the given value is between the range [inclusive,
+        /// inclusive].
         /// </summary>
         public bool Includes(T value) => value.IsBetween(_min, _max, true, true);
 
         /// <summary>
-        /// Determines if the given value is between the range
-        /// using a custom inclusive/exclusive combination.
+        /// Determines if the given value is between the range using a custom
+        /// inclusive/exclusive combination.
         /// </summary>
         public bool Includes(T value, bool includeMin, bool includeMax) => value.IsBetween(_min, _max, includeMin, includeMax);
 

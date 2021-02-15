@@ -51,16 +51,15 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Determines if the given vector is between the range
-        /// [inclusive, inclusive].
+        /// Determines if the given vector is between the range [inclusive,
+        /// inclusive].
         /// </summary>
         public bool Includes(Vector2 value) =>
             value.x >= _min.x && value.x <= _max.x &&
             value.y >= _min.y && value.y <= _max.y;
 
         /// <summary>
-        /// Returns a random vector between the range
-        /// [inclusive, inclusive].
+        /// Returns a random vector between the range [inclusive, inclusive].
         /// </summary>
         public Vector2 Random() => new Vector2(
             UnityEngine.Random.Range(_min.x, _max.x),

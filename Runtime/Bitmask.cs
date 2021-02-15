@@ -18,9 +18,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns true if the bitmask contains another mask
-        /// and there no flags set on the other mask that are
-        /// not set on the bitmask.
+        /// Returns true if the bitmask contains another mask and there no flags
+        /// set on the other mask that are not set on the bitmask.
         /// </summary>
         public bool ContainsMaskExclusive(int other)
         {
@@ -28,8 +27,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns true if the bitmask contains the flag.
-        /// <c>(mask &amp; flag) == flag</c>
+        /// Returns true if the bitmask contains the flag. <c>(mask &amp; flag)
+        /// == flag</c>
         /// </summary>
         public bool HasFlag(int flag)
         {
@@ -37,8 +36,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns true if the bitmask contains any of the
-        /// flags. <c>(mask &amp; flags) != 0</c>
+        /// Returns true if the bitmask contains any of the flags. <c>(mask
+        /// &amp; flags) != 0</c>
         /// </summary>
         public bool HasAnyFlag(int flags)
         {

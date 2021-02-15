@@ -86,8 +86,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Determines if the given color is between the range
-        /// min [inclusive] and max [inclusive].
+        /// Determines if the given color is between the range min [inclusive]
+        /// and max [inclusive].
         /// </summary>
         public bool Includes(Color value) =>
             value.r >= _min.r && value.r <= _max.r &&
@@ -96,8 +96,8 @@ namespace Zigurous.DataStructures
             value.a >= _min.a && value.a <= _max.a;
 
         /// <summary>
-        /// Returns a random color between the range
-        /// min [inclusive] and max [inclusive].
+        /// Returns a random color between the range min [inclusive] and max
+        /// [inclusive].
         /// </summary>
         public Color Random() => Color.Lerp(_min, _max, UnityEngine.Random.value);
 

@@ -10,8 +10,8 @@ namespace Zigurous.DataStructures
         private static volatile T _instance;
 
         /// <summary>
-        /// The current instance of the class.
-        /// The instance will be created if it does not already exist.
+        /// The current instance of the class. The instance will be created if
+        /// it does not already exist.
         /// </summary>
         public static T Instance
         {
@@ -44,8 +44,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns true if the Singleton has been initialized
-        /// and an instance is available to use.
+        /// Returns true if the Singleton has been initialized and an instance
+        /// is available to use.
         /// </summary>
         public static bool HasInstance => _instance != null;
 

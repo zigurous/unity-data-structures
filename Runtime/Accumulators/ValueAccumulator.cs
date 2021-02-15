@@ -9,8 +9,8 @@ namespace Zigurous.DataStructures
     public abstract class ValueAccumulator<T> : IDisposable
     {
         /// <summary>
-        /// Keeps track of all accumulated values.
-        /// Values are stored by unique hash codes.
+        /// Keeps track of all accumulated values. Values are stored by unique
+        /// hash codes.
         /// </summary>
         public Dictionary<int, T> values { get; protected set; } = new Dictionary<int, T>();
 
@@ -48,8 +48,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Stores a given value with a hash code identifier,
-        /// and updates the total accumulated value.
+        /// Stores a given value with a hash code identifier, and updates the
+        /// total accumulated value.
         /// </summary>
         public void SetValue(T value, int id)
         {
@@ -57,8 +57,8 @@ namespace Zigurous.DataStructures
 
             if (this.values.TryGetValue(id, out currentValue))
             {
-                // Subtract the previous value from the total
-                // before adding the new value
+                // Subtract the previous value from the total before adding the
+                // new value
                 this.total = SplitDifference(value, currentValue);
                 this.values[id] = value;
             }
@@ -71,8 +71,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Removes the stored value with the given hash code identifier,
-        /// and updates the total accumulated value.
+        /// Removes the stored value with the given hash code identifier, and
+        /// updates the total accumulated value.
         /// </summary>
         public void RemoveValue(int id)
         {
@@ -80,8 +80,8 @@ namespace Zigurous.DataStructures
 
             if (this.values.TryGetValue(id, out value))
             {
-                // Subtract the id value from the total
-                // and remove from the stored list
+                // Subtract the id value from the total and remove from the
+                // stored list
                 this.total = Subtract(value);
                 this.values.Remove(id);
             }

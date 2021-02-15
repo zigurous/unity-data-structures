@@ -97,6 +97,12 @@ namespace Zigurous.DataStructures.Editor
             return (position.width - (standardHorizontalSpacing * (columns - 1))) / columns;
         }
 
+        public static void SetFieldLabelWidth(PropertyField field)
+        {
+            float labelWidth = EditorStyles.label.CalcSize(field.label).x;
+            EditorGUIUtility.labelWidth = labelWidth;
+        }
+
     }
 
 }

@@ -44,11 +44,8 @@ namespace Zigurous.DataStructures.Editor
                 {
                     PropertyField field = _fields[i];
 
-                    // Calculate the width of the field label
-                    float labelWidth = EditorStyles.label.CalcSize(field.label).x;
-                    EditorGUIUtility.labelWidth = labelWidth;
-
                     // Draw the property field
+                    PropertyDrawerUtility.SetFieldLabelWidth(field);
                     field.Draw(rect);
 
                     // Move the field rect to the next position

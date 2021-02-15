@@ -32,7 +32,10 @@ namespace Zigurous.DataStructures.Editor
             this.label = label;
         }
 
-        public void Draw(Rect position) => this.draw.Invoke(this, position);
+        public void Draw(Rect position)
+        {
+            this.draw.Invoke(this, position);
+        }
 
     }
 

@@ -2,7 +2,7 @@
   "name": "com.zigurous.datastructures",
   "version": "0.1.0",
   "displayName": "Zigurous Data Structures",
-  "description": "A collection of useful data structures that can be used across your scripts.",
+  "description": "Common data structures and design patterns for Unity projects.",
   "unity": "2019.4",
   "author": {
     "name": "Zigurous",

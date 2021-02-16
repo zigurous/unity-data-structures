@@ -5,7 +5,6 @@ namespace Zigurous.DataStructures
     public abstract class SingletonBehavior<T> : MonoBehaviour where T : Component
     {
         private static object _lock = new object();
-
         private static bool _isUnloading = false;
         private static volatile T _instance;
 

@@ -1,5 +1,7 @@
 # Data Structures
 
+The Data Structures package contains common data structures, design patterns, and class extensions for Unity projects.
+
 ## Installation
 
 The Unity Package Manager can load a package from a Git repository on a remote server.

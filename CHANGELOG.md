@@ -9,35 +9,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Accumulators
-  - Float
-  - Vector2
-  - Vector3
+### Added
+
+- ArrayExtensions
 - Bitmask
 - Bool3
-- Extensions
-  - Array
-  - Comparable
-  - Dictionary
-  - HashSet
-  - List
-  - SortedSet
-  - String
+- ClampedRange
+- ColorRange
+- ComparableExtensions
+- DictionaryExtensions
+- FloatAccumulator
+- FloatRange
 - GridSize
 - HashCode
+- HashSetExtensions
 - Identifier
+- IntRange
+- ListExtensions
 - Modules
 - ObjectPool
 - Quantity
-- Ranges
-  - ClampedRange
-  - ColorRange
-  - EulerRange
-  - FloatRange
-  - IntRange
-  - UIntRange
-  - UnitIntervalRange
-  - Vector2Range
-  - Vector3Range
 - SingletonBehavior
 - Size
+- SortedSetExtensions
+- StringExtensions
+- UIntRange
+- UnitIntervalRange
+- Vector2Accumulator
+- Vector2Range
+- Vector3Accumulator
+- Vector3Range

@@ -123,7 +123,7 @@ namespace Zigurous.DataStructures
 
         public override string ToString()
         {
-            return String.Format("(width: {0}, height: {0})", this.width, this.height);
+            return String.Format("(width: {0}, height: {1})", this.width, this.height);
         }
 
         public bool Equals(Size other)

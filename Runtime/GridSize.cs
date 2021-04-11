@@ -123,7 +123,7 @@ namespace Zigurous.DataStructures
 
         public override string ToString()
         {
-            return String.Format("(rows: {0}, columns: {0})", this.rows, this.columns);
+            return String.Format("(rows: {0}, columns: {1})", this.rows, this.columns);
         }
 
         public bool Equals(GridSize other)

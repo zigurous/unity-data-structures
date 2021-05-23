@@ -4,9 +4,15 @@ namespace Zigurous.DataStructures
 {
     public abstract class SingletonBehavior<T> : MonoBehaviour where T : Component
     {
+        private static volatile T _instance;
         private static object _lock = new object();
         private static bool _isUnloading = false;
-        private static volatile T _instance;
+
+        /// <summary>
+        /// Returns true if the Singleton has been initialized and an instance
+        /// is available to use.
+        /// </summary>
+        public static bool HasInstance => _instance != null;
 
         /// <summary>
         /// The current instance of the class. The instance will be created if
@@ -42,13 +48,7 @@ namespace Zigurous.DataStructures
             }
         }
 
-        /// <summary>
-        /// Returns true if the Singleton has been initialized and an instance
-        /// is available to use.
-        /// </summary>
-        public static bool HasInstance => _instance != null;
-
-        protected SingletonBehavior() {} // Prevent outside instantiation
+        protected SingletonBehavior() {}
 
         protected virtual void Awake()
         {

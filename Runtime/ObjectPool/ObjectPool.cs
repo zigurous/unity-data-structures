@@ -12,9 +12,14 @@ namespace Zigurous.DataStructures
     public sealed class ObjectPool<T> : IObjectPool<T> where T: class
     {
         /// <summary>
-        /// Creates a new instance of an object.
+        /// A function type that creates a new instance of an object.
         /// </summary>
         public delegate T Generator();
+
+        /// <summary>
+        /// The function delegate that generates a new object.
+        /// </summary>
+        private Generator _generator;
 
         /// <summary>
         /// The list of all objects waiting to be reused.
@@ -25,11 +30,6 @@ namespace Zigurous.DataStructures
         /// The list of objects currently being used.
         /// </summary>
         private List<T> _activeItems;
-
-        /// <summary>
-        /// The function that generates a new object.
-        /// </summary>
-        private Generator _generator;
 
         /// <summary>
         /// The maximum number of objects that can be generated.
@@ -119,18 +119,8 @@ namespace Zigurous.DataStructures
         /// </summary>
         public void Dispose()
         {
-            if (_pool != null)
-            {
-                _pool.Clear();
-                _pool = null;
-            }
-
-            if (_activeItems != null)
-            {
-                _activeItems.Clear();
-                _activeItems = null;
-            }
-
+            _pool.Clear();
+            _activeItems.Clear();
             _generator = null;
         }
 
@@ -141,33 +131,19 @@ namespace Zigurous.DataStructures
         /// </summary>
         public void Dispose(Action<T> cleanup)
         {
-            if (_pool != null)
+            if (cleanup != null)
             {
-                if (cleanup != null)
-                {
-                    while (_pool.Count > 0) {
-                        cleanup(_pool.Dequeue());
-                    }
+                while (_pool.Count > 0) {
+                    cleanup(_pool.Dequeue());
                 }
 
-                _pool.Clear();
-                _pool = null;
-            }
-
-            if (_activeItems != null)
-            {
-                if (cleanup != null)
-                {
-                    foreach (T item in _activeItems) {
-                        cleanup(item);
-                    }
+                foreach (T item in _activeItems) {
+                    cleanup(item);
                 }
-
-                _activeItems.Clear();
-                _activeItems = null;
             }
 
-            _generator = null;
+            _pool.Clear();
+            _activeItems.Clear();
         }
 
         /// <summary>
@@ -178,7 +154,7 @@ namespace Zigurous.DataStructures
         /// </summary>
         public T Retrieve()
         {
-            T item;
+            T item = null;
 
             if (_activeItems.Count >= this.maxCapacity)
             {
@@ -187,17 +163,15 @@ namespace Zigurous.DataStructures
                     item = _activeItems[0];
                     _activeItems.RemoveAt(0);
                 }
-                else
-                {
-                    item = null;
-                }
             }
             else
             {
                 if (_pool.Count > 0) {
-                    return _pool.Dequeue() ?? _generator.Invoke();
-                } else {
-                    return _generator.Invoke();
+                    item = _pool.Dequeue();
+                }
+
+                if (item == null && _generator != null) {
+                    item = _generator.Invoke();
                 }
             }
 

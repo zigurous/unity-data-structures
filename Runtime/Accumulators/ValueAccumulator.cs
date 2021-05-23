@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Zigurous.DataStructures
@@ -6,7 +5,7 @@ namespace Zigurous.DataStructures
     /// <summary>
     /// Accumulates a set of stored values into a single total value.
     /// </summary>
-    public abstract class ValueAccumulator<T> : IDisposable
+    public abstract class ValueAccumulator<T>
     {
         /// <summary>
         /// Keeps track of all accumulated values. Values are stored by unique
@@ -23,15 +22,6 @@ namespace Zigurous.DataStructures
         /// The number of unique values being accumulated.
         /// </summary>
         public int Count => this.values.Count;
-
-        /// <summary>
-        /// Disposes of all class resources.
-        /// </summary>
-        public virtual void Dispose()
-        {
-            this.values?.Clear();
-            this.values = null;
-        }
 
         /// <summary>
         /// Returns the stored value with the given hash code identifier.
@@ -85,6 +75,15 @@ namespace Zigurous.DataStructures
                 this.total = Subtract(value);
                 this.values.Remove(id);
             }
+        }
+
+        /// <summary>
+        /// Removes all stored values and resets the total accumulated value.
+        /// </summary>
+        public void Clear()
+        {
+            this.values.Clear();
+            this.total = default(T);
         }
 
         /// <summary>

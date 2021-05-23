@@ -6,7 +6,7 @@ namespace Zigurous.DataStructures
     /// <summary>
     /// Manages a list of registered entity modules.
     /// </summary>
-    public sealed class Modules<T> : IModular<T>, IDisposable where T: class
+    public sealed class Modules<T> : IModular<T> where T: class
     {
         /// <summary>
         /// The modules registered to the entity.
@@ -22,6 +22,16 @@ namespace Zigurous.DataStructures
         /// A callback invoked when a module is unregistered.
         /// </summary>
         public Action<T> unregistered;
+
+        /// <summary>
+        /// The amount of modules registered to the entity.
+        /// </summary>
+        public int Count => this.items.Count;
+
+        /// <summary>
+        /// Returns the module at the given index.
+        /// </summary>
+        public T this[int index] => this.items.ElementAt(index);
 
         private Modules() {}
 
@@ -54,37 +64,20 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Disposes of all class resources.
-        /// </summary>
-        public void Dispose()
-        {
-            this.items = null;
-            this.registered = null;
-            this.unregistered = null;
-        }
-
-        /// <summary>
-        /// Returns the module at index.
-        /// </summary>
-        public T this[int index] => this.items.ElementAt(index);
-
-        /// <summary>
-        /// The amount of modules registered to the entity.
-        /// </summary>
-        public int Length => this.items?.Count ?? 0;
-
-        /// <summary>
         /// Registers an item to the entity. Returns false if the item cannot be
         /// registered.
         /// </summary>
         public bool Register(T item)
         {
-            if (item == null || (this.items?.Contains(item) ?? true)) {
+            if (item == null || this.items.Contains(item)) {
                 return false;
             }
 
             this.items.Add(item);
-            this.registered?.Invoke(item);
+
+            if (this.registered != null) {
+                this.registered.Invoke(item);
+            }
 
             return true;
         }
@@ -97,7 +90,10 @@ namespace Zigurous.DataStructures
         {
             if (item != null && this.items.Remove(item))
             {
-                this.unregistered?.Invoke(item);
+                if (this.unregistered != null) {
+                    this.unregistered.Invoke(item);
+                }
+
                 return true;
             }
 
@@ -109,7 +105,7 @@ namespace Zigurous.DataStructures
         /// </summary>
         public bool IsRegistered(T item)
         {
-            return this.items?.Contains(item) ?? false;
+            return this.items.Contains(item);
         }
 
     }

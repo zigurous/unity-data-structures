@@ -138,6 +138,9 @@ namespace Zigurous.DataStructures
         public static Bitmask operator <<(Bitmask a, int b) => new Bitmask(a.mask << b);
         public static Bitmask operator >>(Bitmask a, int b) => new Bitmask(a.mask >> b);
 
+        public static implicit operator int(Bitmask value) => value.mask;
+        public static implicit operator Bitmask(int value) => new Bitmask(value);
+
     }
 
 }

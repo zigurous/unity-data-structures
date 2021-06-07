@@ -47,14 +47,12 @@ namespace Zigurous.DataStructures
 
             if (this.values.TryGetValue(id, out currentValue))
             {
-                // Subtract the previous value from the total before adding the
-                // new value
-                this.total = SplitDifference(value, currentValue);
+                this.total = Subtract(currentValue);
+                this.total = Add(value);
                 this.values[id] = value;
             }
             else
             {
-                // Store the id value and add to the total
                 this.total = Add(value);
                 this.values.Add(id, value);
             }
@@ -70,8 +68,6 @@ namespace Zigurous.DataStructures
 
             if (this.values.TryGetValue(id, out value))
             {
-                // Subtract the id value from the total and remove from the
-                // stored list
                 this.total = Subtract(value);
                 this.values.Remove(id);
             }
@@ -87,20 +83,14 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Increases the total accumulated value by a given amount.
+        /// Increases the accumulated total by a given value.
         /// </summary>
-        protected abstract T Add(T amount);
+        protected abstract T Add(T value);
 
         /// <summary>
-        /// Decreases the total accumulated value by a given amount.
+        /// Decreases the accumulated total by a given value.
         /// </summary>
-        protected abstract T Subtract(T amount);
-
-        /// <summary>
-        /// Updates the total accumulated value by splitting the difference
-        /// between a given new and old value.
-        /// </summary>
-        protected abstract T SplitDifference(T newValue, T oldValue);
+        protected abstract T Subtract(T value);
 
     }
 

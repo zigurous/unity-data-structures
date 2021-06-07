@@ -5,9 +5,8 @@ namespace Zigurous.DataStructures
     /// </summary>
     public sealed class FloatAccumulator : ValueAccumulator<float>
     {
-        protected override float Add(float amount) => this.total + amount;
-        protected override float Subtract(float amount) => this.total - amount;
-        protected override float SplitDifference(float newValue, float oldValue) => this.total + (newValue - oldValue);
+        protected override float Add(float value) => this.total + value;
+        protected override float Subtract(float value) => this.total - value;
 
     }
 

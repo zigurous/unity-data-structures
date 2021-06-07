@@ -7,9 +7,8 @@ namespace Zigurous.DataStructures
     /// </summary>
     public sealed class Vector3Accumulator : ValueAccumulator<Vector3>
     {
-        protected override Vector3 Add(Vector3 amount) => this.total + amount;
-        protected override Vector3 Subtract(Vector3 amount) => this.total - amount;
-        protected override Vector3 SplitDifference(Vector3 newValue, Vector3 oldValue) => this.total + (newValue - oldValue);
+        protected override Vector3 Add(Vector3 value) => this.total + value;
+        protected override Vector3 Subtract(Vector3 value) => this.total - value;
 
     }
 

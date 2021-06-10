@@ -2,6 +2,12 @@
 
 The Data Structures package contains common data structures, design patterns, and class extensions for Unity projects.
 
+Import the package namespace in each class/script you want to use it. You may need to regenerate project files/assemblies first.
+
+```csharp
+using Zigurous.DataStructures;
+```
+
 ## Installation
 
 The Unity Package Manager can load a package from a Git repository on a remote server.

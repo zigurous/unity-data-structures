@@ -37,8 +37,7 @@ namespace Zigurous.DataStructures
                             GameObject singleton = new GameObject();
                             singleton.name = typeof(T).Name;
                             singleton.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
-
-                            _instance = singleton.AddComponent<T>();
+                            singleton.AddComponent<T>();
                             DontDestroyOnLoad(singleton);
                         }
                     }

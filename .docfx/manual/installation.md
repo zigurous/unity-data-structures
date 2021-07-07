@@ -1,8 +1,4 @@
-# Data Structures
-
-The Data Structures package contains common data structures, design patterns, and class extensions for Unity projects.
-
-## Installation
+# Installation
 
 Use the Unity [Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) to install the Data Structures package.
 
@@ -25,3 +21,9 @@ Import the package namespace in each class/script you want to use it. You may ne
 ```csharp
 using Zigurous.DataStructures;
 ```
+
+### Source Code
+
+The source code for the Data Structures package is in the following repository:
+
+- https://github.com/zigurous/unity-data-structures

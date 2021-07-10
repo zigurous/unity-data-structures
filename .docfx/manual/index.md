@@ -19,6 +19,7 @@ The Data Structures package contains common data structures and design pattern i
 - [UnitIntervalRange](xref:Zigurous.DataStructures.UnitIntervalRange)
 - [Vector2Range](xref:Zigurous.DataStructures.Vector2Range)
 - [Vector3Range](xref:Zigurous.DataStructures.Vector3Range)
+- [Vector4Range](xref:Zigurous.DataStructures.Vector4Range)
 
 ### Patterns
 

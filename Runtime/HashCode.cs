@@ -1,10 +1,14 @@
 ﻿namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// Combines multiple hash codes into a single value.
+    /// </summary>
     public static class HashCode
     {
-        /// <summary>
-        /// Combines two hash codes into one unique hash.
-        /// </summary>
+        /// <summary>Combines two hash codes into one unique hash.</summary>
+        /// <returns>The combined hash code.</returns>
+        /// <param name="hash1">The first hash.</param>
+        /// <param name="hash2">The second hash.</param>
         public static int Combine(int hash1, int hash2)
         {
             unchecked // Overflow is fine, just wrap
@@ -16,9 +20,11 @@
             }
         }
 
-        /// <summary>
-        /// Combines three hash codes into one unique hash.
-        /// </summary>
+        /// <summary>Combines three hash codes into one unique hash.</summary>
+        /// <returns>The combined hash code.</returns>
+        /// <param name="hash1">The first hash.</param>
+        /// <param name="hash2">The second hash.</param>
+        /// <param name="hash3">The third hash.</param>
         public static int Combine(int hash1, int hash2, int hash3)
         {
             unchecked // Overflow is fine, just wrap
@@ -31,9 +37,12 @@
             }
         }
 
-        /// <summary>
-        /// Combines four hash codes into one unique hash.
-        /// </summary>
+        /// <summary>Combines four hash codes into one unique hash.</summary>
+        /// <returns>The combined hash code.</returns>
+        /// <param name="hash1">The first hash.</param>
+        /// <param name="hash2">The second hash.</param>
+        /// <param name="hash3">The third hash.</param>
+        /// <param name="hash4">The fourth hash.</param>
         public static int Combine(int hash1, int hash2, int hash3, int hash4)
         {
             unchecked // Overflow is fine, just wrap

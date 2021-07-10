@@ -2,6 +2,9 @@
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// A range of Vector2 values.
+    /// </summary>
     [System.Serializable]
     public struct Vector2Range : INumberRange<Vector2>
     {
@@ -9,9 +12,7 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private Vector2 _min;
 
-        /// <summary>
-        /// The lower bound of the range.
-        /// </summary>
+        /// <inheritdoc />
         public Vector2 min
         {
             get => _min;
@@ -22,52 +23,54 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private Vector2 _max;
 
-        /// <summary>
-        /// The upper bound of the range.
-        /// </summary>
+        /// <inheritdoc />
         public Vector2 max
         {
             get => _max;
             set => _max = value;
         }
 
-        /// <summary>
-        /// The difference between the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public Vector2 Delta => _max - _min;
 
-        /// <summary>
-        /// The vector in the middle of the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public Vector2 Median => (_min + _max) / 2;
 
-        /// <summary>
-        /// Creates a new Vector2Range with given min and max values.
-        /// </summary>
+        /// <summary>Creates a new Vector2 range with the specified values.</summary>
+        /// <param name="min">The lower bound of the range.</param>
+        /// <param name="max">The upper bound of the range.</param>
         public Vector2Range(Vector2 min, Vector2 max)
         {
             _min = min;
             _max = max;
         }
 
-        /// <summary>
-        /// Determines if the given vector is between the range [inclusive,
-        /// inclusive].
-        /// </summary>
-        public bool Includes(Vector2 value) =>
-            value.x >= _min.x && value.x <= _max.x &&
-            value.y >= _min.y && value.y <= _max.y;
+        /// <inheritdoc />
+        public Vector2 Random()
+        {
+            return new Vector2(
+                UnityEngine.Random.Range(_min.x, _max.x),
+                UnityEngine.Random.Range(_min.y, _max.y));
+        }
 
-        /// <summary>
-        /// Returns a random vector between the range [inclusive, inclusive].
-        /// </summary>
-        public Vector2 Random() => new Vector2(
-            UnityEngine.Random.Range(_min.x, _max.x),
-            UnityEngine.Random.Range(_min.y, _max.y));
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(Vector2 value)
+        {
+            return value.x >= _min.x && value.x <= _max.x &&
+                   value.y >= _min.y && value.y <= _max.y;
+        }
 
-        /// <summary>
-        /// Clamps the given vector between the range.
-        /// </summary>
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(Vector2 value, bool includeMin, bool includeMax)
+        {
+            return value.x.IsBetween(_min.x, _max.x, includeMin, includeMax) &&
+                   value.y.IsBetween(_min.y, _max.y, includeMin, includeMax);
+        }
+
+        /// <inheritdoc />
+        /// <param name="value">The value to clamp.</param>
         public Vector2 Clamp(Vector2 value)
         {
             value.x = Mathf.Clamp(value.x, _min.x, _max.x);

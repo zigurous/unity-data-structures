@@ -4,8 +4,21 @@ using System.Text;
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// Exposes extension methods for arrays.
+    /// </summary>
     public static class ArrayExtensions
     {
+        /// <summary>
+        /// A reusable string builder.
+        /// </summary>
+        private static StringBuilder stringBuilder;
+
+        /// <summary>Appends an element to the end of an array.</summary>
+        /// <returns>A new array with the added <paramref name="element"/>.</returns>
+        /// <param name="array">The array to add the element to.</param>
+        /// <param name="element">The element to add.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T[] Concat<T>(this T[] array, T element)
         {
             T[] combinedArray = new T[array.Length + 1];
@@ -19,6 +32,11 @@ namespace Zigurous.DataStructures
             return combinedArray;
         }
 
+        /// <summary>Appends an array of elements to the end of an array.</summary>
+        /// <returns>A new array with the added <paramref name="elements"/>.</returns>
+        /// <param name="array">The array to add the elements to.</param>
+        /// <param name="elements">The elements to add.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T[] Concat<T>(this T[] array, T[] elements)
         {
             if (elements.Length == 0) {
@@ -38,11 +56,15 @@ namespace Zigurous.DataStructures
             return combinedArray;
         }
 
-        public static bool Contains<T>(this T[] array, T match) where T: IEquatable<T>
+        /// <returns>True if the array contains the <paramref name="element"/>.</returns>
+        /// <param name="array">The array to search in.</param>
+        /// <param name="element">The element to search for.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
+        public static bool Contains<T>(this T[] array, T element) where T: IEquatable<T>
         {
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i].Equals(match)) {
+                if (array[i].Equals(element)) {
                     return true;
                 }
             }
@@ -50,18 +72,10 @@ namespace Zigurous.DataStructures
             return false;
         }
 
-        public static bool ContainsType<T>(this T[] array, Type type)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i].GetType() == type) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
+        /// <returns>The element at the specified <paramref name="index"/>.</returns>
+        /// <param name="array">The array to search in.</param>
+        /// <param name="index">The index of the element to return.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T ElementAt<T>(this T[] array, int index)
         {
             if (index >= 0 && index < array.Length) {
@@ -71,7 +85,12 @@ namespace Zigurous.DataStructures
             }
         }
 
-        public static T[] Filter<T>(this T[] array, Predicate<T> filter)
+        /// <summary>Filters the array to only contain elements that satisfy the <paramref name="predicate"/>.</summary>
+        /// <returns>A new array with the filtered elements removed.</returns>
+        /// <param name="array">The array to filter.</param>
+        /// <param name="predicate">The predicate to use.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
+        public static T[] Filter<T>(this T[] array, Predicate<T> predicate)
         {
             List<T> list = new List<T>(array.Length);
 
@@ -79,7 +98,7 @@ namespace Zigurous.DataStructures
             {
                 T element = array[i];
 
-                if (filter(element) == true) {
+                if (predicate(element) == true) {
                     list.Add(element);
                 }
             }
@@ -87,6 +106,9 @@ namespace Zigurous.DataStructures
             return list.ToArray();
         }
 
+        /// <returns>The first element in the array.</returns>
+        /// <param name="array">The array to get the element from.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T First<T>(this T[] array)
         {
             if (array.Length > 0) {
@@ -96,13 +118,17 @@ namespace Zigurous.DataStructures
             }
         }
 
-        public static T First<T>(this T[] array, Predicate<T> where)
+        /// <returns>The first element in the array that satisfies the <paramref name="predicate"/>.</returns>
+        /// <param name="array">The array to get the element from.</param>
+        /// <param name="predicate">The predicate to use.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
+        public static T First<T>(this T[] array, Predicate<T> predicate)
         {
             for (int i = 0; i < array.Length; i++)
             {
                 T element = array[i];
 
-                if (where(element) == true) {
+                if (predicate(element) == true) {
                     return element;
                 }
             }
@@ -110,6 +136,9 @@ namespace Zigurous.DataStructures
             return default(T);
         }
 
+        /// <returns>The first non-null element in the array.</returns>
+        /// <param name="array">The array to get the element from.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T FirstNonNull<T>(this T[] array) where T: class
         {
             for (int i = 0; i < array.Length; i++)
@@ -124,6 +153,10 @@ namespace Zigurous.DataStructures
             return default(T);
         }
 
+        /// <summary>Flattens a two-dimensional array into a new one-dimensional array.</summary>
+        /// <returns>A one-dimensional array that contains all the elements of the two-dimensional array.</returns>
+        /// <param name="array">The two-dimensional array to flatten.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T[] Flatten<T>(this T[,] array)
         {
             int width = array.GetLength(0);
@@ -143,6 +176,10 @@ namespace Zigurous.DataStructures
             return flat;
         }
 
+        /// <summary>Flattens a three-dimensional array into a new one-dimensional array.</summary>
+        /// <returns>A one-dimensional array that contains all the elements of the three-dimensional array.</returns>
+        /// <param name="array">The three-dimensional array to flatten.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T[] Flatten<T>(this T[,,] array)
         {
             int width = array.GetLength(0);
@@ -166,6 +203,10 @@ namespace Zigurous.DataStructures
             return flat;
         }
 
+        /// <summary>Invokes an <see cref="Action{T}"/> for each element in the array.</summary>
+        /// <param name="array">The array to iterate over.</param>
+        /// <param name="action">The action to invoke.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static void For<T>(this T[] array, Action<(T element, int index)> action)
         {
             for (int i = 0; i < array.Length; i++) {
@@ -173,6 +214,10 @@ namespace Zigurous.DataStructures
             }
         }
 
+        /// <summary>Invokes an <see cref="Action{T}"/> for each element in the array.</summary>
+        /// <param name="array">The array to iterate over.</param>
+        /// <param name="action">The action to invoke.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static void ForEach<T>(this T[] array, Action<T> action)
         {
             for (int i = 0; i < array.Length; i++) {
@@ -180,6 +225,10 @@ namespace Zigurous.DataStructures
             }
         }
 
+        /// <returns>The index of the <paramref name="element"/> in the array.</returns>
+        /// <param name="array">The array to search in.</param>
+        /// <param name="element">The element to search for.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static int IndexOf<T>(this T[] array, T element) where T: IEquatable<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -192,6 +241,10 @@ namespace Zigurous.DataStructures
             return -1;
         }
 
+        /// <returns>True if any element in the array satisfies the <paramref name="predicate"/>.</returns>
+        /// <param name="array">The array to search in.</param>
+        /// <param name="predicate">The predicate to use.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static bool IsAny<T>(this T[] array, Predicate<T> predicate)
         {
             for (int i = 0; i < array.Length; i++)
@@ -204,6 +257,10 @@ namespace Zigurous.DataStructures
             return false;
         }
 
+        /// <returns>True if each element in the array satisfies the <paramref name="predicate"/>.</returns>
+        /// <param name="array">The array to search in.</param>
+        /// <param name="predicate">The predicate to use.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static bool IsEach<T>(this T[] array, Predicate<T> predicate)
         {
             for (int i = 0; i < array.Length; i++)
@@ -216,15 +273,54 @@ namespace Zigurous.DataStructures
             return true;
         }
 
-        public static bool IsEmpty(this Array array) => array.Length <= 0;
-        public static bool IsNotEmpty(this Array array) => array.Length > 0;
-        public static bool IsInBounds(this Array array, int index) => index >= 0 && index < array.Length;
-        public static bool IsNotInBounds(this Array array, int index) => index < 0 || index >= array.Length;
+        /// <returns>True if the array is empty.</returns>
+        /// <param name="array">The array to check.</param>
+        public static bool IsEmpty(this Array array)
+        {
+            return array.Length <= 0;
+        }
 
+        /// <returns>True if the array is not empty.</returns>
+        /// <param name="array">The array to check.</param>
+        public static bool IsNotEmpty(this Array array)
+        {
+            return array.Length > 0;
+        }
+
+        /// <returns>True if the <paramref name="index"/> is within the bounds of the array.</returns>
+        /// <param name="array">The array to check.</param>
+        /// <param name="index">The index to check.</param>
+        public static bool IsInBounds(this Array array, int index)
+        {
+            return index >= 0 && index < array.Length;
+        }
+
+        /// <returns>True if the <paramref name="index"/> is out of bounds of the array.</returns>
+        /// <param name="array">The array to check.</param>
+        /// <param name="index">The index to check.</param>
+        public static bool IsNotInBounds(this Array array, int index)
+        {
+            return index < 0 || index >= array.Length;
+        }
+
+        /// <summary>Joins the elements of the array into a string.</summary>
+        /// <returns>A string that contains the elements of the array separated by the <paramref name="delimiter"/>.</returns>
+        /// <param name="array">The array to join.</param>
+        /// <param name="delimiter">The delimiter to use.</param>
+        /// <param name="startIndex">The index to start at.</param>
+        /// <param name="endIndex">The index to end at.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static string Join<T>(this T[] array, string delimiter, int startIndex = 0, int endIndex = int.MaxValue)
         {
-            if (array.Length == 0) return "";
-            StringBuilder stringBuilder = new StringBuilder();
+            if (array.Length == 0) {
+                return "";
+            }
+
+            if (stringBuilder == null) {
+                stringBuilder = new StringBuilder();
+            } else {
+                stringBuilder.Clear();
+            }
 
             int start = System.Math.Max(0, startIndex);
             int end = System.Math.Min(array.Length - 1, endIndex - 1);
@@ -237,6 +333,9 @@ namespace Zigurous.DataStructures
             return stringBuilder.ToString();
         }
 
+        /// <returns>The last element in the array.</returns>
+        /// <param name="array">The array to get the element from.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T Last<T>(this T[] array)
         {
             if (array.Length > 0) {
@@ -246,13 +345,17 @@ namespace Zigurous.DataStructures
             }
         }
 
-        public static T Last<T>(this T[] array, Predicate<T> where)
+        /// <returns>The last element in the array that satisfies the <paramref name="predicate"/>.</returns>
+        /// <param name="array">The array to get the element from.</param>
+        /// <param name="predicate">The predicate to use.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
+        public static T Last<T>(this T[] array, Predicate<T> predicate)
         {
             for (int i = array.Length - 1; i >= 0; i--)
             {
                 T element = array[i];
 
-                if (where(element) == true) {
+                if (predicate(element) == true) {
                     return element;
                 }
             }
@@ -260,6 +363,9 @@ namespace Zigurous.DataStructures
             return default(T);
         }
 
+        /// <returns>The last non-null element from the end of the array.</returns>
+        /// <param name="array">The array to get the element from.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T LastNonNull<T>(this T[] array) where T: class
         {
             for (int i = array.Length - 1; i >= 0; i--)
@@ -274,6 +380,12 @@ namespace Zigurous.DataStructures
             return default(T);
         }
 
+        /// <summary>Maps the elements of the array to a new array using a given <paramref name="converter"/>.</summary>
+        /// <returns>A new array with the converted elements.</returns>
+        /// <param name="array">The array to map.</param>
+        /// <param name="converter">The converter to use.</param>
+        /// <typeparam name="TInput">The type of the input array.</typeparam>
+        /// <typeparam name="TOutput">The type of the output array.</typeparam>
         public static TOutput[] Map<TInput, TOutput>(this TInput[] array, Converter<TInput, TOutput> converter)
         {
             TOutput[] output = new TOutput[array.Length];
@@ -285,6 +397,10 @@ namespace Zigurous.DataStructures
             return output;
         }
 
+        /// <summary>Filters out all null elements from the array.</summary>
+        /// <returns>A new array with all null elements removed.</returns>
+        /// <param name="array">The array to filter.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T[] NonNull<T>(this T[] array) where T: class
         {
             if (array.Length > 0) {
@@ -294,12 +410,33 @@ namespace Zigurous.DataStructures
             }
         }
 
+        /// <returns>A random element from the array.</returns>
+        /// <param name="array">The array to get the random element from.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T Random<T>(this T[] array)
         {
-            return array[UnityEngine.Random.Range(0, array.Length)];
+            if (array.Length > 0) {
+                return array[UnityEngine.Random.Range(0, array.Length)];
+            } else {
+                return default(T);
+            }
         }
 
+        /// <summary>A function delegate that reduces an array into a single value.</summary>
+        /// <returns>The reduced value.</returns>
+        /// <param name="sum">The current sum.</param>
+        /// <param name="element">The current element being reduced.</param>
+        /// <typeparam name="TSum">The type of the reduced value.</typeparam>
+        /// <typeparam name="TElement">The type of elements in the array.</typeparam>
         public delegate TSum Reducer<TSum, TElement>(TSum sum, TElement element);
+
+        /// <summary>Reduces the elements of the array to a single value.</summary>
+        /// <returns>The reduced value.</returns>
+        /// <param name="array">The array to reduce.</param>
+        /// <param name="initialValue">The initial value to use.</param>
+        /// <param name="reducer">The reducer to use.</param>
+        /// <typeparam name="TSum">The type of the reduced value.</typeparam>
+        /// <typeparam name="TElement">The type of elements in the array.</typeparam>
         public static TSum Reduce<TElement, TSum>(this TElement[] array, TSum initialValue, Reducer<TSum, TElement> reducer)
         {
             TSum sum = initialValue;
@@ -311,6 +448,11 @@ namespace Zigurous.DataStructures
             return sum;
         }
 
+        /// <summary>Removes the element at the specified <paramref name="index"/> from the array.</summary>
+        /// <returns>A new array with the element removed.</returns>
+        /// <param name="array">The array to remove the element from.</param>
+        /// <param name="index">The index of the element to remove.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T[] RemoveAt<T>(this T[] array, int index)
         {
             if (index < 0 || index >= array.Length) {
@@ -330,6 +472,9 @@ namespace Zigurous.DataStructures
             return removed;
         }
 
+        /// <summary>Reverses the order of the elements in the array.</summary>
+        /// <param name="array">The array to reverse.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static void Reverse<T>(this T[] array)
         {
             for (int i = 0; i < array.Length / 2; i++)
@@ -340,6 +485,10 @@ namespace Zigurous.DataStructures
             }
         }
 
+        /// <summary>Reverses the order of the elements in the array.</summary>
+        /// <returns>A new array with the order of the elements reversed.</returns>
+        /// <param name="array">The array to reverse.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T[] Reversed<T>(this T[] array)
         {
             T[] reversed = new T[array.Length];
@@ -351,6 +500,10 @@ namespace Zigurous.DataStructures
             return reversed;
         }
 
+        /// <returns>A slice of the array with the specified <paramref name="amount"/> of elements.</returns>
+        /// <param name="array">The array to slice.</param>
+        /// <param name="amount">The amount of elements to slice.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static T[] Slice<T>(this T[] array, int amount)
         {
             T[] slice = new T[amount];
@@ -362,16 +515,29 @@ namespace Zigurous.DataStructures
             return slice;
         }
 
+        /// <summary>Sorts the elements of the array.</summary>
+        /// <param name="array">The array to sort.</param>
+        /// <param name="comparison">The comparison to use.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
         public static void Sort<T>(this T[] array, Comparison<T> comparison)
         {
             Array.Sort(array, comparison);
         }
 
-        public static T[] Where<T>(this T[] array, Predicate<T> match)
+        /// <summary>Filters the array to only contain elements that satisfy the <paramref name="predicate"/>.</summary>
+        /// <returns>A new array with the filtered elements removed.</returns>
+        /// <param name="array">The array to filter.</param>
+        /// <param name="predicate">The predicate to use.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
+        public static T[] Where<T>(this T[] array, Predicate<T> predicate)
         {
-            return Filter(array, match);
+            return Filter(array, predicate);
         }
 
+        /// <summary>Wraps the <paramref name="index"/> in the array to the other end.</summary>
+        /// <returns>The wrapped index.</returns>
+        /// <param name="array">The array to wrap.</param>
+        /// <param name="index">The index to wrap.</param>
         public static int WrapIndex(this Array array, int index)
         {
             return ((index % array.Length) + array.Length) % array.Length;

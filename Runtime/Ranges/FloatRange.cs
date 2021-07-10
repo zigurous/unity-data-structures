@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// A range of float values.
+    /// </summary>
     [System.Serializable]
     public struct FloatRange : INumberRange<float>
     {
@@ -9,36 +12,28 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private float _min;
 
-        /// <summary>
-        /// The lower bound of the range.
-        /// </summary>
+        [Tooltip("The upper bound of the range.")]
+        [SerializeField]
+        private float _max;
+
+        /// <inheritdoc />
         public float min
         {
             get => _min;
             set => _min = value;
         }
 
-        [Tooltip("The upper bound of the range.")]
-        [SerializeField]
-        private float _max;
-
-        /// <summary>
-        /// The upper bound of the range.
-        /// </summary>
+        /// <inheritdoc />
         public float max
         {
             get => _max;
             set => _max = value;
         }
 
-        /// <summary>
-        /// The difference between the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public float Delta => _max - _min;
 
-        /// <summary>
-        /// The number in the middle of the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public float Median => (_min + _max) / 2;
 
         /// <summary>
@@ -71,30 +66,41 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static FloatRange minMax => new FloatRange(float.MinValue, float.MaxValue);
 
-        /// <summary>
-        /// Creates a new FloatRange with given min and max values.
-        /// </summary>
+        /// <summary>Creates a new float range with the specified values.</summary>
+        /// <param name="min">The lower bound of the range.</param>
+        /// <param name="max">The upper bound of the range.</param>
         public FloatRange(float min = 0.0f, float max = 1.0f)
         {
             _min = min;
             _max = max;
         }
 
-        /// <summary>
-        /// Determines if the given value is between the range [inclusive,
-        /// inclusive].
-        /// </summary>
-        public bool Includes(float value) => value >= _min && value <= _max;
+        /// <inheritdoc />
+        public float Random()
+        {
+            return UnityEngine.Random.Range(_min, _max);
+        }
 
-        /// <summary>
-        /// Returns a random value between the range [inclusive, inclusive].
-        /// </summary>
-        public float Random() => UnityEngine.Random.Range(_min, _max);
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(float value)
+        {
+            return value >= _min && value <= _max;
+        }
 
-        /// <summary>
-        /// Clamps the given value between the range.
-        /// </summary>
-        public float Clamp(float value) => Mathf.Clamp(value, _min, _max);
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(float value, bool includeMin, bool includeMax)
+        {
+            return value.IsBetween(_min, _max, includeMin, includeMax);
+        }
+
+        /// <inheritdoc />
+        /// <param name="value">The value to clamp.</param>
+        public float Clamp(float value)
+        {
+            return Mathf.Clamp(value, _min, _max);
+        }
 
     }
 

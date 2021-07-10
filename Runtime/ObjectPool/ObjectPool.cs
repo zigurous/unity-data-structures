@@ -9,11 +9,11 @@ namespace Zigurous.DataStructures
     /// Optionally, objects that are currently active can be reused when the
     /// pool has reached capacity.
     /// </summary>
-    public sealed class ObjectPool<T> : IObjectPool<T> where T: class
+    /// <typeparam name="T">The type of object to pool.</typeparam>
+    public sealed class ObjectPool<T> : IObjectPool<T> where T: class, IDisposable
     {
-        /// <summary>
-        /// A function type that creates a new instance of an object.
-        /// </summary>
+        /// <summary>A function delegate that creates a new instance of an object.</summary>
+        /// <returns>A new instance of an object.</returns>
         public delegate T Generator();
 
         /// <summary>
@@ -42,23 +42,24 @@ namespace Zigurous.DataStructures
         /// </summary>
         public bool reuseActive { get; private set; }
 
-        /// <summary>
+        /// <returns>
         /// The number of objects currently being used.
-        /// </summary>
+        /// </returns>
         public int ActiveCount => _activeItems.Count;
 
-        /// <summary>
+        /// <returns>
         /// The number of objects available to be reused.
-        /// </summary>
+        /// </returns>
         public int AvailableCount => _pool.Count;
 
         // Prevent use of default constructor.
         private ObjectPool() {}
 
         /// <summary>
-        /// Creates a new ObjectPool with an initial capacity. New objects are
+        /// Creates a new object pool with an initial capacity. New objects are
         /// created as needed using the object type default value.
         /// </summary>
+        /// <param name="initialCapacity">The initial capacity of the pool.</param>
         public ObjectPool(int initialCapacity)
         {
             _pool = new Queue<T>(initialCapacity);
@@ -70,11 +71,14 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Creates a new ObjectPool with an initial capacity and max capacity.
+        /// Creates a new object pool with an initial capacity and max capacity.
         /// Optionally active objects can be reused when the pool has reached
         /// max capacity. New objects are created as needed using the object
         /// type default value.
         /// </summary>
+        /// <param name="initialCapacity">The initial capacity of the pool.</param>
+        /// <param name="maxCapacity">The maximum number of objects that can be generated.</param>
+        /// <param name="reuseActive">Whether active objects should be reused when the object pool has reached max capacity.</param>
         public ObjectPool(int initialCapacity, int maxCapacity, bool reuseActive = false)
         {
             _pool = new Queue<T>(initialCapacity);
@@ -86,9 +90,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Creates a new ObjectPool with a given generator function and initial
-        /// capacity. New objects are created as needed with no max capacity.
+        /// Creates a new object pool with a given generator function and
+        /// initial capacity. New objects are created as needed with no max
+        /// capacity.
         /// </summary>
+        /// <param name="generator">The function delegate that generates a new object.</param>
+        /// <param name="initialCapacity">The initial capacity of the pool.</param>
         public ObjectPool(Generator generator, int initialCapacity)
         {
             _pool = new Queue<T>(initialCapacity);
@@ -100,10 +107,14 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Creates a new ObjectPool with a given generator function and set
+        /// Creates a new object pool with a given generator function and set
         /// capacity limits. Optionally active objects can be reused when the
         /// pool has reached max capacity.
         /// </summary>
+        /// <param name="generator">The function delegate that generates a new object.</param>
+        /// <param name="initialCapacity">The initial capacity of the pool.</param>
+        /// <param name="maxCapacity">The maximum number of objects that can be generated.</param>
+        /// <param name="reuseActive">Whether active objects should be reused when the object pool has reached max capacity.</param>
         public ObjectPool(Generator generator, int initialCapacity, int maxCapacity, bool reuseActive = false)
         {
             _pool = new Queue<T>(initialCapacity);
@@ -129,6 +140,7 @@ namespace Zigurous.DataStructures
         /// each object in the pool. This is useful, for example, if you want to
         /// destroy the objects when the pool is disposed.
         /// </summary>
+        /// <param name="cleanup">The cleanup function to invoke on each object.</param>
         public void Dispose(Action<T> cleanup)
         {
             if (cleanup != null)
@@ -146,12 +158,11 @@ namespace Zigurous.DataStructures
             _activeItems.Clear();
         }
 
-        /// <summary>
-        /// Retrieves an item from the object pool. If there are no available
-        /// objects in the pool, either a new object will be generated or the
-        /// oldest object will be reused depending upon how the ObjectPool was
-        /// created.
-        /// </summary>
+        /// <returns>
+        /// An item from the object pool. If there are no available objects in
+        /// the pool, either a new object will be generated or the oldest object
+        /// will be reused depending upon how the object pool was created.
+        /// </returns>
         public T Retrieve()
         {
             T item = null;
@@ -182,9 +193,8 @@ namespace Zigurous.DataStructures
             return item;
         }
 
-        /// <summary>
-        /// Adds an item back to the object pool so it can be reused.
-        /// </summary>
+        /// <summary>Adds an item back to the object pool so it can be reused.</summary>
+        /// <param name="item">The item to add to the pool.</param>
         public void Recycle(T item)
         {
             if (item != null)
@@ -208,6 +218,7 @@ namespace Zigurous.DataStructures
         /// function on each object. This is useful, for example, if you want to
         /// destroy the objects when the pool is emptied.
         /// </summary>
+        /// <param name="cleanup">The cleanup function to invoke on each object.</param>
         public void Empty(Action<T> cleanup)
         {
             if (cleanup != null)

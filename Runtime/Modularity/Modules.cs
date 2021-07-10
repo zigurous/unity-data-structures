@@ -6,6 +6,7 @@ namespace Zigurous.DataStructures
     /// <summary>
     /// Manages a list of registered entity modules.
     /// </summary>
+    /// <typeparam name="T">The type of entity to manage.</typeparam>
     public sealed class Modules<T> : IModular<T> where T: class
     {
         /// <summary>
@@ -14,7 +15,7 @@ namespace Zigurous.DataStructures
         public List<T> items { get; private set; }
 
         /// <summary>
-        /// A callback invoked when a new module is registered.
+        /// A callback invoked when a module is registered.
         /// </summary>
         public Action<T> registered;
 
@@ -23,21 +24,22 @@ namespace Zigurous.DataStructures
         /// </summary>
         public Action<T> unregistered;
 
-        /// <summary>
+        /// <returns>
         /// The amount of modules registered to the entity.
-        /// </summary>
+        /// </returns>
         public int Count => this.items.Count;
 
-        /// <summary>
-        /// Returns the module at the given index.
-        /// </summary>
-        public T this[int index] => this.items.ElementAt(index);
+        /// <returns>The module at the given index.</returns>
+        /// <param name="index">The index of the module to return.</param>
+        public T this[int index] => this.items.ItemAt(index);
 
+        // Prevent use of default constructor.
         private Modules() {}
 
-        /// <summary>
-        /// Creates a new Modules instance with a set capacity.
-        /// </summary>
+        /// <summary>Creates a new module collection with a set capacity.</summary>
+        /// <param name="capacity">The initial capacity of the collection.</param>
+        /// <param name="registered">A callback invoked when a module is registered.</param>
+        /// <param name="unregistered">A callback invoked when a module is unregistered.</param>
         public Modules(int capacity, Action<T> registered = null, Action<T> unregistered = null)
         {
             this.items = new List<T>(capacity);
@@ -45,10 +47,10 @@ namespace Zigurous.DataStructures
             this.unregistered = unregistered;
         }
 
-        /// <summary>
-        /// Creates a new Modules instance and pre-registers a list of given
-        /// items.
-        /// </summary>
+        /// <summary>Creates a new module collection and pre-registers a list of given items.</summary>
+        /// <param name="items">The items to pre-register.</param>
+        /// <param name="registered">A callback invoked when a module is registered.</param>
+        /// <param name="unregistered">A callback invoked when a module is unregistered.</param>
         public Modules(T[] items, Action<T> registered = null, Action<T> unregistered = null)
         {
             this.items = new List<T>(items);
@@ -63,35 +65,31 @@ namespace Zigurous.DataStructures
             }
         }
 
-        /// <summary>
-        /// Registers an item to the entity. Returns false if the item cannot be
-        /// registered.
-        /// </summary>
-        public bool Register(T item)
+        /// <inheritdoc />
+        /// <param name="module">The module to register.</param>
+        public bool Register(T module)
         {
-            if (item == null || this.items.Contains(item)) {
+            if (module == null || this.items.Contains(module)) {
                 return false;
             }
 
-            this.items.Add(item);
+            this.items.Add(module);
 
             if (this.registered != null) {
-                this.registered.Invoke(item);
+                this.registered.Invoke(module);
             }
 
             return true;
         }
 
-        /// <summary>
-        /// Unregisters an item from the entity. Returns true if the item is
-        /// unregistered.
-        /// </summary>
-        public bool Unregister(T item)
+        /// <inheritdoc />
+        /// <param name="module">The module to unregister.</param>
+        public bool Unregister(T module)
         {
-            if (item != null && this.items.Remove(item))
+            if (module != null && this.items.Remove(module))
             {
                 if (this.unregistered != null) {
-                    this.unregistered.Invoke(item);
+                    this.unregistered.Invoke(module);
                 }
 
                 return true;
@@ -100,12 +98,11 @@ namespace Zigurous.DataStructures
             return false;
         }
 
-        /// <summary>
-        /// Deternines if the provided item is registered.
-        /// </summary>
-        public bool IsRegistered(T item)
+        /// <inheritdoc />
+        /// <param name="module">The module to check for registration.</param>
+        public bool IsRegistered(T module)
         {
-            return this.items.Contains(item);
+            return this.items.Contains(module);
         }
 
     }

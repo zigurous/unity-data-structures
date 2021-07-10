@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// A range of int values.
+    /// </summary>
     [System.Serializable]
     public struct IntRange : INumberRange<int>
     {
@@ -9,36 +12,28 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private int _min;
 
-        /// <summary>
-        /// The lower bound of the range.
-        /// </summary>
+        [Tooltip("The upper bound of the range.")]
+        [SerializeField]
+        private int _max;
+
+        /// <inheritdoc />
         public int min
         {
             get => _min;
             set => _min = value;
         }
 
-        [Tooltip("The upper bound of the range.")]
-        [SerializeField]
-        private int _max;
-
-        /// <summary>
-        /// The upper bound of the range.
-        /// </summary>
+        /// <inheritdoc />
         public int max
         {
             get => _max;
             set => _max = value;
         }
 
-        /// <summary>
-        /// The difference between the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public int Delta => _max - _min;
 
-        /// <summary>
-        /// The number in the middle of the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public int Median => (_min + _max) / 2;
 
         /// <summary>
@@ -66,41 +61,51 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static IntRange minMax => new IntRange(int.MinValue, int.MaxValue);
 
-        /// <summary>
-        /// Creates a new IntRange with given min and max values.
-        /// </summary>
+        /// <summary>Creates a new int range with the specified values.</summary>
+        /// <param name="min">The lower bound of the range.</param>
+        /// <param name="max">The upper bound of the range.</param>
         public IntRange(int min, int max)
         {
             _min = min;
             _max = max;
         }
 
-        /// <summary>
-        /// Determines if the given value is between the range [inclusive,
-        /// exclusive).
-        /// </summary>
-        public bool Includes(int value) => value >= _min && value < _max;
+        /// <returns>
+        /// A random value in the range [inclusive, exclusive).
+        /// </returns>
+        public int Random()
+        {
+            return UnityEngine.Random.Range(_min, _max);
+        }
 
-        /// <summary>
-        /// Determines if the given value is between the range using a custom
-        /// inclusive/exclusive combination.
-        /// </summary>
-        public bool Includes(int value, bool includeMin, bool includeMax) => value.IsBetween(_min, _max, includeMin, includeMax);
+        /// <returns>
+        /// A random value in the range [inclusive, inclusive].
+        /// </returns>
+        public int RandomInclusive()
+        {
+            return UnityEngine.Random.Range(_min, _max + 1);
+        }
 
-        /// <summary>
-        /// Returns a random value between the range [inclusive, exclusive).
-        /// </summary>
-        public int Random() => UnityEngine.Random.Range(_min, _max);
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(int value)
+        {
+            return value >= _min && value < _max;
+        }
 
-        /// <summary>
-        /// Returns a random value between the range [inclusive, inclusive].
-        /// </summary>
-        public int RandomInclusive() => UnityEngine.Random.Range(_min, _max + 1);
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(int value, bool includeMin, bool includeMax)
+        {
+            return value.IsBetween(_min, _max, includeMin, includeMax);
+        }
 
-        /// <summary>
-        /// Clamps the given value between the range.
-        /// </summary>
-        public int Clamp(int value) => Mathf.Clamp(value, _min, _max);
+        /// <inheritdoc />
+        /// <param name="value">The value to clamp.</param>
+        public int Clamp(int value)
+        {
+            return Mathf.Clamp(value, _min, _max);
+        }
 
     }
 

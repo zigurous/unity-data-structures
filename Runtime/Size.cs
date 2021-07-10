@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// Stores the size of an entity.
+    /// </summary>
     [System.Serializable]
     public struct Size : IEquatable<Size>, IComparable<Size>
     {
@@ -18,9 +21,9 @@ namespace Zigurous.DataStructures
         [Tooltip("The height of the entity.")]
         public int height;
 
-        /// <summary>
-        /// Calculates the area (width * height).
-        /// </summary>
+        /// <returns>
+        /// The area of the entity (width * height).
+        /// </returns>
         public int Area => System.Math.Abs(this.width * this.height);
 
         /// <summary>
@@ -103,49 +106,27 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static Size sq8192 => new Size(8192);
 
-        /// <summary>
-        /// Creates a new Size of given width and height.
-        /// </summary>
+        /// <summary>Creates a new size of the given <paramref name="width"/> and <paramref name="height"/>.</summary>
+        /// <param name="width">The width of the entity.</param>
+        /// <param name="height">The height of the entity.</param>
         public Size(int width = 0, int height = 0)
         {
             this.width = width;
             this.height = height;
         }
 
-        /// <summary>
-        /// Creates a new Size with uniform width and height.
-        /// </summary>
+        /// <summary>Creates a new size with uniform width and height.</summary>
+        /// <param name="size">The uniform size of the entity.</param>
         public Size(int size)
         {
             this.width = size;
             this.height = size;
         }
 
-        public override string ToString()
-        {
-            return String.Format("(width: {0}, height: {1})", this.width, this.height);
-        }
-
-        public bool Equals(Size other)
-        {
-            return this.width == other.width &&
-                   this.height == other.height;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is Size size) {
-                return Equals(size);
-            } else {
-                return false;
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.width.GetHashCode(), this.height.GetHashCode());
-        }
-
+        /// <summary>
+        /// <see cref="IComparable{T}.CompareTo(T)"/>.
+        /// </summary>
+        /// <param name="other">The size to compare to.</param>
         public int CompareTo(Size other)
         {
             int a = this.Area;
@@ -154,6 +135,41 @@ namespace Zigurous.DataStructures
             if (a == b) return 0;
             else if (a > b) return 1;
             else return -1;
+        }
+
+        /// <returns>True if the size is equal to the <paramref name="other"/>.</returns>
+        /// <param name="other">The size to compare to.</param>
+        public bool Equals(Size other)
+        {
+            return this.width == other.width &&
+                   this.height == other.height;
+        }
+
+        /// <returns>True if the size is equal to the <paramref name="other"/>.</returns>
+        /// <param name="other">The object to compare to.</param>
+        public override bool Equals(object other)
+        {
+            if (other is Size size) {
+                return Equals(size);
+            } else {
+                return false;
+            }
+        }
+
+        /// <returns>
+        /// The hash code of the size.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.width.GetHashCode(), this.height.GetHashCode());
+        }
+
+        /// <returns>
+        /// The string representation of the size.
+        /// </returns>
+        public override string ToString()
+        {
+            return $"{this.width.ToString()}x{this.height.ToString()}";
         }
 
         public static bool operator ==(Size lhs, Size rhs) => lhs.Equals(rhs);

@@ -2,14 +2,22 @@
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// Generates identifiers.
+    /// </summary>
     public static class Identifier
     {
         /// <summary>
-        /// Creates a unique identifier based on unix time. Since time is always
-        /// increasing, this value will always be different than previous
-        /// generations.
+        /// Creates a identifier based on unix time. Since time is always
+        /// increasing, this value will be different than generations made in
+        /// previous cycles.
         /// </summary>
-        public static long GenerateFromTime()
+        /// <remarks>
+        /// This should not be used to guarentee uniqueness since ids generated
+        /// within the same cycle will usually be identical.
+        /// </remarks>
+        /// <returns>The temporal identifier.</returns>
+        public static long Temporal()
         {
             return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         }

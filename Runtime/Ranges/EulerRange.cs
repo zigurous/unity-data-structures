@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// A range of euler values.
+    /// </summary>
     [System.Serializable]
     public struct EulerRange : INumberRange<float>
     {
@@ -10,37 +13,29 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private float _min;
 
-        /// <summary>
-        /// The lower bound of the range.
-        /// </summary>
+        [Tooltip("The upper bound of the range.")]
+        [Range(-360.0f, 360.0f)]
+        [SerializeField]
+        private float _max;
+
+        /// <inheritdoc />
         public float min
         {
             get => _min;
             set => _min = EulerRange.Wrap(value, -360.0f, 360.0f);
         }
 
-        [Tooltip("The upper bound of the range.")]
-        [Range(-360.0f, 360.0f)]
-        [SerializeField]
-        private float _max;
-
-        /// <summary>
-        /// The upper bound of the range.
-        /// </summary>
+        /// <inheritdoc />
         public float max
         {
             get => _max;
             set => _max = EulerRange.Wrap(value, -360.0f, 360.0f);
         }
 
-        /// <summary>
-        /// The difference between the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public float Delta => _max - _min;
 
-        /// <summary>
-        /// The number in the middle of the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public float Median => (_min + _max) / 2;
 
         /// <summary>
@@ -68,35 +63,48 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static EulerRange fullRange => new EulerRange(-360.0f, 360.0f);
 
-        /// <summary>
-        /// Creates a new EulerRange with given min and max values.
-        /// </summary>
+        /// <summary>Creates a new euler range with the specified values.</summary>
+        /// <param name="min">The lower bound of the range.</param>
+        /// <param name="max">The upper bound of the range.</param>
         public EulerRange(float min = -360.0f, float max = 360.0f)
         {
             _min = EulerRange.Wrap(min, -360.0f, 360.0f);
             _max = EulerRange.Wrap(max, -360.0f, 360.0f);
         }
 
-        /// <summary>
-        /// Determines if the given value is between the range [inclusive,
-        /// inclusive].
-        /// </summary>
-        public bool Includes(float value) => value >= _min && value <= _max;
+        /// <inheritdoc />
+        public float Random()
+        {
+            return UnityEngine.Random.Range(_min, _max);
+        }
 
-        /// <summary>
-        /// Returns a random value between the range [inclusive, inclusive].
-        /// </summary>
-        public float Random() => UnityEngine.Random.Range(_min, _max);
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(float value)
+        {
+            return value >= _min && value <= _max;
+        }
 
-        /// <summary>
-        /// Clamps the given value between the range.
-        /// </summary>
-        public float Clamp(float value) => Mathf.Clamp(value, _min, _max);
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(float value, bool includeMin, bool includeMax)
+        {
+            return value.IsBetween(_min, _max, includeMin, includeMax);
+        }
 
-        /// <summary>
-        /// Wraps the given value between the range.
-        /// </summary>
-        public float Wrap(float value) => EulerRange.Wrap(value, _min, _max);
+        /// <inheritdoc />
+        /// <param name="value">The value to clamp.</param>
+        public float Clamp(float value)
+        {
+            return Mathf.Clamp(value, _min, _max);
+        }
+
+        /// <returns>The <paramref name="value"/> wrapped in the range.</returns>
+        /// <param name="value">The value to wrap.</param>
+        public float Wrap(float value)
+        {
+            return EulerRange.Wrap(value, _min, _max);
+        }
 
         private static float Wrap(float value, float min, float max)
         {

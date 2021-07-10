@@ -2,21 +2,26 @@ using UnityEngine;
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// A singleton behavior that can be used to ensure that only one instance
+    /// of a class is created.
+    /// </summary>
+    /// <typeparam name="T">The type of the singleton class.</typeparam>
     public abstract class SingletonBehavior<T> : MonoBehaviour where T : Component
     {
         private static volatile T _instance;
         private static object _lock = new object();
         private static bool _isUnloading = false;
 
-        /// <summary>
-        /// Returns true if the Singleton has been initialized and an instance
-        /// is available to use.
-        /// </summary>
+        /// <returns>
+        /// True if the singleton has been initialized and an instance is
+        /// available to use.
+        /// </returns>
         public static bool HasInstance => _instance != null;
 
         /// <summary>
-        /// The current instance of the class. The instance will be created if
-        /// it does not already exist.
+        /// The current instance of the class.
+        /// The instance will be created if it does not already exist.
         /// </summary>
         public static T Instance
         {
@@ -71,7 +76,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// A callback invoked when the Singleton is first initialized.
+        /// A callback invoked when the singleton is first initialized.
         /// </summary>
         protected virtual void OnSingletonInitialized() {}
 

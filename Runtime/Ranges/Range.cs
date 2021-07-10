@@ -2,9 +2,12 @@
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>A range of values.</summary>
+    /// <typeparam name="T">The type of values in the range.</typeparam>
     public struct Range<T> : IRange<T> where T: IComparable<T>
     {
         private T _min;
+        private T _max;
 
         /// <summary>
         /// The lower bound of the range.
@@ -15,8 +18,6 @@ namespace Zigurous.DataStructures
             set => _min = value;
         }
 
-        private T _max;
-
         /// <summary>
         /// The upper bound of the range.
         /// </summary>
@@ -26,26 +27,30 @@ namespace Zigurous.DataStructures
             set => _max = value;
         }
 
-        /// <summary>
-        /// Creates a new Range with given min and max values.
-        /// </summary>
+        /// <summary>Creates a new range with the given <paramref name="min"/> and <paramref name="max"/> values.</summary>
+        /// <param name="min">The lower bound of the range.</param>
+        /// <param name="max">The upper bound of the range.</param>
         public Range(T min = default(T), T max = default(T))
         {
             _min = min;
             _max = max;
         }
 
-        /// <summary>
-        /// Determines if the given value is between the range [inclusive,
-        /// inclusive].
-        /// </summary>
-        public bool Includes(T value) => value.IsBetween(_min, _max, true, true);
+        /// <inheritdoc />
+        /// <param name="vale">The value to check.</param>
+        public bool Includes(T value)
+        {
+            return value.IsBetween(_min, _max, true, true);
+        }
 
-        /// <summary>
-        /// Determines if the given value is between the range using a custom
-        /// inclusive/exclusive combination.
-        /// </summary>
-        public bool Includes(T value, bool includeMin, bool includeMax) => value.IsBetween(_min, _max, includeMin, includeMax);
+        /// <returns>True if the <paramref name="value"/> is in the range.</returns>
+        /// <param name="value">The value to check.</param>
+        /// <param name="includeMin">Whether to include the minimum value.</param>
+        /// <param name="includeMax">Whether to include the maximum value.</param>
+        public bool Includes(T value, bool includeMin, bool includeMax)
+        {
+            return value.IsBetween(_min, _max, includeMin, includeMax);
+        }
 
     }
 

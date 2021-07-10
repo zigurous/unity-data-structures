@@ -5,7 +5,12 @@ namespace Zigurous.DataStructures
     /// </summary>
     public sealed class FloatAccumulator : ValueAccumulator<float>
     {
+        /// <inheritdoc />
+        /// <param name="value">The value to add to the total.</param>
         protected override float Add(float value) => this.total + value;
+
+        /// <inheritdoc />
+        /// <param name="value">The value to subtract from the total.</param>
         protected override float Subtract(float value) => this.total - value;
 
     }

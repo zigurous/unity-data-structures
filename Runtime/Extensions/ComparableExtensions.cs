@@ -2,8 +2,18 @@
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// Exposes extension methods for <see cref="IComparable{T}"/>.
+    /// </summary>
     public static class ComparableExtensions
     {
+        /// <returns>True if the <paramref name="value"/> is between the <paramref name="min"/> and <paramref name="max"/>.</returns>
+        /// <param name="value">The value to check.</param>
+        /// <param name="min">The minimum value.</param>
+        /// <param name="max">The maximum value.</param>
+        /// <param name="includeMin">The minimum value is inclusive if true, exclusive if false.</param>
+        /// <param name="includeMax">The maximum value is inclusive if true, exclusive if false.</param>
+        /// <typeparam name="T">The type of value to check.</typeparam>
         public static bool IsBetween<T>(this T value, T min, T max, bool includeMin, bool includeMax) where T: IComparable<T>
         {
             int minCompare = value.CompareTo(min);

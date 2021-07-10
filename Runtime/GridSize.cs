@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// Stores the size of a grid.
+    /// </summary>
     [System.Serializable]
     public struct GridSize : IEquatable<GridSize>, IComparable<GridSize>
     {
@@ -18,9 +21,9 @@ namespace Zigurous.DataStructures
         [Tooltip("The number of columns in the grid.")]
         public int columns;
 
-        /// <summary>
-        /// Calculates the area of the grid (rows * columns).
-        /// </summary>
+        /// <returns>
+        /// The area of the grid (rows * columns).
+        /// </returns>
         public int Area => System.Math.Abs(this.rows * this.columns);
 
         /// <summary>
@@ -103,49 +106,27 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static GridSize sq8192 => new GridSize(8192);
 
-        /// <summary>
-        /// Creates a new GridSize with given rows and columns.
-        /// </summary>
+        /// <summary>Creates a new grid size with the given <paramref name="rows"/> and <paramref name="columns"/>.</summary>
+        /// <param name="rows">The number of rows in the grid.</param>
+        /// <param name="columns">The number of columns in the grid.</param>
         public GridSize(int rows = 0, int columns = 0)
         {
             this.rows = rows;
             this.columns = columns;
         }
 
-        /// <summary>
-        /// Creates a new GridSize with uniform rows and columns.
-        /// </summary>
+        /// <summary>Creates a new grid size with uniform rows and columns.</summary>
+        /// <param name="size">The uniform size of the grid.</param>
         public GridSize(int size)
         {
             this.rows = size;
             this.columns = size;
         }
 
-        public override string ToString()
-        {
-            return String.Format("(rows: {0}, columns: {1})", this.rows, this.columns);
-        }
-
-        public bool Equals(GridSize other)
-        {
-            return this.rows == other.rows &&
-                   this.columns == other.columns;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is GridSize size) {
-                return Equals(size);
-            } else {
-                return false;
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.rows.GetHashCode(), this.columns.GetHashCode());
-        }
-
+        /// <summary>
+        /// <see cref="IComparable{T}.CompareTo(T)"/>.
+        /// </summary>
+        /// <param name="other">The grid size to compare to.</param>
         public int CompareTo(GridSize other)
         {
             int a = this.Area;
@@ -154,6 +135,41 @@ namespace Zigurous.DataStructures
             if (a == b) return 0;
             else if (a > b) return 1;
             else return -1;
+        }
+
+        /// <returns>True if the grid size is equal to the <paramref name="other"/>.</returns>
+        /// <param name="other">The grid size to compare to.</param>
+        public bool Equals(GridSize other)
+        {
+            return this.rows == other.rows &&
+                   this.columns == other.columns;
+        }
+
+        /// <returns>True if the grid size is equal to the <paramref name="other"/>.</returns>
+        /// <param name="other">The object to compare to.</param>
+        public override bool Equals(object other)
+        {
+            if (other is GridSize size) {
+                return Equals(size);
+            } else {
+                return false;
+            }
+        }
+
+        /// <returns>
+        /// The hash code of the grid size.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.rows.GetHashCode(), this.columns.GetHashCode());
+        }
+
+        /// <returns>
+        /// The string representation of the grid size.
+        /// </returns>
+        public override string ToString()
+        {
+            return $"{this.rows.ToString()}x{this.columns.ToString()}";
         }
 
         public static bool operator ==(GridSize lhs, GridSize rhs) => lhs.Equals(rhs);

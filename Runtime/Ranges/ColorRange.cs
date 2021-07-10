@@ -2,6 +2,9 @@
 
 namespace Zigurous.DataStructures
 {
+    /// <summary>
+    /// A range of Color values.
+    /// </summary>
     [System.Serializable]
     public struct ColorRange : INumberRange<Color>
     {
@@ -9,36 +12,28 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private Color _min;
 
-        /// <summary>
-        /// The lower bound of the range.
-        /// </summary>
+        [Tooltip("The upper bound of the range.")]
+        [SerializeField]
+        private Color _max;
+
+        /// <inheritdoc />
         public Color min
         {
             get => _min;
             set => _min = value;
         }
 
-        [Tooltip("The upper bound of the range.")]
-        [SerializeField]
-        private Color _max;
-
-        /// <summary>
-        /// The upper bound of the range.
-        /// </summary>
+        /// <inheritdoc />
         public Color max
         {
             get => _max;
             set => _max = value;
         }
 
-        /// <summary>
-        /// The difference between the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public Color Delta => _max - _min;
 
-        /// <summary>
-        /// The color in the middle of the range min and max.
-        /// </summary>
+        /// <inheritdoc />
         public Color Median => (_min + _max) / 2;
 
         /// <summary>
@@ -57,7 +52,7 @@ namespace Zigurous.DataStructures
         public static ColorRange blackToWhite => new ColorRange(Color.black, Color.white);
 
         /// <summary>
-        /// Shorthand for writing ColorRange(Color.black, Color.white).
+        /// Shorthand for writing ColorRange(Color.white, Color.black).
         /// </summary>
         public static ColorRange whiteToBlack => new ColorRange(Color.white, Color.black);
 
@@ -76,34 +71,43 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static ColorRange transparent => new ColorRange(new Color(0.0f, 0.0f, 0.0f, 0.0f), new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
-        /// <summary>
-        /// Creates a new ColorRange with given min and max colors.
-        /// </summary>
+        /// <summary>Creates a new color range with the specified values.</summary>
+        /// <param name="min">The lower bound of the range.</param>
+        /// <param name="max">The upper bound of the range.</param>
         public ColorRange(Color min, Color max)
         {
             _min = min;
             _max = max;
         }
 
-        /// <summary>
-        /// Determines if the given color is between the range min [inclusive]
-        /// and max [inclusive].
-        /// </summary>
-        public bool Includes(Color value) =>
-            value.r >= _min.r && value.r <= _max.r &&
-            value.g >= _min.g && value.g <= _max.g &&
-            value.b >= _min.b && value.b <= _max.b &&
-            value.a >= _min.a && value.a <= _max.a;
+        /// <inheritdoc />
+        public Color Random()
+        {
+            return Color.Lerp(_min, _max, UnityEngine.Random.value);
+        }
 
-        /// <summary>
-        /// Returns a random color between the range min [inclusive] and max
-        /// [inclusive].
-        /// </summary>
-        public Color Random() => Color.Lerp(_min, _max, UnityEngine.Random.value);
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(Color value)
+        {
+            return value.r >= _min.r && value.r <= _max.r &&
+                   value.g >= _min.g && value.g <= _max.g &&
+                   value.b >= _min.b && value.b <= _max.b &&
+                   value.a >= _min.a && value.a <= _max.a;
+        }
 
-        /// <summary>
-        /// Clamps the given color between the range min and max.
-        /// </summary>
+        /// <inheritdoc />
+        /// <param name="value">The value to check.</param>
+        public bool Includes(Color value, bool includeMin, bool includeMax)
+        {
+            return value.r.IsBetween(_min.r, _max.r, includeMin, includeMax) &&
+                   value.g.IsBetween(_min.g, _max.g, includeMin, includeMax) &&
+                   value.b.IsBetween(_min.b, _max.b, includeMin, includeMax) &&
+                   value.a.IsBetween(_min.a, _max.a, includeMin, includeMax);
+        }
+
+        /// <inheritdoc />
+        /// <param name="value">The value to clamp.</param>
         public Color Clamp(Color value)
         {
             value.r = Mathf.Clamp(value.r, _min.r, _max.r);

@@ -71,7 +71,9 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static ColorRange transparent => new ColorRange(new Color(0.0f, 0.0f, 0.0f, 0.0f), new Color(0.0f, 0.0f, 0.0f, 0.0f));
 
-        /// <summary>Creates a new color range with the specified values.</summary>
+        /// <summary>
+        /// Creates a new range with the specified values.
+        /// </summary>
         /// <param name="min">The lower bound of the range.</param>
         /// <param name="max">The upper bound of the range.</param>
         public ColorRange(Color min, Color max)

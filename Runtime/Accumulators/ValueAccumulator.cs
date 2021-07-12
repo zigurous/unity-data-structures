@@ -2,7 +2,9 @@ using System.Collections.Generic;
 
 namespace Zigurous.DataStructures
 {
-    /// <summary>Accumulates a set of stored values into a single total value.</summary>
+    /// <summary>
+    /// Accumulates a set of stored values into a single total value.
+    /// </summary>
     /// <typeparam name="T">The type of value to accumulate.</typeparam>
     public abstract class ValueAccumulator<T>
     {
@@ -17,12 +19,15 @@ namespace Zigurous.DataStructures
         /// </summary>
         public T total { get; protected set; }
 
-        /// <returns>
+        /// <summary>
         /// The number of unique values being accumulated.
-        /// </returns>
+        /// </summary>
         public int Count => this.values.Count;
 
-        /// <returns>The stored value with the given <paramref name="identifier"/>.</returns>
+        /// <summary>
+        /// Returns the stored value with the given <paramref name="identifier"/>,
+        /// or the default of <typeparamref name="T"/> if the value does not exist.
+        /// </summary>
         /// <param name="id">The identifier of the stored value.</param>
         public T GetValue(int identifier)
         {
@@ -84,14 +89,18 @@ namespace Zigurous.DataStructures
             this.total = default(T);
         }
 
-        /// <summary>Increases the accumulated total by a given value.</summary>
-        /// <returns>The new total value.</returns>
+        /// <summary>
+        /// Increases the accumulated total by a given value.
+        /// </summary>
         /// <param name="value">The value to add to the total.</param>
+        /// <returns>The new total value.</returns>
         protected abstract T Add(T value);
 
-        /// <summary>Decreases the accumulated total by a given value.</summary>
-        /// <returns>The new total value.</returns>
+        /// <summary>
+        /// Decreases the accumulated total by a given value.
+        /// </summary>
         /// <param name="value">The value to subtract from the total.</param>
+        /// <returns>The new total value.</returns>
         protected abstract T Subtract(T value);
 
     }

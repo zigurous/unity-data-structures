@@ -15,31 +15,35 @@ namespace Zigurous.DataStructures
         public List<T> items { get; private set; }
 
         /// <summary>
-        /// A callback invoked when a module is registered.
+        /// The callback invoked when a module is registered.
         /// </summary>
         public Action<T> registered;
 
         /// <summary>
-        /// A callback invoked when a module is unregistered.
+        /// The callback invoked when a module is unregistered.
         /// </summary>
         public Action<T> unregistered;
 
-        /// <returns>
+        /// <summary>
         /// The amount of modules registered to the entity.
-        /// </returns>
+        /// </summary>
         public int Count => this.items.Count;
 
-        /// <returns>The module at the given index.</returns>
+        /// <summary>
+        /// Returns the module at the given <paramref name="index"/>.
+        /// </summary>
         /// <param name="index">The index of the module to return.</param>
         public T this[int index] => this.items.ItemAt(index);
 
         // Prevent use of default constructor.
         private Modules() {}
 
-        /// <summary>Creates a new module collection with a set capacity.</summary>
+        /// <summary>
+        /// Creates a new module collection with a set <paramref name="capacity"/>.
+        /// </summary>
         /// <param name="capacity">The initial capacity of the collection.</param>
-        /// <param name="registered">A callback invoked when a module is registered.</param>
-        /// <param name="unregistered">A callback invoked when a module is unregistered.</param>
+        /// <param name="registered">The callback invoked when a module is registered.</param>
+        /// <param name="unregistered">The callback invoked when a module is unregistered.</param>
         public Modules(int capacity, Action<T> registered = null, Action<T> unregistered = null)
         {
             this.items = new List<T>(capacity);
@@ -47,7 +51,9 @@ namespace Zigurous.DataStructures
             this.unregistered = unregistered;
         }
 
-        /// <summary>Creates a new module collection and pre-registers a list of given items.</summary>
+        /// <summary>
+        /// Creates a new module collection and pre-registers a list of <paramref name="items"/>.
+        /// </summary>
         /// <param name="items">The items to pre-register.</param>
         /// <param name="registered">A callback invoked when a module is registered.</param>
         /// <param name="unregistered">A callback invoked when a module is unregistered.</param>

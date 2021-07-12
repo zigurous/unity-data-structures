@@ -3,7 +3,9 @@ using UnityEngine;
 
 namespace Zigurous.DataStructures
 {
-    /// <summary>Stores a quantity of a given entity type.</summary>
+    /// <summary>
+    /// Stores a quantity of a given entity type.
+    /// </summary>
     /// <typeparam name="T">The type of entity being counted.</typeparam>
     [System.Serializable]
     public struct Quantity<T> : IEquatable<Quantity<T>> where T: IEquatable<T>
@@ -20,7 +22,10 @@ namespace Zigurous.DataStructures
         [Tooltip("The number of entities.")]
         public int amount;
 
-        /// <summary>Creates a new Quantity with the given <paramref name="amount"/> of <paramref name="entity"/>.</summary>
+        /// <summary>
+        /// Creates a new quantity with a specified <paramref name="amount"/>
+        /// of <paramref name="entity"/>.
+        /// </summary>
         /// <param name="entity">The entity being counted.</param>
         /// <param name="amount">The amount of entities.</param>
         public Quantity(T entity, int amount)
@@ -29,7 +34,9 @@ namespace Zigurous.DataStructures
             this.amount = amount;
         }
 
-        /// <returns>True if the quantity is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the quantity is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The quantity to compare to.</param>
         public bool Equals(Quantity<T> other)
         {
@@ -37,7 +44,9 @@ namespace Zigurous.DataStructures
                    this.amount == other.amount;
         }
 
-        /// <returns>True if the quantity is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the quantity is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The object to compare to.</param>
         public override bool Equals(object obj)
         {
@@ -48,17 +57,18 @@ namespace Zigurous.DataStructures
             }
         }
 
-        /// <returns>
-        /// The hash code of the quantity.
-        /// </returns>
+        /// <summary>
+        /// Returns the hash code of the quantity.
+        /// </summary>
         public override int GetHashCode()
         {
             return HashCode.Combine(this.entity.GetHashCode(), this.amount.GetHashCode());
         }
 
-        /// <returns>
-        /// The string representation of the quantity.
-        /// </returns>
+        /// <summary>
+        /// Converts the quantity to a string.
+        /// </summary>
+        /// <returns>A string representation of the quantity.</returns>
         public override string ToString()
         {
             return $"{this.amount.ToString()} {this.entity.ToString()}";

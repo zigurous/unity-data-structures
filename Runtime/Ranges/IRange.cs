@@ -1,6 +1,8 @@
 namespace Zigurous.DataStructures
 {
-    /// <summary>A generic interface for a range of values.</summary>
+    /// <summary>
+    /// A generic interface for a range of values.
+    /// </summary>
     /// <typeparam name="T">The type of values in the range.</typeparam>
     public interface IRange<T>
     {
@@ -14,38 +16,47 @@ namespace Zigurous.DataStructures
         /// </summary>
         T max { get; set; }
 
-        /// <returns>True if the <paramref name="value"/> is in the range.</returns>
+        /// <summary>
+        /// Checks if the <paramref name="value"/> is in the range.
+        /// </summary>
         /// <param name="value">The value to check.</param>
         bool Includes(T value);
 
-        /// <returns>True if the <paramref name="value"/> is in the range.</returns>
+        /// <summary>
+        /// Checks if the <paramref name="value"/> is in the range.
+        /// </summary>
         /// <param name="value">The value to check.</param>
         /// <param name="includeMin">The minimum value is inclusive if true, exclusive if false.</param>
         /// <param name="includeMax">The maximum value is inclusive if true, exclusive if false.</param>
         bool Includes(T value, bool includeMin, bool includeMax);
     }
 
-    /// <summary>A generic interface for a range of number values.</summary>
+    /// <summary>
+    /// A generic interface for a range of number values.
+    /// </summary>
     /// <typeparam name="T">The type of values in the range.</typeparam>
     public interface INumberRange<T> : IRange<T>
     {
-        /// <returns>
+        /// <summary>
         /// The difference between the maximum and minimum values.
-        /// </returns>
+        /// </summary>
         T Delta { get; }
 
-        /// <returns>
+        /// <summary>
         /// The median value of the range.
-        /// </returns>
+        /// </summary>
         T Median { get; }
 
-        /// <returns>
-        /// A random value in the range.
-        /// </returns>
+        /// <summary>
+        /// Returns a random value in the range.
+        /// </summary>
         T Random();
 
-        /// <returns>The <paramref name="value"/> clamped to the range.</returns>
+        /// <summary>
+        /// Clamps the <paramref name="value"/> to the range.
+        /// </summary>
         /// <param name="value">The value to clamp.</param>
+        /// <returns>The clamped value.</returns>
         T Clamp(T value);
     }
 

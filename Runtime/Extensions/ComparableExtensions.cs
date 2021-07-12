@@ -3,11 +3,14 @@
 namespace Zigurous.DataStructures
 {
     /// <summary>
-    /// Exposes extension methods for <see cref="IComparable{T}"/>.
+    /// Extension methods for IComparable.
     /// </summary>
     public static class ComparableExtensions
     {
-        /// <returns>True if the <paramref name="value"/> is between the <paramref name="min"/> and <paramref name="max"/>.</returns>
+        /// <summary>
+        /// Checks if the value is between <paramref name="min"/> and
+        /// <paramref name="max"/>.
+        /// </summary>
         /// <param name="value">The value to check.</param>
         /// <param name="min">The minimum value.</param>
         /// <param name="max">The maximum value.</param>

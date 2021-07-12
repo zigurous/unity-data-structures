@@ -17,80 +17,94 @@ namespace Zigurous.DataStructures
         [HideInInspector]
         private int mask;
 
-        /// <summary>Creates a new Bitmask from the given 32-bit integer.</summary>
+        /// <summary>
+        /// Creates a new Bitmask from the given 32-bit integer.
+        /// </summary>
         /// <param name="mask">The 32-bit integer to represent as a bitmask.</param>
         public Bitmask(int mask)
         {
             this.mask = mask;
         }
 
-        /// <returns>
-        /// True if the bitmask contains the <paramref name="flag"/>.
+        /// <summary>
+        /// Checks if the bitmask contains the <paramref name="flag"/>.
         /// <code>(mask &amp; flag) == flag</code>
-        /// </returns>
+        /// </summary>
         /// <param name="flag">The flag to check for.</param>
         public bool HasFlag(int flag)
         {
             return (this.mask & flag) == flag;
         }
 
-        /// <returns>
-        /// True if the bitmask contains any of the <paramref name="flags"/>.
+        /// <summary>
+        /// Checks if the bitmask contains any of the <paramref name="flags"/>.
         /// <code>(mask &amp; flags) != 0</code>
-        /// </returns>
+        /// </summary>
         /// <param name="flags">The flags to check for.</param>
         public bool HasAnyFlag(int flags)
         {
             return (this.mask & flags) != 0;
         }
 
-        /// <returns>
-        /// True if the bitmask contains only the given <paramref name="flags"/>
+        /// <summary>
+        /// Checks if the bitmask contains only the given <paramref name="flags"/>
         /// and no other flags.
         /// <code>((mask ^ flags) &amp; flags) == 0</code>
-        /// </returns>
+        /// </summary>
         /// <param name="flags">The flags to check for.</param>
         public bool HasOnlyFlags(int flags)
         {
             return ((this.mask ^ flags) & flags) == 0;
         }
 
-        /// <returns>True if the nth bit of the bitmask is set.</returns>
+        /// <summary>
+        /// Checks if the nth bit of the bitmask is set.
+        /// </summary>
         /// <param name="n">The nth bit to check for.</param>
         public bool Has(int n)
         {
             return Get(n) != 0;
         }
 
-        /// <returns>The nth bit of the bitmask.</returns>
+        /// <summary>
+        /// Returns the nth bit of the bitmask.
+        /// </summary>
         /// <param name="n">The nth bit to get.</param>
         public int Get(int n)
         {
             return (this.mask >> n) & 1;
         }
 
-        /// <summary>Sets the nth bit of the bitmask to 1.</summary>
+        /// <summary>
+        /// Sets the nth bit of the bitmask to 1.
+        /// </summary>
         /// <param name="n">The nth bit to set.</param>
         public void Set(int n)
         {
             this.mask |= 1 << n;
         }
 
-        /// <summary>Sets the nth bit of the bitmask to 0.</summary>
+        /// <summary>
+        /// Sets the nth bit of the bitmask to 0.
+        /// </summary>
         /// <param name="n">The nth bit to clear.</param>
         public void Clear(int n)
         {
             this.mask &= ~(1 << n);
         }
 
-        /// <summary>Toggles the nth bit of the bitmask.</summary>
+        /// <summary>
+        /// Toggles the nth bit of the bitmask.
+        /// </summary>
         /// <param name="n">The nth bit to toggle.</param>
         public void Toggle(int n)
         {
             this.mask ^= 1 << n;
         }
 
-        /// <summary>Sets the nth bit of the bitmask to x.</summary>
+        /// <summary>
+        /// Sets the nth bit of the bitmask to x.
+        /// </summary>
         /// <param name="n">The nth bit to set.</param>
         /// <param name="x">The value to set the bit to.</param>
         public void Change(int n, int x)
@@ -98,21 +112,27 @@ namespace Zigurous.DataStructures
             this.mask = (this.mask & ~(1 << n)) | (x << n);
         }
 
-        /// <returns>True if the bitmask is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the bitmask is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The bitmask to compare to.</param>
         public bool Equals(Bitmask other)
         {
             return this.mask == other.mask;
         }
 
-        /// <returns>True if the bitmask is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the bitmask is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The bitmask to compare to.</param>
         public bool Equals(int other)
         {
             return this.mask == other;
         }
 
-        /// <returns>True if the bitmask is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the bitmask is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The object to compare to.</param>
         public override bool Equals(object other)
         {
@@ -125,17 +145,18 @@ namespace Zigurous.DataStructures
             }
         }
 
-        /// <returns>
-        /// The hash code of the bitmask.
-        /// </returns>
+        /// <summary>
+        /// Returns the hash code of the bitmask.
+        /// </summary>
         public override int GetHashCode()
         {
             return this.mask.GetHashCode();
         }
 
-        /// <returns>
-        /// The string representation of the bitmask.
-        /// </returns>
+        /// <summary>
+        /// Converts the bitmask to a string.
+        /// </summary>
+        /// <returns>A string representation of the bitmask.</returns>
         public override string ToString()
         {
             string binary = System.Convert.ToString(this.mask, 2);

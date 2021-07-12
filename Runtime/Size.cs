@@ -21,9 +21,9 @@ namespace Zigurous.DataStructures
         [Tooltip("The height of the entity.")]
         public int height;
 
-        /// <returns>
+        /// <summary>
         /// The area of the entity (width * height).
-        /// </returns>
+        /// </summary>
         public int Area => System.Math.Abs(this.width * this.height);
 
         /// <summary>
@@ -106,7 +106,10 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static Size sq8192 => new Size(8192);
 
-        /// <summary>Creates a new size of the given <paramref name="width"/> and <paramref name="height"/>.</summary>
+        /// <summary>
+        /// Creates a new size of the given <paramref name="width"/> and
+        /// <paramref name="height"/>.
+        /// </summary>
         /// <param name="width">The width of the entity.</param>
         /// <param name="height">The height of the entity.</param>
         public Size(int width = 0, int height = 0)
@@ -115,7 +118,10 @@ namespace Zigurous.DataStructures
             this.height = height;
         }
 
-        /// <summary>Creates a new size with uniform width and height.</summary>
+        /// <summary>
+        /// Creates a new size with uniform width and height specified by
+        /// <paramref name="size"/>.
+        /// </summary>
         /// <param name="size">The uniform size of the entity.</param>
         public Size(int size)
         {
@@ -137,7 +143,9 @@ namespace Zigurous.DataStructures
             else return -1;
         }
 
-        /// <returns>True if the size is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the size is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The size to compare to.</param>
         public bool Equals(Size other)
         {
@@ -145,7 +153,9 @@ namespace Zigurous.DataStructures
                    this.height == other.height;
         }
 
-        /// <returns>True if the size is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the size is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The object to compare to.</param>
         public override bool Equals(object other)
         {
@@ -156,17 +166,18 @@ namespace Zigurous.DataStructures
             }
         }
 
-        /// <returns>
-        /// The hash code of the size.
-        /// </returns>
+        /// <summary>
+        /// Returns the hash code of the size.
+        /// </summary>
         public override int GetHashCode()
         {
             return HashCode.Combine(this.width.GetHashCode(), this.height.GetHashCode());
         }
 
-        /// <returns>
-        /// The string representation of the size.
-        /// </returns>
+        /// <summary>
+        /// Converts the size to a string.
+        /// </summary>
+        /// <returns>A string representation of the size.</returns>
         public override string ToString()
         {
             return $"{this.width.ToString()}x{this.height.ToString()}";

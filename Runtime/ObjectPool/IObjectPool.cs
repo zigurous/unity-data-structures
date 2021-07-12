@@ -8,9 +8,9 @@ namespace Zigurous.DataStructures
     /// <typeparam name="T">The type of object to be pooled.</typeparam>
     public interface IObjectPool<T> : IDisposable where T: class
     {
-        /// <returns>
-        /// An item from the object pool.
-        /// </returns>
+        /// <summary>
+        /// Returns an item from the object pool and removes it from the pool.
+        /// </summary>
         T Retrieve();
 
         /// <summary>

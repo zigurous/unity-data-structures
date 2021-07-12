@@ -53,7 +53,9 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static UnitIntervalRange minMax => new UnitIntervalRange(0.0f, 1.0f);
 
-        /// <summary>Creates a new unit interval range with the specified values.</summary>
+        /// <summary>
+        /// Creates a new range with the specified values.
+        /// </summary>
         /// <param name="min">The lower bound of the range.</param>
         /// <param name="max">The upper bound of the range.</param>
         public UnitIntervalRange(float min = 0.0f, float max = 1.0f)

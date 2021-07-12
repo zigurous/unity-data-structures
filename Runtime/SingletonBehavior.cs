@@ -13,10 +13,10 @@ namespace Zigurous.DataStructures
         private static object _lock = new object();
         private static bool _isUnloading = false;
 
-        /// <returns>
-        /// True if the singleton has been initialized and an instance is
+        /// <summary>
+        /// Checks if the singleton has been initialized and an instance is
         /// available to use.
-        /// </returns>
+        /// </summary>
         public static bool HasInstance => _instance != null;
 
         /// <summary>

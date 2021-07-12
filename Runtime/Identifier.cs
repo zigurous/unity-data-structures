@@ -8,7 +8,7 @@ namespace Zigurous.DataStructures
     public static class Identifier
     {
         /// <summary>
-        /// Creates a identifier based on unix time. Since time is always
+        /// Creates an identifier based on unix time. Since time is always
         /// increasing, this value will be different than generations made in
         /// previous cycles.
         /// </summary>
@@ -16,7 +16,6 @@ namespace Zigurous.DataStructures
         /// This should not be used to guarentee uniqueness since ids generated
         /// within the same cycle will usually be identical.
         /// </remarks>
-        /// <returns>The temporal identifier.</returns>
         public static long Temporal()
         {
             return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();

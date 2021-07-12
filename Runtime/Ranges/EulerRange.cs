@@ -63,7 +63,9 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static EulerRange fullRange => new EulerRange(-360.0f, 360.0f);
 
-        /// <summary>Creates a new euler range with the specified values.</summary>
+        /// <summary>
+        /// Creates a new range with the specified values.
+        /// </summary>
         /// <param name="min">The lower bound of the range.</param>
         /// <param name="max">The upper bound of the range.</param>
         public EulerRange(float min = -360.0f, float max = 360.0f)
@@ -99,8 +101,11 @@ namespace Zigurous.DataStructures
             return Mathf.Clamp(value, _min, _max);
         }
 
-        /// <returns>The <paramref name="value"/> wrapped in the range.</returns>
+        /// <summary>
+        /// Wraps the <paramref name="value"/> within the range.
+        /// </summary>
         /// <param name="value">The value to wrap.</param>
+        /// <returns>The wrapped value.</returns>
         public float Wrap(float value)
         {
             return EulerRange.Wrap(value, _min, _max);

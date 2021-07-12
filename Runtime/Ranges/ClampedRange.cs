@@ -42,7 +42,9 @@ namespace Zigurous.DataStructures
         /// <inheritdoc />
         public float Median => (_min + _max) / 2;
 
-        /// <summary>Creates a new clamped range with the specified values.</summary>
+        /// <summary>
+        /// Creates a new range with the specified values.
+        /// </summary>
         /// <param name="min">The lower bound of the range.</param>
         /// <param name="max">The upper bound of the range.</param>
         /// <param name="clampLower">The lower clamping bound of the range.</param>

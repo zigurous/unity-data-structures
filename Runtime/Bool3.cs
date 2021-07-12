@@ -52,7 +52,9 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static Bool3 Z => new Bool3(false, false, true);
 
-        /// <summary>Creates a new Bool3 with the specified values.</summary>
+        /// <summary>
+        /// Creates a new Bool3 with the specified values.
+        /// </summary>
         /// <param name="x">The X component.</param>
         /// <param name="y">The Y component.</param>
         /// <param name="z">The Z component.</param>
@@ -63,7 +65,9 @@ namespace Zigurous.DataStructures
             this.z = z;
         }
 
-        /// <returns>True if the tuple is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the tuple is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The tuple to compare to.</param>
         public bool Equals(Bool3 other)
         {
@@ -72,7 +76,9 @@ namespace Zigurous.DataStructures
                    this.z == other.z;
         }
 
-        /// <returns>True if the tuple is equal to the <paramref name="other"/>.</returns>
+        /// <summary>
+        /// Determines if the tuple is equal to <paramref name="other"/>.
+        /// </summary>
         /// <param name="other">The object to compare to.</param>
         public override bool Equals(object other)
         {
@@ -83,17 +89,18 @@ namespace Zigurous.DataStructures
             }
         }
 
-        /// <returns>
-        /// The hash code of the tuple.
-        /// </returns>
+        /// <summary>
+        /// Returns the hash code of the tuple.
+        /// </summary>
         public override int GetHashCode()
         {
             return HashCode.Combine(this.x.GetHashCode(), this.y.GetHashCode(), this.z.GetHashCode());
         }
 
-        /// <returns>
-        /// The string representation of the tuple.
-        /// </returns>
+        /// <summary>
+        /// Converts the tuple to a string.
+        /// </summary>
+        /// <returns>A string representation of the tuple.</returns>
         public override string ToString()
         {
             return $"{this.x.ToString()}, {this.y.ToString()}, {this.z.ToString()}";

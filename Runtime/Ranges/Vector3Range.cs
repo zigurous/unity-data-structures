@@ -36,7 +36,9 @@ namespace Zigurous.DataStructures
         /// <inheritdoc />
         public Vector3 Median => (_min + _max) / 2;
 
-        /// <summary>Creates a new Vector3 range with the specified values.</summary>
+        /// <summary>
+        /// Creates a new range with the specified values.
+        /// </summary>
         /// <param name="min">The lower bound of the range.</param>
         /// <param name="max">The upper bound of the range.</param>
         public Vector3Range(Vector3 min, Vector3 max)

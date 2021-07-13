@@ -1,6 +1,6 @@
 {
   "name": "com.zigurous.datastructures",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "displayName": "Zigurous Data Structures",
   "description": "The Data Structures package contains common data structures and design pattern implementations for Unity projects. It also contains dozens of class extensions for common collection types and interfaces.",
   "unity": "2019.4",

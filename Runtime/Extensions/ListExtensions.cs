@@ -425,6 +425,45 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
+        /// Shuffles the list in place.
+        /// </summary>
+        /// <remarks>The shuffle is done using the Fisher-Yates algorithm.</remarks>
+        /// <param name="list">The list to shuffle.</param>
+        /// <typeparam name="T">The type of the list.</typeparam>
+        public static void Shuffle<T>(this List<T> list)
+        {
+            int n = list.Count;
+
+            while (n > 1)
+            {
+                int k = UnityEngine.Random.Range(0, n--);
+                T temp = list[n];
+                list[n] = list[k];
+                list[k] = temp;
+            }
+        }
+
+        /// <summary>
+        /// Shuffles the list in place using the given random number generator.
+        /// </summary>
+        /// <remarks>The shuffle is done using the Fisher-Yates algorithm.</remarks>
+        /// <param name="list">The list to shuffle.</param>
+        /// <param name="rng">The random number generator to use.</param>
+        /// <typeparam name="T">The type of the list.</typeparam>
+        public static void Shuffle<T>(this List<T> list, Random rng)
+        {
+            int n = list.Count;
+
+            while (n > 1)
+            {
+                int k = rng.Next(n--);
+                T temp = list[n];
+                list[n] = list[k];
+                list[k] = temp;
+            }
+        }
+
+        /// <summary>
         /// Filters the list to only contain items that satisfy the
         /// <paramref name="predicate"/>.
         /// </summary>

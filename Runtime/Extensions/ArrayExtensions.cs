@@ -579,6 +579,45 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
+        /// Shuffles the array in place.
+        /// </summary>
+        /// <remarks>The shuffle is done using the Fisher-Yates algorithm.</remarks>
+        /// <param name="array">The array to shuffle.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
+        public static void Shuffle<T>(this T[] array)
+        {
+            int n = array.Length;
+
+            while (n > 1)
+            {
+                int k = UnityEngine.Random.Range(0, n--);
+                T temp = array[n];
+                array[n] = array[k];
+                array[k] = temp;
+            }
+        }
+
+        /// <summary>
+        /// Shuffles the array in place using the given random number generator.
+        /// </summary>
+        /// <remarks>The shuffle is done using the Fisher-Yates algorithm.</remarks>
+        /// <param name="array">The array to shuffle.</param>
+        /// <param name="rng">The random number generator to use.</param>
+        /// <typeparam name="T">The type of the array.</typeparam>
+        public static void Shuffle<T>(this T[] array, Random rng)
+        {
+            int n = array.Length;
+
+            while (n > 1)
+            {
+                int k = rng.Next(n--);
+                T temp = array[n];
+                array[n] = array[k];
+                array[k] = temp;
+            }
+        }
+
+        /// <summary>
         /// Returns a portion of the array containing the specified
         /// <paramref name="amount"/> of elements.
         /// </summary>

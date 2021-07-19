@@ -3,7 +3,7 @@
 namespace Zigurous.DataStructures
 {
     /// <summary>
-    /// A range of values.
+    /// A range of values of the given type.
     /// </summary>
     /// <typeparam name="T">The type of values in the range.</typeparam>
     public struct Range<T> : IRange<T> where T: IComparable<T>

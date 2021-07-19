@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Zigurous.DataStructures
 {
     /// <summary>
-    /// A range of euler values.
+    /// A range of euler values wrapped between -360 and +360.
     /// </summary>
     [System.Serializable]
     public struct EulerRange : INumberRange<float>

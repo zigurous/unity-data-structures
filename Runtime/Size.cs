@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Zigurous.DataStructures
 {
     /// <summary>
-    /// Stores the size of an entity.
+    /// Stores the size of an entity as a width and height.
     /// </summary>
     [System.Serializable]
     public struct Size : IEquatable<Size>, IComparable<Size>

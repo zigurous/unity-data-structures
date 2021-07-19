@@ -32,43 +32,7 @@ using Zigurous.DataStructures;
 
 ## Reference
 
-### Structs
-
-- [Bool3](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Bool3.html)
-- [Bitmask](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Bitmask.html)
-- [Quantity](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Quantity-1.html)
-- [Size](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Size.html)
-- [GridSize](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.GridSize.html)
-- [Range](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Range-1.html)
-- [ClampedRange](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.ClampedRange.html)
-- [ColorRange](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.ColorRange.html)
-- [EulerRange](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.EulerRange.html)
-- [FloatRange](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.FloatRange.html)
-- [IntRange](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.IntRange.html)
-- [UIntRange](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.UIntRange.html)
-- [UnitIntervalRange](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.UnitIntervalRange.html)
-- [Vector2Range](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Vector2Range.html)
-- [Vector3Range](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Vector3Range.html)
-- [Vector4Range](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Vector4Range.html)
-
-### Patterns
-
-- [SingletonBehavior](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.SingletonBehavior-1.html)
-- [ValueAccumulator](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.ValueAccumulator-1.html)
-- [ObjectPool](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.ObjectPool-1.html)
-- [Modules](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Modules-1.html)
-
-### Extensions
-
-- [ArrayExtensions](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.ArrayExtensions.html)
-- [ComparableExtensions](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.ComparableExtensions.html)
-- [DictionaryExtensions](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.DictionaryExtensions.html)
-- [HashSetExtensions](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.HashSetExtensions.html)
-- [ListExtensions](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.ListExtensions.html)
-- [SortedSetExtensions](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.SortedSetExtensions.html)
-- [StringExtensions](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.StringExtensions.html)
-
-### Utilities
-
-- [HashCode](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.HashCode.html)
-- [Identifier](https://docs.zigurous.com/com.zigurous.datastructures/api/Zigurous.DataStructures.Identifier.html)
+- [Data Structures](https://docs.zigurous.com/com.zigurous.datastructures/manual/structs.html)
+- [Design Patterns](https://docs.zigurous.com/com.zigurous.datastructures/manual/patterns.html)
+- [Extension Methods](https://docs.zigurous.com/com.zigurous.datastructures/manual/extensions.html)
+- [Utility Classes](https://docs.zigurous.com/com.zigurous.datastructures/manual/utilities.html)

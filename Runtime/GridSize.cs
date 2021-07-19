@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Zigurous.DataStructures
 {
     /// <summary>
-    /// Stores the size of a grid.
+    /// Stores the size of a grid as rows and columns.
     /// </summary>
     [System.Serializable]
     public struct GridSize : IEquatable<GridSize>, IComparable<GridSize>

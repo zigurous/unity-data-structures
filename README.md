@@ -1,9 +1,6 @@
 # Data Structures
 
-[![](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/zigurous/unity-data-structures)
-[![](https://img.shields.io/github/package-json/v/zigurous/unity-data-structures)](https://github.com/zigurous/unity-data-structures/releases)
-[![](https://img.shields.io/badge/docs-link-success)](https://docs.zigurous.com/com.zigurous.datastructures)
-[![](https://img.shields.io/github/license/zigurous/unity-data-structures)](https://github.com/zigurous/unity-data-structures/blob/main/LICENSE.md)
+[![](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/zigurous/unity-data-structures) [![](https://img.shields.io/github/package-json/v/zigurous/unity-data-structures)](https://github.com/zigurous/unity-data-structures/releases) [![](https://img.shields.io/badge/docs-link-success)](https://docs.zigurous.com/com.zigurous.datastructures) [![](https://img.shields.io/github/license/zigurous/unity-data-structures)](https://github.com/zigurous/unity-data-structures/blob/main/LICENSE.md)
 
 The Data Structures package contains common data structures and design pattern implementations for Unity projects. It also contains dozens of class extensions for common collection types and interfaces.
 

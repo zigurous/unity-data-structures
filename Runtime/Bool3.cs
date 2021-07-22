@@ -106,6 +106,10 @@ namespace Zigurous.DataStructures
             return $"{this.x.ToString()}, {this.y.ToString()}, {this.z.ToString()}";
         }
 
+        /// <summary>
+        /// Gets or sets the component at the given <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">The index of the component to get or set.</param>
         public bool this[int index]
         {
             get

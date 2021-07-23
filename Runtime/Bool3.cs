@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Zigurous.DataStructures
@@ -100,7 +100,6 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Converts the tuple to a string.
         /// </summary>
-        /// <returns>A string representation of the tuple.</returns>
         public override string ToString()
         {
             return $"{this.x.ToString()}, {this.y.ToString()}, {this.z.ToString()}";

@@ -177,7 +177,6 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Converts the size to a string.
         /// </summary>
-        /// <returns>A string representation of the size.</returns>
         public override string ToString()
         {
             return $"{this.width.ToString()}x{this.height.ToString()}";

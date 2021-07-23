@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Zigurous.DataStructures
@@ -177,7 +177,6 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Converts the grid size to a string.
         /// </summary>
-        /// <returns>A string representation of the grid size.</returns>
         public override string ToString()
         {
             return $"{this.rows.ToString()}x{this.columns.ToString()}";

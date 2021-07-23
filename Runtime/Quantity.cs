@@ -68,7 +68,6 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Converts the quantity to a string.
         /// </summary>
-        /// <returns>A string representation of the quantity.</returns>
         public override string ToString()
         {
             return $"{this.amount.ToString()} {this.entity.ToString()}";

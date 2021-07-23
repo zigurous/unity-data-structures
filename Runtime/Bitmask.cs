@@ -156,7 +156,6 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Converts the bitmask to a string.
         /// </summary>
-        /// <returns>A string representation of the bitmask.</returns>
         public override string ToString()
         {
             string binary = System.Convert.ToString(this.mask, 2);

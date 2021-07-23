@@ -48,9 +48,9 @@ namespace Zigurous.DataStructures
         /// Determines if the quantity is equal to <paramref name="other"/>.
         /// </summary>
         /// <param name="other">The object to compare to.</param>
-        public override bool Equals(object obj)
+        public override bool Equals(object other)
         {
-            if (obj is Quantity<T> quantity) {
+            if (other is Quantity<T> quantity) {
                 return Equals(quantity);
             } else {
                 return false;
@@ -62,7 +62,7 @@ namespace Zigurous.DataStructures
         /// </summary>
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.entity.GetHashCode(), this.amount.GetHashCode());
+            return (this.entity, this.amount).GetHashCode();
         }
 
         /// <summary>

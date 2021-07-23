@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Zigurous.DataStructures
@@ -94,7 +94,7 @@ namespace Zigurous.DataStructures
         /// </summary>
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.x.GetHashCode(), this.y.GetHashCode(), this.z.GetHashCode());
+            return (this.x, this.y, this.z).GetHashCode();
         }
 
         /// <summary>

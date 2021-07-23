@@ -171,7 +171,7 @@ namespace Zigurous.DataStructures
         /// </summary>
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.width.GetHashCode(), this.height.GetHashCode());
+            return (this.width, this.height).GetHashCode();
         }
 
         /// <summary>

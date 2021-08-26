@@ -12,7 +12,7 @@
   ],
   "repository": "https://github.com/zigurous/unity-data-structures",
   "documentationUrl": "https://docs.zigurous.com/com.zigurous.datastructures",
-  "changelogUrl": "https://docs.zigurous.com/com.zigurous.datastructures/changelog/CHANGELOG.html",
+  "changelogUrl": "https://docs.zigurous.com/com.zigurous.datastructures/changelog",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@zigurous"
   },

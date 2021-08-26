@@ -15,8 +15,7 @@ namespace Zigurous.DataStructures
         private static StringBuilder stringBuilder;
 
         /// <summary>
-        /// Adds a specified <paramref name="amount"/> of
-        /// <paramref name="value"/> to the list.
+        /// Adds a specified amount of a given value to the list.
         /// </summary>
         /// <param name="list">The list to add to.</param>
         /// <param name="value">The value to add.</param>
@@ -35,7 +34,7 @@ namespace Zigurous.DataStructures
         /// <param name="list">The first list.</param>
         /// <param name="other">The second list.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
-        /// <returns>A new list containing all the items of <paramref name="list"/> and <paramref name="other"/>.</returns>
+        /// <returns>A new list containing the items of both lists.</returns>
         public static List<T> CombinedWith<T>(this List<T> list, List<T> other)
         {
             List<T> combinedList = new List<T>(list);
@@ -44,12 +43,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the item at <paramref name="index"/>, or the default value
-        /// of <typeparamref name="T"/> if the list is empty.
+        /// Returns the item at the specified index.
         /// </summary>
         /// <param name="list">The list to get the item from.</param>
         /// <param name="index">The index of the item to get.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>The item at the index, or <c>default(T)</c> if the list is empty.</returns>
         public static T ItemAt<T>(this List<T> list, int index)
         {
             if (index >= 0 && index < list.Count) {
@@ -60,8 +59,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Filters the list to only contain items that satisfy the
-        /// <paramref name="predicate"/>.
+        /// Filters the list to only contain items that satisfy a predicate.
         /// </summary>
         /// <param name="list">The list to filter.</param>
         /// <param name="predicate">The predicate to use.</param>
@@ -73,11 +71,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the first item in the list, or the default value of
-        /// <typeparamref name="T"/> if the list is empty.
+        /// Returns the first item in the list.
         /// </summary>
         /// <param name="list">The list to get the item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>The first item in the list, or <c>default(T)</c> if the list is empty.</returns>
         public static T First<T>(this List<T> list)
         {
             if (list.Count > 0) {
@@ -88,14 +86,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the first item in the list that satisfies the
-        /// <paramref name="predicate"/>, or the default value of
-        /// <typeparamref name="T"/> if no item satisfies the
-        /// <paramref name="predicate"/>.
+        /// Returns the first item in the list that satisfies a predicate.
         /// </summary>
         /// <param name="list">The list to get the item from.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>The first item in the list that satisfies the predicate, or <c>default(T)</c> if no item satisfies the predicate.</returns>
         public static T First<T>(this List<T> list, Predicate<T> predicate)
         {
             foreach (T item in list)
@@ -109,11 +105,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the first non-null item in the list, or the default value of
-        /// <typeparamref name="T"/> if all items are null.
+        /// Returns the first non-null item in the list.
         /// </summary>
         /// <param name="list">The list to get the item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>The first non-null item in the list, or <c>default(T)</c> if all items are null.</returns>
         public static T FirstNonNull<T>(this List<T> list) where T: class
         {
             foreach (T item in list)
@@ -128,6 +124,7 @@ namespace Zigurous.DataStructures
 
         /// <summary>
         /// Invokes an <see cref="Action{T}"/> for each item in the list.
+        /// The item and index are passed as parameters.
         /// </summary>
         /// <param name="list">The list to iterate over.</param>
         /// <param name="action">The action to invoke.</param>
@@ -140,12 +137,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Checks if any item in the list satisfies the
-        /// <paramref name="predicate"/>.
+        /// Checks if any item in the list satisfies a predicate.
         /// </summary>
         /// <param name="list">The list to search in.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>True if any item satisfies the predicate.</returns>
         public static bool IsAny<T>(this List<T> list, Predicate<T> predicate)
         {
             foreach (T item in list)
@@ -159,12 +156,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Checks if each item in the list satisfies the
-        /// <paramref name="predicate"/>.
+        /// Checks if each item in the list satisfies a predicate.
         /// </summary>
         /// <param name="list">The list to search in.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>True if all items satisfy the predicate.</returns>
         public static bool IsEach<T>(this List<T> list, Predicate<T> predicate)
         {
             foreach (T item in list)
@@ -182,6 +179,7 @@ namespace Zigurous.DataStructures
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>True if the list is empty.</returns>
         public static bool IsEmpty<T>(this List<T> list)
         {
             return list.Count <= 0;
@@ -192,42 +190,45 @@ namespace Zigurous.DataStructures
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>True if the list is not empty.</returns>
         public static bool IsNotEmpty<T>(this List<T> list)
         {
             return list.Count > 0;
         }
 
         /// <summary>
-        /// Checks if <paramref name="index"/> is within the bounds of the list.
+        /// Checks if the specified index is within the bounds of the list.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="index">The index to check.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>True if the index is within the bounds of the list.</returns>
         public static bool IsInBounds<T>(this List<T> list, int index)
         {
             return index >= 0 && index < list.Count;
         }
 
         /// <summary>
-        /// Checks if <paramref name="index"/> is out of bounds of the list.
+        /// Checks if the specified index is out of bounds of the list.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="index">The index to check.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>True if the index is out of bounds of the list.</returns>
         public static bool IsNotInBounds<T>(this List<T> list, int index)
         {
             return index < 0 || index >= list.Count;
         }
 
         /// <summary>
-        /// Joins the items of the list into a string separated by the
-        /// <paramref name="delimiter"/>.
+        /// Joins the items of the list into a string with a delimiter.
         /// </summary>
         /// <param name="array">The array to join.</param>
         /// <param name="delimiter">The delimiter to use.</param>
         /// <param name="startIndex">The index to start at.</param>
         /// <param name="endIndex">The index to end at.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The joined string.</returns>
         public static string Join<T>(this List<T> list, string delimiter, int startIndex = 0, int endIndex = int.MaxValue)
         {
             if (list.Count == 0) {
@@ -252,11 +253,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the last item in the list, or the default of
-        /// <typeparamref name="T"/> if the list is empty.
+        /// Returns the last item in the list.
         /// </summary>
         /// <param name="list">The list to get the item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>The last item in the list, or <c>default(T)</c> if the list is empty.</returns>
         public static T Last<T>(this List<T> list)
         {
             if (list.Count > 0) {
@@ -267,14 +268,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the last item in the list that satisfies the
-        /// <paramref name="predicate"/>, or the default of
-        /// <typeparamref name="T"/> if no item satisfies the
-        /// <paramref name="predicate"/>.
+        /// Returns the last item in the list that satisfies a predicate.
         /// </summary>
         /// <param name="list">The list to get the item from.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>The last item in the list that satisfies the predicate, or <c>default(T)</c> if no item satisfies the predicate.</returns>
         public static T Last<T>(this List<T> list, Predicate<T> predicate)
         {
             for (int i = list.Count - 1; i >= 0; i--)
@@ -290,11 +289,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the last non-null item in the list, or the default of
-        /// <typeparamref name="T"/> if all items are null.
+        /// Returns the last non-null item in the list.
         /// </summary>
         /// <param name="list">The list to get the item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>The last non-null item in the list, or <c>default(T)</c> if all items are null.</returns>
         public static T LastNonNull<T>(this List<T> list) where T: class
         {
             for (int i = list.Count - 1; i >= 0; i--)
@@ -310,8 +309,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Maps the items of the list to a new list using a given
-        /// <paramref name="converter"/>.
+        /// Maps the items of the list to a new list using a converter function.
         /// </summary>
         /// <param name="list">The list to map.</param>
         /// <param name="converter">The converter to use.</param>
@@ -339,11 +337,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns a random item from the list, or the default of
-        /// <typeparamref name="T"/> if the list is empty.
+        /// Returns a random item from the list.
         /// </summary>
         /// <param name="list">The list to get the random item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <returns>A random item from the list, or <c>default(T)</c> if the list is empty.</returns>
         public static T Random<T>(this List<T> list)
         {
             if (list.Count > 0) {
@@ -464,8 +462,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Filters the list to only contain items that satisfy the
-        /// <paramref name="predicate"/>.
+        /// Filters the list to only contain items that satisfy a predicate.
         /// </summary>
         /// <param name="list">The list to filter.</param>
         /// <param name="predicate">The predicate to use.</param>
@@ -477,8 +474,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Wraps the <paramref name="index"/> in the list to the other end when
-        /// outside the bounds.
+        /// Wraps an index to either end of the list if it is out of bounds.
         /// </summary>
         /// <param name="list">The list to wrap.</param>
         /// <param name="index">The index to wrap.</param>

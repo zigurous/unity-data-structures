@@ -37,10 +37,10 @@ namespace Zigurous.DataStructures
         public FloatRange clamp;
 
         /// <inheritdoc />
-        public float Delta => _max - _min;
+        public float delta => _max - _min;
 
         /// <inheritdoc />
-        public float Median => (_min + _max) / 2;
+        public float median => (_min + _max) / 2f;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -49,7 +49,7 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         /// <param name="clampLower">The lower clamping bound of the range.</param>
         /// <param name="clampUpper">The upper clamping bound of the range.</param>
-        public ClampedRange(float min = 0.0f, float max = 1.0f, float clampLower = 0.0f, float clampUpper = 1.0f)
+        public ClampedRange(float min = 0f, float max = 1f, float clampLower = 0f, float clampUpper = 1f)
         {
             FloatRange clamp = new FloatRange(clampLower, clampUpper);
             this.clamp = clamp;

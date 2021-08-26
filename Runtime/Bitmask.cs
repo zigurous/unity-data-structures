@@ -27,31 +27,34 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Checks if the bitmask contains the <paramref name="flag"/>.
+        /// Checks if the bitmask contains the flag.
         /// <code>(mask &amp; flag) == flag</code>
         /// </summary>
         /// <param name="flag">The flag to check for.</param>
+        /// <returns>True if the bitmask contains the flag, false otherwise.</returns>
         public bool HasFlag(int flag)
         {
             return (this.mask & flag) == flag;
         }
 
         /// <summary>
-        /// Checks if the bitmask contains any of the <paramref name="flags"/>.
+        /// Checks if the bitmask contains any of the flags.
         /// <code>(mask &amp; flags) != 0</code>
         /// </summary>
         /// <param name="flags">The flags to check for.</param>
+        /// <returns>True if the bitmask contains any of the flags, false otherwise.</returns>
         public bool HasAnyFlag(int flags)
         {
             return (this.mask & flags) != 0;
         }
 
         /// <summary>
-        /// Checks if the bitmask contains only the given <paramref name="flags"/>
+        /// Checks if the bitmask contains only the given flags
         /// and no other flags.
         /// <code>((mask ^ flags) &amp; flags) == 0</code>
         /// </summary>
         /// <param name="flags">The flags to check for.</param>
+        /// <returns>True if the bitmask contains only the given flags, false otherwise.</returns>
         public bool HasOnlyFlags(int flags)
         {
             return ((this.mask ^ flags) & flags) == 0;
@@ -61,6 +64,7 @@ namespace Zigurous.DataStructures
         /// Checks if the nth bit of the bitmask is set.
         /// </summary>
         /// <param name="n">The nth bit to check for.</param>
+        /// <returns>True if the nth bit is set, false otherwise.</returns>
         public bool Has(int n)
         {
             return Get(n) != 0;
@@ -70,6 +74,7 @@ namespace Zigurous.DataStructures
         /// Returns the nth bit of the bitmask.
         /// </summary>
         /// <param name="n">The nth bit to get.</param>
+        /// <returns>The nth bit of the bitmask.</returns>
         public int Get(int n)
         {
             return (this.mask >> n) & 1;
@@ -113,27 +118,30 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Determines if the bitmask is equal to <paramref name="other"/>.
+        /// Determines if the bitmask is equal to another bitmask.
         /// </summary>
         /// <param name="other">The bitmask to compare to.</param>
+        /// <returns>True if the bitmasks are equal, false otherwise.</returns>
         public bool Equals(Bitmask other)
         {
             return this.mask == other.mask;
         }
 
         /// <summary>
-        /// Determines if the bitmask is equal to <paramref name="other"/>.
+        /// Determines if the bitmask is equal to another bitmask.
         /// </summary>
         /// <param name="other">The bitmask to compare to.</param>
+        /// <returns>True if the bitmasks are equal, false otherwise.</returns>
         public bool Equals(int other)
         {
             return this.mask == other;
         }
 
         /// <summary>
-        /// Determines if the bitmask is equal to <paramref name="other"/>.
+        /// Determines if the bitmask is equal to another bitmask.
         /// </summary>
         /// <param name="other">The object to compare to.</param>
+        /// <returns>True if the bitmasks are equal, false otherwise.</returns>
         public override bool Equals(object other)
         {
             if (other is Bitmask bitmask) {
@@ -148,6 +156,7 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the hash code of the bitmask.
         /// </summary>
+        /// <returns>The hash code of the bitmask.</returns>
         public override int GetHashCode()
         {
             return this.mask.GetHashCode();
@@ -156,28 +165,122 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Converts the bitmask to a string.
         /// </summary>
+        /// <returns>The bitmask as a string.</returns>
         public override string ToString()
         {
             string binary = System.Convert.ToString(this.mask, 2);
             return binary.PadLeft(64 - binary.Length, '0');
         }
 
+        /// <summary>
+        /// Determines if two bitmasks are equal.
+        /// </summary>
+        /// <param name="lhs">The first bitmask to compare.</param>
+        /// <param name="rhs">The second bitmask to compare.</param>
+        /// <returns>True if the bitmasks are equal, false otherwise.</returns>
         public static bool operator ==(Bitmask lhs, Bitmask rhs) => lhs.Equals(rhs);
+
+        /// <summary>
+        /// Determines if two bitmasks are equal.
+        /// </summary>
+        /// <param name="lhs">The first bitmask to compare.</param>
+        /// <param name="rhs">The second bitmask to compare.</param>
+        /// <returns>True if the bitmasks are equal, false otherwise.</returns>
         public static bool operator ==(Bitmask lhs, int rhs) => lhs.Equals(rhs);
+
+        /// <summary>
+        /// Determines if two bitmasks are equal.
+        /// </summary>
+        /// <param name="lhs">The first bitmask to compare.</param>
+        /// <param name="rhs">The second bitmask to compare.</param>
+        /// <returns>True if the bitmasks are equal, false otherwise.</returns>
         public static bool operator ==(int lhs, Bitmask rhs) => rhs.Equals(lhs);
+
+        /// <summary>
+        /// Determines if two bitmasks are not equal.
+        /// </summary>
+        /// <param name="lhs">The first bitmask to compare.</param>
+        /// <param name="rhs">The second bitmask to compare.</param>
+        /// <returns>True if the bitmasks are not equal, false otherwise.</returns>
         public static bool operator !=(Bitmask lhs, Bitmask rhs) => !lhs.Equals(rhs);
+
+        /// <summary>
+        /// Determines if two bitmasks are not equal.
+        /// </summary>
+        /// <param name="lhs">The first bitmask to compare.</param>
+        /// <param name="rhs">The second bitmask to compare.</param>
+        /// <returns>True if the bitmasks are not equal, false otherwise.</returns>
         public static bool operator !=(Bitmask lhs, int rhs) => !lhs.Equals(rhs);
+
+        /// <summary>
+        /// Determines if two bitmasks are not equal.
+        /// </summary>
+        /// <param name="lhs">The first bitmask to compare.</param>
+        /// <param name="rhs">The second bitmask to compare.</param>
+        /// <returns>True if the bitmasks are not equal, false otherwise.</returns>
         public static bool operator !=(int lhs, Bitmask rhs) => !rhs.Equals(lhs);
 
-        public static Bitmask operator &(Bitmask a, Bitmask b) => new Bitmask(a.mask & b.mask);
-        public static Bitmask operator |(Bitmask a, Bitmask b) => new Bitmask(a.mask | b.mask);
-        public static Bitmask operator ^(Bitmask a, Bitmask b) => new Bitmask(a.mask ^ b.mask);
-        public static Bitmask operator ~(Bitmask a) => new Bitmask(~a.mask);
-        public static Bitmask operator <<(Bitmask a, int b) => new Bitmask(a.mask << b);
-        public static Bitmask operator >>(Bitmask a, int b) => new Bitmask(a.mask >> b);
+        /// <summary>
+        /// Performs a bitwise AND operation on two bitmasks.
+        /// </summary>
+        /// <param name="lhs">The first bitmask.</param>
+        /// <param name="rhs">The second bitmask.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Bitmask operator &(Bitmask lhs, Bitmask rhs) => new Bitmask(lhs.mask & rhs.mask);
 
-        public static implicit operator int(Bitmask value) => value.mask;
-        public static implicit operator Bitmask(int value) => new Bitmask(value);
+        /// <summary>
+        /// Performs a bitwise OR operation on two bitmasks.
+        /// </summary>
+        /// <param name="lhs">The first bitmask.</param>
+        /// <param name="rhs">The second bitmask.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Bitmask operator |(Bitmask lhs, Bitmask rhs) => new Bitmask(lhs.mask | rhs.mask);
+
+        /// <summary>
+        /// Performs a bitwise XOR operation on two bitmasks.
+        /// </summary>
+        /// <param name="lhs">The first bitmask.</param>
+        /// <param name="rhs">The second bitmask.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Bitmask operator ^(Bitmask lhs, Bitmask rhs) => new Bitmask(lhs.mask ^ rhs.mask);
+
+        /// <summary>
+        /// Performs a bitwise ones' complement operation on a bitmask.
+        /// </summary>
+        /// <param name="lhs">The first bitmask.</param>
+        /// <param name="rhs">The second bitmask.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Bitmask operator ~(Bitmask operand) => new Bitmask(~operand.mask);
+
+        /// <summary>
+        /// Performs a binary left shift operation on two bitmasks.
+        /// </summary>
+        /// <param name="lhs">The first bitmask.</param>
+        /// <param name="rhs">The second bitmask.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Bitmask operator <<(Bitmask lhs, int rhs) => new Bitmask(lhs.mask << rhs);
+
+        /// <summary>
+        /// Performs a binary right shift operation on two bitmasks.
+        /// </summary>
+        /// <param name="lhs">The first bitmask.</param>
+        /// <param name="rhs">The second bitmask.</param>
+        /// <returns>The result of the operation.</returns>
+        public static Bitmask operator >>(Bitmask lhs, int rhs) => new Bitmask(lhs.mask >> rhs);
+
+        /// <summary>
+        /// Implicitly converts a bitmask to an integer.
+        /// </summary>
+        /// <param name="bitmask">The bitmask to convert.</param>
+        /// <returns>The bitmask as an integer.</returns>
+        public static implicit operator int(Bitmask bitmask) => bitmask.mask;
+
+        /// <summary>
+        /// Implicitly converts an integer to a bitmask.
+        /// </summary>
+        /// <param name="mask">The integer to convert.</param>
+        /// <returns>The integer as a bitmask.</returns>
+        public static implicit operator Bitmask(int mask) => new Bitmask(mask);
 
     }
 

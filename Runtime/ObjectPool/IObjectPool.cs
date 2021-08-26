@@ -9,18 +9,19 @@ namespace Zigurous.DataStructures
     public interface IObjectPool<T> : IDisposable where T: class
     {
         /// <summary>
-        /// Returns an item from the object pool and removes it from the pool.
+        /// Removes and returns an object from the pool.
         /// </summary>
+        /// <returns>An object from the pool.</returns>
         T Retrieve();
 
         /// <summary>
-        /// Adds an item back to the object pool so it can be reused.
+        /// Adds an object back to the pool so it can be reused.
         /// </summary>
-        /// <param name="item">The item to recycle.</param>
+        /// <param name="item">The object to recycle.</param>
         void Recycle(T item);
 
         /// <summary>
-        /// Empties the object pool of all objects.
+        /// Empties the pool of all objects.
         /// </summary>
         void Empty();
     }

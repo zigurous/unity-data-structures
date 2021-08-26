@@ -16,6 +16,7 @@ namespace Zigurous.DataStructures
         /// Checks if the string is null or empty.
         /// </summary>
         /// <param name="str">The string to test.</param>
+        /// <returns>True if the string is null or empty.</returns>
         public static bool IsEmpty(this string str)
         {
             return str == null || str.Length <= 0;
@@ -25,13 +26,14 @@ namespace Zigurous.DataStructures
         /// Checks if the string is not null and not empty.
         /// </summary>
         /// <param name="str">The string to test.</param>
+        /// <returns>True if the string is not null and not empty.</returns>
         public static bool IsNotEmpty(this string str)
         {
             return str != null && str.Length > 0;
         }
 
         /// <summary>
-        /// Repeats the string <paramref name="n"/> times.
+        /// Repeats the string a given number of times.
         /// </summary>
         /// <param name="str">The string to repeat.</param>
         /// <param name="n">The number of times to repeat the string.</param>

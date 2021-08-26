@@ -9,7 +9,7 @@ namespace Zigurous.DataStructures
     public static class DictionaryExtensions
     {
         /// <summary>
-        /// Filters the dictionary by a <paramref name="predicate"/>.
+        /// Filters the dictionary by a predicate.
         /// </summary>
         /// <param name="dictionary">The dictionary to filter.</param>
         /// <param name="predicate">The predicate to use.</param>
@@ -31,7 +31,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Filters the dictionary keys by a <paramref name="predicate"/>.
+        /// Filters the dictionary keys by a predicate.
         /// </summary>
         /// <param name="keys">The keys to filter.</param>
         /// <param name="predicate">The predicate to use.</param>
@@ -53,7 +53,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Filters the dictionary values by a <paramref name="predicate"/>.
+        /// Filters the dictionary values by a predicate.
         /// </summary>
         /// <param name="values">The values to filter.</param>
         /// <param name="predicate">The predicate to use.</param>

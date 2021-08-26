@@ -10,27 +10,27 @@ namespace Zigurous.DataStructures
     public sealed class Modules<T> : IModular<T> where T: class
     {
         /// <summary>
-        /// The modules registered to the entity.
+        /// The modules registered to the entity (Read only).
         /// </summary>
         public List<T> items { get; private set; }
 
         /// <summary>
-        /// The callback invoked when a module is registered.
+        /// A callback invoked when a module is registered.
         /// </summary>
         public Action<T> registered;
 
         /// <summary>
-        /// The callback invoked when a module is unregistered.
+        /// A callback invoked when a module is unregistered.
         /// </summary>
         public Action<T> unregistered;
 
         /// <summary>
-        /// The amount of modules registered to the entity.
+        /// The amount of modules registered to the entity (Read only).
         /// </summary>
-        public int Count => this.items.Count;
+        public int count => this.items.Count;
 
         /// <summary>
-        /// Returns the module at the given <paramref name="index"/>.
+        /// Returns the module at the specified index.
         /// </summary>
         /// <param name="index">The index of the module to return.</param>
         public T this[int index] => this.items.ItemAt(index);
@@ -39,7 +39,7 @@ namespace Zigurous.DataStructures
         private Modules() {}
 
         /// <summary>
-        /// Creates a new module collection with a set <paramref name="capacity"/>.
+        /// Creates a new module collection with a set capacity.
         /// </summary>
         /// <param name="capacity">The initial capacity of the collection.</param>
         /// <param name="registered">The callback invoked when a module is registered.</param>
@@ -52,7 +52,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Creates a new module collection and pre-registers a list of <paramref name="items"/>.
+        /// Creates a new module collection and pre-registers a list of items.
         /// </summary>
         /// <param name="items">The items to pre-register.</param>
         /// <param name="registered">A callback invoked when a module is registered.</param>

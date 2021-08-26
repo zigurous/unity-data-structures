@@ -15,7 +15,7 @@ namespace Zigurous.DataStructures
         private static StringBuilder stringBuilder;
 
         /// <summary>
-        /// Appends <paramref name="element"/> to the end of the array.
+        /// Appends an element to the end of the array.
         /// </summary>
         /// <param name="array">The array to add the element to.</param>
         /// <param name="element">The element to add.</param>
@@ -35,7 +35,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Concats <paramref name="elements"/> to the end of the array.
+        /// Concats an array of elements to the end of the array.
         /// </summary>
         /// <param name="array">The array to add the elements to.</param>
         /// <param name="elements">The elements to add.</param>
@@ -61,11 +61,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Checks if the array contains <paramref name="element"/>.
+        /// Checks if the array contains the given element.
         /// </summary>
         /// <param name="array">The array to search in.</param>
         /// <param name="element">The element to search for.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>True if the array contains the element, false otherwise.</returns>
         public static bool Contains<T>(this T[] array, T element) where T: IEquatable<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -79,12 +80,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the element at <paramref name="index"/>, or the default of
-        /// <typeparamref name="T"/> if the array is empty.
+        /// Returns the element at the specified index.
         /// </summary>
         /// <param name="array">The array to search in.</param>
         /// <param name="index">The index of the element to return.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The element at the specified index, or <c>default(T)</c> if the array is empty.</returns>
         public static T ElementAt<T>(this T[] array, int index)
         {
             if (index >= 0 && index < array.Length) {
@@ -95,8 +96,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Filters the array to only contain elements that satisfy the
-        /// <paramref name="predicate"/>.
+        /// Filters the array to only contain elements that satisfy a predicate.
         /// </summary>
         /// <param name="array">The array to filter.</param>
         /// <param name="predicate">The predicate to use.</param>
@@ -119,11 +119,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the first element in the array, or the default of
-        /// <typeparamref name="T"/> if the array is empty.
+        /// Returns the first element in the array.
         /// </summary>
         /// <param name="array">The array to get the element from.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The first element in the array, or <c>default(T)</c> if the array is empty.</returns>
         public static T First<T>(this T[] array)
         {
             if (array.Length > 0) {
@@ -134,13 +134,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the first element in the array that satisfies the
-        /// <paramref name="predicate"/>, or the default of <typeparamref name="T"/>
-        /// if no element satisfies the <paramref name="predicate"/>.
+        /// Returns the first element in the array that satisfies a predicate.
         /// </summary>
         /// <param name="array">The array to get the element from.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The first element in the array that satisfies the predicate, or <c>default(T)</c> if no element satisfies the predicate.</returns>
         public static T First<T>(this T[] array, Predicate<T> predicate)
         {
             for (int i = 0; i < array.Length; i++)
@@ -156,11 +155,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the first non-null element in the array, or the default of
-        /// <typeparamref name="T"/> if all elements are null.
+        /// Returns the first non-null element in the array.
         /// </summary>
         /// <param name="array">The array to get the element from.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The first non-null element in the array, or <c>default(T)</c> if all elements are null.</returns>
         public static T FirstNonNull<T>(this T[] array) where T: class
         {
             for (int i = 0; i < array.Length; i++)
@@ -231,6 +230,7 @@ namespace Zigurous.DataStructures
 
         /// <summary>
         /// Invokes an <see cref="Action{T}"/> for each element in the array.
+        /// The element and index are passed as parameters.
         /// </summary>
         /// <param name="array">The array to iterate over.</param>
         /// <param name="action">The action to invoke.</param>
@@ -244,6 +244,7 @@ namespace Zigurous.DataStructures
 
         /// <summary>
         /// Invokes an <see cref="Action{T}"/> for each element in the array.
+        /// The element is passed as a parameter.
         /// </summary>
         /// <param name="array">The array to iterate over.</param>
         /// <param name="action">The action to invoke.</param>
@@ -256,11 +257,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the index of <paramref name="element"/> in the array.
+        /// Returns the index of the given element in the array.
         /// </summary>
         /// <param name="array">The array to search in.</param>
         /// <param name="element">The element to search for.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The index of the element in the array.</returns>
         public static int IndexOf<T>(this T[] array, T element) where T: IEquatable<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -274,12 +276,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Checks if any element in the array satisfies the
-        /// <paramref name="predicate"/>.
+        /// Checks if any element in the array satisfies a predicate.
         /// </summary>
         /// <param name="array">The array to search in.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>True if any element satisfies the predicate.</returns>
         public static bool IsAny<T>(this T[] array, Predicate<T> predicate)
         {
             for (int i = 0; i < array.Length; i++)
@@ -293,12 +295,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Checks if each element in the array satisfies the
-        /// <paramref name="predicate"/>.
+        /// Checks if each element in the array satisfies a predicate.
         /// </summary>
         /// <param name="array">The array to search in.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>True if all elements satisfy the predicate.</returns>
         public static bool IsEach<T>(this T[] array, Predicate<T> predicate)
         {
             for (int i = 0; i < array.Length; i++)
@@ -315,6 +317,7 @@ namespace Zigurous.DataStructures
         /// Checks if the array is empty.
         /// </summary>
         /// <param name="array">The array to check.</param>
+        /// <returns>True if the array is empty.</returns>
         public static bool IsEmpty(this Array array)
         {
             return array.Length <= 0;
@@ -324,40 +327,43 @@ namespace Zigurous.DataStructures
         /// Checks if the array is not empty.
         /// </summary>
         /// <param name="array">The array to check.</param>
+        /// <returns>True if the array is not empty.</returns>
         public static bool IsNotEmpty(this Array array)
         {
             return array.Length > 0;
         }
 
         /// <summary>
-        /// Checks if <paramref name="index"/> is within the bounds of the array.
+        /// Checks if the specified index is within the bounds of the array.
         /// </summary>
         /// <param name="array">The array to check.</param>
         /// <param name="index">The index to check.</param>
+        /// <returns>True if the index is within the bounds of the array.</returns>
         public static bool IsInBounds(this Array array, int index)
         {
             return index >= 0 && index < array.Length;
         }
 
         /// <summary>
-        /// Checks if <paramref name="index"/> is out of bounds of the array.
+        /// Checks if the specified index is out of bounds of the array.
         /// </summary>
         /// <param name="array">The array to check.</param>
         /// <param name="index">The index to check.</param>
+        /// <returns>True if the index is out of bounds of the array.</returns>
         public static bool IsNotInBounds(this Array array, int index)
         {
             return index < 0 || index >= array.Length;
         }
 
         /// <summary>
-        /// Joins the elements of the array into a string separated by the
-        /// <paramref name="delimiter"/>.
+        /// Joins the elements of the array into a string with a delimiter.
         /// </summary>
         /// <param name="array">The array to join.</param>
         /// <param name="delimiter">The delimiter to use.</param>
         /// <param name="startIndex">The index to start at.</param>
         /// <param name="endIndex">The index to end at.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The joined string.</returns>
         public static string Join<T>(this T[] array, string delimiter, int startIndex = 0, int endIndex = int.MaxValue)
         {
             if (array.Length == 0) {
@@ -382,11 +388,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the last element in the array, or the default of
-        /// <typeparamref name="T"/> if the array is empty.
+        /// Returns the last element in the array.
         /// </summary>
         /// <param name="array">The array to get the element from.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The last element in the array, or <c>default(T)</c> if the array is empty.</returns>
         public static T Last<T>(this T[] array)
         {
             if (array.Length > 0) {
@@ -397,14 +403,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the last element in the array that satisfies the
-        /// <paramref name="predicate"/>, or the default of
-        /// <typeparamref name="T"/> if no element satisfies the
-        /// <paramref name="predicate"/>.
+        /// Returns the last element in the array that satisfies a predicate.
         /// </summary>
         /// <param name="array">The array to get the element from.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The last element in the array that satisfies the predicate, or <c>default(T)</c> if no element satisfies the predicate.</returns>
         public static T Last<T>(this T[] array, Predicate<T> predicate)
         {
             for (int i = array.Length - 1; i >= 0; i--)
@@ -420,11 +424,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns the last non-null element in the array, or the default of
-        /// <typeparamref name="T"/> if all elements are null.
+        /// Returns the last non-null element in the array.
         /// </summary>
         /// <param name="array">The array to get the element from.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>The last non-null element in the array, or <c>default(T)</c> if all elements are null.</returns>
         public static T LastNonNull<T>(this T[] array) where T: class
         {
             for (int i = array.Length - 1; i >= 0; i--)
@@ -440,8 +444,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Maps the elements of the array to a new array using a given
-        /// <paramref name="converter"/>.
+        /// Maps the elements of the array to a new array using a converter
+        /// function.
         /// </summary>
         /// <param name="array">The array to map.</param>
         /// <param name="converter">The converter to use.</param>
@@ -475,11 +479,11 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns a random element from the array, or the default of
-        /// <typeparamref name="T"/> if the array is empty.
+        /// Returns a random element from the array.
         /// </summary>
         /// <param name="array">The array to get the random element from.</param>
         /// <typeparam name="T">The type of the array.</typeparam>
+        /// <returns>A random element from the array, or <c>default(T)</c> if the array is empty.</returns>
         public static T Random<T>(this T[] array)
         {
             if (array.Length > 0) {
@@ -520,8 +524,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Removes the element at the specified <paramref name="index"/> from
-        /// the array.
+        /// Removes the element at the specified index from the array.
         /// </summary>
         /// <param name="array">The array to remove the element from.</param>
         /// <param name="index">The index of the element to remove.</param>
@@ -618,8 +621,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Returns a portion of the array containing the specified
-        /// <paramref name="amount"/> of elements.
+        /// Returns a portion of the array containing a specified amount of
+        /// elements.
         /// </summary>
         /// <param name="array">The array to slice.</param>
         /// <param name="amount">The amount of elements to slice.</param>
@@ -648,8 +651,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Filters the array to only contain elements that satisfy the
-        /// <paramref name="predicate"/>.
+        /// Filters the array to only contain elements that satisfy a predicate.
         /// </summary>
         /// <param name="array">The array to filter.</param>
         /// <param name="predicate">The predicate to use.</param>
@@ -661,8 +663,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Wraps the <paramref name="index"/> in the array to the other end
-        /// when outside the bounds.
+        /// Wraps an index to either end of the array if it is out of bounds.
         /// </summary>
         /// <param name="array">The array to wrap.</param>
         /// <param name="index">The index to wrap.</param>

@@ -31,10 +31,10 @@ namespace Zigurous.DataStructures
         }
 
         /// <inheritdoc />
-        public Vector3 Delta => _max - _min;
+        public Vector3 delta => _max - _min;
 
         /// <inheritdoc />
-        public Vector3 Median => (_min + _max) / 2;
+        public Vector3 median => (_min + _max) / 2;
 
         /// <summary>
         /// Creates a new range with the specified values.

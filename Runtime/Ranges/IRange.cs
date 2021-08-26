@@ -17,17 +17,19 @@ namespace Zigurous.DataStructures
         T max { get; set; }
 
         /// <summary>
-        /// Checks if the <paramref name="value"/> is in the range.
+        /// Checks if a value is in the range.
         /// </summary>
         /// <param name="value">The value to check.</param>
+        /// <returns>True if the value is in the range, false otherwise.</returns>
         bool Includes(T value);
 
         /// <summary>
-        /// Checks if the <paramref name="value"/> is in the range.
+        /// Checks if a value is in the range.
         /// </summary>
         /// <param name="value">The value to check.</param>
         /// <param name="includeMin">The minimum value is inclusive if true, exclusive if false.</param>
         /// <param name="includeMax">The maximum value is inclusive if true, exclusive if false.</param>
+        /// <returns>True if the value is in the range, false otherwise.</returns>
         bool Includes(T value, bool includeMin, bool includeMax);
     }
 
@@ -38,22 +40,23 @@ namespace Zigurous.DataStructures
     public interface INumberRange<T> : IRange<T>
     {
         /// <summary>
-        /// The difference between the maximum and minimum values.
+        /// The difference between the maximum and minimum values (Read only).
         /// </summary>
-        T Delta { get; }
+        T delta { get; }
 
         /// <summary>
-        /// The median value of the range.
+        /// The median value of the range (Read only).
         /// </summary>
-        T Median { get; }
+        T median { get; }
 
         /// <summary>
         /// Returns a random value in the range.
         /// </summary>
+        /// <returns>A random value in the range.</returns>
         T Random();
 
         /// <summary>
-        /// Clamps the <paramref name="value"/> to the range.
+        /// Clamps a value to the range.
         /// </summary>
         /// <param name="value">The value to clamp.</param>
         /// <returns>The clamped value.</returns>

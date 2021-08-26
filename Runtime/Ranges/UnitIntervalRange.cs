@@ -8,13 +8,28 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct UnitIntervalRange : INumberRange<float>
     {
+        /// <summary>
+        /// Shorthand for writing <c>UnitIntervalRange(0f, 0f)</c>.
+        /// </summary>
+        public static UnitIntervalRange zero => new UnitIntervalRange(0f, 0f);
+
+        /// <summary>
+        /// Shorthand for writing <c>UnitIntervalRange(1f, 1f)</c>.
+        /// </summary>
+        public static UnitIntervalRange one => new UnitIntervalRange(1f, 1f);
+
+        /// <summary>
+        /// Shorthand for writing <c>UnitIntervalRange(0f, 1f)</c>.
+        /// </summary>
+        public static UnitIntervalRange minMax => new UnitIntervalRange(0f, 1f);
+
         [Tooltip("The lower bound of the range.")]
-        [Range(0.0f, 1.0f)]
+        [Range(0f, 1f)]
         [SerializeField]
         private float _min;
 
         [Tooltip("The upper bound of the range.")]
-        [Range(0.0f, 1.0f)]
+        [Range(0f, 1f)]
         [SerializeField]
         private float _max;
 
@@ -33,32 +48,17 @@ namespace Zigurous.DataStructures
         }
 
         /// <inheritdoc />
-        public float Delta => _max - _min;
+        public float delta => _max - _min;
 
         /// <inheritdoc />
-        public float Median => (_min + _max) / 2;
-
-        /// <summary>
-        /// Shorthand for writing UnitIntervalRange(0.0f, 0.0f).
-        /// </summary>
-        public static UnitIntervalRange zero => new UnitIntervalRange(0.0f, 0.0f);
-
-        /// <summary>
-        /// Shorthand for writing UnitIntervalRange(1.0f, 1.0f).
-        /// </summary>
-        public static UnitIntervalRange one => new UnitIntervalRange(1.0f, 1.0f);
-
-        /// <summary>
-        /// Shorthand for writing UnitIntervalRange(0.0f, 1.0f).
-        /// </summary>
-        public static UnitIntervalRange minMax => new UnitIntervalRange(0.0f, 1.0f);
+        public float median => (_min + _max) / 2f;
 
         /// <summary>
         /// Creates a new range with the specified values.
         /// </summary>
         /// <param name="min">The lower bound of the range.</param>
         /// <param name="max">The upper bound of the range.</param>
-        public UnitIntervalRange(float min = 0.0f, float max = 1.0f)
+        public UnitIntervalRange(float min = 0f, float max = 1f)
         {
             _min = Mathf.Clamp01(min);
             _max = Mathf.Clamp01(max);

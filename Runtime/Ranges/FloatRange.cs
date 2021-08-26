@@ -8,6 +8,36 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct FloatRange : INumberRange<float>
     {
+        /// <summary>
+        /// Shorthand for writing <c>FloatRange(0f, 0f)</c>.
+        /// </summary>
+        public static FloatRange zero => new FloatRange(0f, 0f);
+
+        /// <summary>
+        /// Shorthand for writing <c>FloatRange(1f, 1f)</c>.
+        /// </summary>
+        public static FloatRange one => new FloatRange(1f, 1f);
+
+        /// <summary>
+        /// Shorthand for writing <c>FloatRange(0f, 1f)</c>.
+        /// </summary>
+        public static FloatRange percent => new FloatRange(0f, 1f);
+
+        /// <summary>
+        /// Shorthand for writing <c>FloatRange(0f, float.MaxValue)</c>.
+        /// </summary>
+        public static FloatRange positive => new FloatRange(0f, float.MaxValue);
+
+        /// <summary>
+        /// Shorthand for writing <c>FloatRange(float.MinValue, 0f)</c>.
+        /// </summary>
+        public static FloatRange negative => new FloatRange(float.MinValue, 0f);
+
+        /// <summary>
+        /// Shorthand for writing <c>FloatRange(float.MinValue, float.MaxValue)</c>.
+        /// </summary>
+        public static FloatRange minMax => new FloatRange(float.MinValue, float.MaxValue);
+
         [Tooltip("The lower bound of the range.")]
         [SerializeField]
         private float _min;
@@ -31,47 +61,17 @@ namespace Zigurous.DataStructures
         }
 
         /// <inheritdoc />
-        public float Delta => _max - _min;
+        public float delta => _max - _min;
 
         /// <inheritdoc />
-        public float Median => (_min + _max) / 2;
-
-        /// <summary>
-        /// Shorthand for writing FloatRange(0.0f, 0.0f).
-        /// </summary>
-        public static FloatRange zero => new FloatRange(0.0f, 0.0f);
-
-        /// <summary>
-        /// Shorthand for writing FloatRange(1.0f, 1.0f).
-        /// </summary>
-        public static FloatRange one => new FloatRange(1.0f, 1.0f);
-
-        /// <summary>
-        /// Shorthand for writing FloatRange(0.0f, 1.0f).
-        /// </summary>
-        public static FloatRange percent => new FloatRange(0.0f, 1.0f);
-
-        /// <summary>
-        /// Shorthand for writing FloatRange(0.0f, float.MaxValue).
-        /// </summary>
-        public static FloatRange positive => new FloatRange(0.0f, float.MaxValue);
-
-        /// <summary>
-        /// Shorthand for writing FloatRange(float.MinValue, 0.0f).
-        /// </summary>
-        public static FloatRange negative => new FloatRange(float.MinValue, 0.0f);
-
-        /// <summary>
-        /// Shorthand for writing FloatRange(float.MinValue, float.MaxValue).
-        /// </summary>
-        public static FloatRange minMax => new FloatRange(float.MinValue, float.MaxValue);
+        public float median => (_min + _max) / 2f;
 
         /// <summary>
         /// Creates a new range with the specified values.
         /// </summary>
         /// <param name="min">The lower bound of the range.</param>
         /// <param name="max">The upper bound of the range.</param>
-        public FloatRange(float min = 0.0f, float max = 1.0f)
+        public FloatRange(float min = 0f, float max = 1f)
         {
             _min = min;
             _max = max;

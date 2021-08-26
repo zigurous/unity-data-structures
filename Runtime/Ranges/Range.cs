@@ -41,18 +41,14 @@ namespace Zigurous.DataStructures
         }
 
         /// <inheritdoc />
-        /// <param name="vale">The value to check.</param>
+        /// <param name="value">The value to check.</param>
         public bool Includes(T value)
         {
             return value.IsBetween(_min, _max, true, true);
         }
 
-        /// <summary>
-        /// Checks if the <paramref name="value"/> is in the range.
-        /// </summary>
+        /// <inheritdoc />
         /// <param name="value">The value to check.</param>
-        /// <param name="includeMin">Whether to include the minimum value.</param>
-        /// <param name="includeMax">Whether to include the maximum value.</param>
         public bool Includes(T value, bool includeMin, bool includeMax)
         {
             return value.IsBetween(_min, _max, includeMin, includeMax);

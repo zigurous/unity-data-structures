@@ -8,6 +8,41 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct ColorRange : INumberRange<Color>
     {
+        /// <summary>
+        /// Shorthand for writing <c>ColorRange(Color.black, Color.black)</c>.
+        /// </summary>
+        public static ColorRange black => new ColorRange(Color.black, Color.black);
+
+        /// <summary>
+        /// Shorthand for writing <c>ColorRange(Color.white, Color.white)</c>.
+        /// </summary>
+        public static ColorRange white => new ColorRange(Color.white, Color.white);
+
+        /// <summary>
+        /// Shorthand for writing <c>ColorRange(Color.black, Color.white)</c>.
+        /// </summary>
+        public static ColorRange blackToWhite => new ColorRange(Color.black, Color.white);
+
+        /// <summary>
+        /// Shorthand for writing <c>ColorRange(Color.white, Color.black)</c>.
+        /// </summary>
+        public static ColorRange whiteToBlack => new ColorRange(Color.white, Color.black);
+
+        /// <summary>
+        /// Shorthand for writing <c>ColorRange(Color(0,0,0,0), Color(0,0,0,1))</c>.
+        /// </summary>
+        public static ColorRange fadeIn => new ColorRange(new Color(0f, 0f, 0f, 0f), new Color(0f, 0f, 0f, 1f));
+
+        /// <summary>
+        /// Shorthand for writing <c>ColorRange(Color(0,0,0,1), Color(0,0,0,0))</c>.
+        /// </summary>
+        public static ColorRange fadeOut => new ColorRange(new Color(0f, 0f, 0f, 1f), new Color(0f, 0f, 0f, 0f));
+
+        /// <summary>
+        /// Shorthand for writing <c>ColorRange(Color(0,0,0,0), Color(0,0,0,0))</c>.
+        /// </summary>
+        public static ColorRange transparent => new ColorRange(new Color(0f, 0f, 0f, 0f), new Color(0f, 0f, 0f, 0f));
+
         [Tooltip("The lower bound of the range.")]
         [SerializeField]
         private Color _min;
@@ -31,45 +66,10 @@ namespace Zigurous.DataStructures
         }
 
         /// <inheritdoc />
-        public Color Delta => _max - _min;
+        public Color delta => _max - _min;
 
         /// <inheritdoc />
-        public Color Median => (_min + _max) / 2;
-
-        /// <summary>
-        /// Shorthand for writing ColorRange(Color.black, Color.black).
-        /// </summary>
-        public static ColorRange black => new ColorRange(Color.black, Color.black);
-
-        /// <summary>
-        /// Shorthand for writing ColorRange(Color.white, Color.white).
-        /// </summary>
-        public static ColorRange white => new ColorRange(Color.white, Color.white);
-
-        /// <summary>
-        /// Shorthand for writing ColorRange(Color.black, Color.white).
-        /// </summary>
-        public static ColorRange blackToWhite => new ColorRange(Color.black, Color.white);
-
-        /// <summary>
-        /// Shorthand for writing ColorRange(Color.white, Color.black).
-        /// </summary>
-        public static ColorRange whiteToBlack => new ColorRange(Color.white, Color.black);
-
-        /// <summary>
-        /// Shorthand for writing ColorRange(Color(0,0,0,0), Color(0,0,0,1)).
-        /// </summary>
-        public static ColorRange fadeIn => new ColorRange(new Color(0.0f, 0.0f, 0.0f, 0.0f), new Color(0.0f, 0.0f, 0.0f, 1.0f));
-
-        /// <summary>
-        /// Shorthand for writing ColorRange(Color(0,0,0,1), Color(0,0,0,0)).
-        /// </summary>
-        public static ColorRange fadeOut => new ColorRange(new Color(0.0f, 0.0f, 0.0f, 1.0f), new Color(0.0f, 0.0f, 0.0f, 0.0f));
-
-        /// <summary>
-        /// Shorthand for writing ColorRange(Color(0,0,0,0), Color(0,0,0,0)).
-        /// </summary>
-        public static ColorRange transparent => new ColorRange(new Color(0.0f, 0.0f, 0.0f, 0.0f), new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        public Color median => (_min + _max) / 2;
 
         /// <summary>
         /// Creates a new range with the specified values.

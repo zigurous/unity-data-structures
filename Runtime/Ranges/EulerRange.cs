@@ -8,13 +8,38 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct EulerRange : INumberRange<float>
     {
+        /// <summary>
+        /// Shorthand for writing <c>EulerRange(0f, 0f)</c>.
+        /// </summary>
+        public static EulerRange zero => new EulerRange(0f, 0f);
+
+        /// <summary>
+        /// Shorthand for writing <c>EulerRange(0f, 180f)</c>.
+        /// </summary>
+        public static EulerRange pi => new EulerRange(0f, 180f);
+
+        /// <summary>
+        /// Shorthand for writing <c>EulerRange(0f, 360f)</c>.
+        /// </summary>
+        public static EulerRange pi2 => new EulerRange(0f, 360f);
+
+        /// <summary>
+        /// Shorthand for writing <c>EulerRange(-180f, 180f)</c>.
+        /// </summary>
+        public static EulerRange halfRange => new EulerRange(-180f, 180f);
+
+        /// <summary>
+        /// Shorthand for writing <c>EulerRange(-360f, 360f)</c>.
+        /// </summary>
+        public static EulerRange fullRange => new EulerRange(-360f, 360f);
+
         [Tooltip("The lower bound of the range.")]
-        [Range(-360.0f, 360.0f)]
+        [Range(-360f, 360f)]
         [SerializeField]
         private float _min;
 
         [Tooltip("The upper bound of the range.")]
-        [Range(-360.0f, 360.0f)]
+        [Range(-360f, 360f)]
         [SerializeField]
         private float _max;
 
@@ -22,56 +47,31 @@ namespace Zigurous.DataStructures
         public float min
         {
             get => _min;
-            set => _min = EulerRange.Wrap(value, -360.0f, 360.0f);
+            set => _min = EulerRange.Wrap(value, -360f, 360f);
         }
 
         /// <inheritdoc />
         public float max
         {
             get => _max;
-            set => _max = EulerRange.Wrap(value, -360.0f, 360.0f);
+            set => _max = EulerRange.Wrap(value, -360f, 360f);
         }
 
         /// <inheritdoc />
-        public float Delta => _max - _min;
+        public float delta => _max - _min;
 
         /// <inheritdoc />
-        public float Median => (_min + _max) / 2;
-
-        /// <summary>
-        /// Shorthand for writing EulerRange(0.0f, 0.0f).
-        /// </summary>
-        public static EulerRange zero => new EulerRange(0.0f, 0.0f);
-
-        /// <summary>
-        /// Shorthand for writing EulerRange(0.0f, 180.0f).
-        /// </summary>
-        public static EulerRange pi => new EulerRange(0.0f, 180.0f);
-
-        /// <summary>
-        /// Shorthand for writing EulerRange(0.0f, 360.0f).
-        /// </summary>
-        public static EulerRange pi2 => new EulerRange(0.0f, 360.0f);
-
-        /// <summary>
-        /// Shorthand for writing EulerRange(-180.0f, 180.0f).
-        /// </summary>
-        public static EulerRange halfRange => new EulerRange(-180.0f, 180.0f);
-
-        /// <summary>
-        /// Shorthand for writing EulerRange(-360.0f, 360.0f).
-        /// </summary>
-        public static EulerRange fullRange => new EulerRange(-360.0f, 360.0f);
+        public float median => (_min + _max) / 2f;
 
         /// <summary>
         /// Creates a new range with the specified values.
         /// </summary>
         /// <param name="min">The lower bound of the range.</param>
         /// <param name="max">The upper bound of the range.</param>
-        public EulerRange(float min = -360.0f, float max = 360.0f)
+        public EulerRange(float min = -360f, float max = 360f)
         {
-            _min = EulerRange.Wrap(min, -360.0f, 360.0f);
-            _max = EulerRange.Wrap(max, -360.0f, 360.0f);
+            _min = EulerRange.Wrap(min, -360f, 360f);
+            _max = EulerRange.Wrap(max, -360f, 360f);
         }
 
         /// <inheritdoc />
@@ -102,7 +102,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Wraps the <paramref name="value"/> within the range.
+        /// Wraps a value within the range.
         /// </summary>
         /// <param name="value">The value to wrap.</param>
         /// <returns>The wrapped value.</returns>

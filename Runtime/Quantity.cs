@@ -23,8 +23,7 @@ namespace Zigurous.DataStructures
         public int amount;
 
         /// <summary>
-        /// Creates a new quantity with a specified <paramref name="amount"/>
-        /// of <paramref name="entity"/>.
+        /// Creates a new quantity with the specified amount of a given entity.
         /// </summary>
         /// <param name="entity">The entity being counted.</param>
         /// <param name="amount">The amount of entities.</param>
@@ -35,9 +34,10 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Determines if the quantity is equal to <paramref name="other"/>.
+        /// Determines if the quantity is equal to another quantity.
         /// </summary>
         /// <param name="other">The quantity to compare to.</param>
+        /// <returns>True if the quantities are equal, false otherwise.</returns>
         public bool Equals(Quantity<T> other)
         {
             return this.entity.Equals(other.entity) &&
@@ -45,9 +45,10 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Determines if the quantity is equal to <paramref name="other"/>.
+        /// Determines if the quantity is equal to another quantity.
         /// </summary>
         /// <param name="other">The object to compare to.</param>
+        /// <returns>True if the quantities are equal, false otherwise.</returns>
         public override bool Equals(object other)
         {
             if (other is Quantity<T> quantity) {
@@ -60,6 +61,7 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the hash code of the quantity.
         /// </summary>
+        /// <returns>The hash code of the quantity.</returns>
         public override int GetHashCode()
         {
             return (this.entity, this.amount).GetHashCode();
@@ -68,12 +70,26 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Converts the quantity to a string.
         /// </summary>
+        /// <returns>The quantity as a string.</returns>
         public override string ToString()
         {
             return $"{this.amount.ToString()} {this.entity.ToString()}";
         }
 
+        /// <summary>
+        /// Determines if two quantities are equal.
+        /// </summary>
+        /// <param name="lhs">The first quantity to compare.</param>
+        /// <param name="rhs">The second quantity to compare.</param>
+        /// <returns>True if the quantities are equal, false otherwise.</returns>
         public static bool operator ==(Quantity<T> lhs, Quantity<T> rhs) => lhs.Equals(rhs);
+
+        /// <summary>
+        /// Determines if two quantities are not equal.
+        /// </summary>
+        /// <param name="lhs">The first quantity to compare.</param>
+        /// <param name="rhs">The second quantity to compare.</param>
+        /// <returns>True if the quantities are not equal, false otherwise.</returns>
         public static bool operator !=(Quantity<T> lhs, Quantity<T> rhs) => !lhs.Equals(rhs);
 
     }

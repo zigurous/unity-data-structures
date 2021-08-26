@@ -9,26 +9,25 @@ namespace Zigurous.DataStructures
     public abstract class ValueAccumulator<T>
     {
         /// <summary>
-        /// Keeps track of all accumulated values.
-        /// Values are stored with unique identifiers.
+        /// The stored values with their given identifiers (Read only).
         /// </summary>
         public Dictionary<int, T> values { get; protected set; } = new Dictionary<int, T>();
 
         /// <summary>
-        /// The total accumulated value.
+        /// The total accumulated value (Read only).
         /// </summary>
         public T total { get; protected set; }
 
         /// <summary>
-        /// The number of unique values being accumulated.
+        /// The number of unique values being accumulated (Read only).
         /// </summary>
-        public int Count => this.values.Count;
+        public int count => this.values.Count;
 
         /// <summary>
-        /// Returns the stored value with the given <paramref name="identifier"/>,
-        /// or the default of <typeparamref name="T"/> if the value does not exist.
+        /// Returns the value stored with the specified identifier.
         /// </summary>
-        /// <param name="id">The identifier of the stored value.</param>
+        /// <param name="identifier">The identifier of the stored value.</param>
+        /// <returns>The value stored with the identifier, or <c>default(T)</c> if the value does not exist.</returns>
         public T GetValue(int identifier)
         {
             T value;
@@ -41,9 +40,9 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Stores a given <paramref name="value"/> with the <paramref name="identifier"/>.
-        /// The total accumulated value is updated based on the difference
-        /// between the new and old value.
+        /// Stores a given value with the specified identifier. The total
+        /// accumulated value is updated based on the difference between the new
+        /// and old value.
         /// </summary>
         /// <param name="value">The value to set.</param>
         /// <param name="identifier">The identifier of the value.</param>
@@ -65,8 +64,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Removes the value stored with the given <paramref name="identifier"/>
-        /// and updates the total accumulated value.
+        /// Removes the value stored with the given identifier and updates the
+        /// total accumulated value.
         /// </summary>
         /// <param name="identifier">The identifier of the stored value to remove.</param>
         public void RemoveValue(int identifier)

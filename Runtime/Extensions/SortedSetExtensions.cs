@@ -9,12 +9,12 @@ namespace Zigurous.DataStructures
     public static class SortedSetExtensions
     {
         /// <summary>
-        /// Returns the first element in the set that satisfies the
-        /// <paramref name="predicate"/>.
+        /// Returns the first element in the set that satisfies a predicate.
         /// </summary>
         /// <param name="set">The set to get the element from.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the elements in the set.</typeparam>
+        /// <returns>The first element in the set that satisfies the predicate, or <c>default(T)</c> if no item satisfies the predicate.</returns>
         public static T First<T>(this SortedSet<T> set, Predicate<T> predicate)
         {
             foreach (T element in set)
@@ -28,7 +28,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Invokes an <paramref name="action"/> on each element in the set.
+        /// Invokes an <see cref="Action{T}"/> on each element in the set.
+        /// The element is passed as a parameter.
         /// </summary>
         /// <param name="set">The set to iterate over.</param>
         /// <param name="action">The action to invoke on each element.</param>
@@ -41,12 +42,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Checks if any element in the set satisfies the
-        /// <paramref name="predicate"/>.
+        /// Checks if any element in the set satisfies a predicate.
         /// </summary>
         /// <param name="set">The set to check.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the elements in the set.</typeparam>
+        /// <returns>True if any element satisfies the predicate.</returns>
         public static bool IsAny<T>(this SortedSet<T> set, Predicate<T> predicate)
         {
             foreach (T item in set)
@@ -60,12 +61,12 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Checks if each element in the set satisfies the
-        /// <paramref name="predicate"/>.
+        /// Checks if each element in the set satisfies a predicate.
         /// </summary>
         /// <param name="set">The set to check.</param>
         /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="T">The type of the elements in the set.</typeparam>
+        /// <returns>True if all elements satisfy the predicate.</returns>
         public static bool IsEach<T>(this SortedSet<T> set, Predicate<T> predicate)
         {
             foreach (T item in set)

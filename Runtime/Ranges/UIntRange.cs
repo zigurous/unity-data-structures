@@ -8,6 +8,21 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct UIntRange : INumberRange<uint>
     {
+        /// <summary>
+        /// Shorthand for writing <c>UIntRange(0, 0)</c>.
+        /// </summary>
+        public static UIntRange zero => new UIntRange(0, 0);
+
+        /// <summary>
+        /// Shorthand for writing <c>UIntRange(1, 1)</c>.
+        /// </summary>
+        public static UIntRange one => new UIntRange(1, 1);
+
+        /// <summary>
+        /// Shorthand for writing <c>UIntRange(uint.MinValue, uint.MaxValue)</c>.
+        /// </summary>
+        public static UIntRange minMax => new UIntRange(uint.MinValue, uint.MaxValue);
+
         [Tooltip("The lower bound of the range.")]
         [SerializeField]
         private uint _min;
@@ -31,25 +46,10 @@ namespace Zigurous.DataStructures
         }
 
         /// <inheritdoc />
-        public uint Delta => _max - _min;
+        public uint delta => _max - _min;
 
         /// <inheritdoc />
-        public uint Median => (_min + _max) / 2;
-
-        /// <summary>
-        /// Shorthand for writing UIntRange(0, 0).
-        /// </summary>
-        public static UIntRange zero => new UIntRange(0, 0);
-
-        /// <summary>
-        /// Shorthand for writing UIntRange(1, 1).
-        /// </summary>
-        public static UIntRange one => new UIntRange(1, 1);
-
-        /// <summary>
-        /// Shorthand for writing UIntRange(uint.MinValue, uint.MaxValue).
-        /// </summary>
-        public static UIntRange minMax => new UIntRange(uint.MinValue, uint.MaxValue);
+        public uint median => (_min + _max) / 2;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -65,6 +65,7 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns a random value in the range [inclusive, exclusive).
         /// </summary>
+        /// <returns>A random value in the range [inclusive, exclusive).</returns>
         public uint Random()
         {
             return (uint)UnityEngine.Random.Range((int)_min, (int)_max);
@@ -73,6 +74,7 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns a random value in the range [inclusive, inclusive].
         /// </summary>
+        /// <returns>A random value in the range [inclusive, inclusive].</returns>
         public uint RandomInclusive()
         {
             return (uint)UnityEngine.Random.Range((int)_min, (int)_max + 1);

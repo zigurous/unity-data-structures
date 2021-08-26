@@ -14,15 +14,10 @@ namespace Zigurous.DataStructures
         private static bool _isUnloading = false;
 
         /// <summary>
-        /// Checks if the singleton has been initialized and an instance is
-        /// available to use.
-        /// </summary>
-        public static bool HasInstance => _instance != null;
-
-        /// <summary>
         /// The current instance of the class.
         /// The instance will be created if it does not already exist.
         /// </summary>
+        /// <returns>The instance of the class.</returns>
         public static T Instance
         {
             get
@@ -52,8 +47,19 @@ namespace Zigurous.DataStructures
             }
         }
 
-        protected SingletonBehavior() {}
+        /// <summary>
+        /// Checks if the singleton has been initialized and an instance is
+        /// available to use.
+        /// </summary>
+        /// <returns>True if an instance is available, false otherwise.</returns>
+        public static bool HasInstance => _instance != null;
 
+        private SingletonBehavior() {}
+
+        /// <summary>
+        /// Initializes the singleton or destroys this instance if one already
+        /// exists.
+        /// </summary>
         protected virtual void Awake()
         {
             _isUnloading = false;
@@ -66,6 +72,9 @@ namespace Zigurous.DataStructures
             }
         }
 
+        /// <summary>
+        /// Uninitializes the singleton.
+        /// </summary>
         protected virtual void OnDestroy()
         {
             _isUnloading = true;

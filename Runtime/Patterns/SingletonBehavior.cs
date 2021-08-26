@@ -73,7 +73,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Uninitializes the singleton.
+        /// Destroys the singleton instance.
         /// </summary>
         protected virtual void OnDestroy()
         {

@@ -5,7 +5,7 @@ namespace Zigurous.DataStructures.Editor
 {
     public static class PropertyDrawerUtility
     {
-        public static float standardHorizontalSpacing = 4.0f;
+        public static float standardHorizontalSpacing = 4f;
 
         public static void BoolFieldWithChangeCheck(PropertyField field, Rect position)
         {

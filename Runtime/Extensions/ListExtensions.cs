@@ -17,10 +17,10 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Adds a specified amount of a given value to the list.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to add to.</param>
         /// <param name="value">The value to add.</param>
         /// <param name="amount">The number of times to add the value.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         public static void Add<T>(this List<T> list, T value, int amount)
         {
             for (int i = 0; i < amount; i++) {
@@ -31,9 +31,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Combines the list with another.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The first list.</param>
         /// <param name="other">The second list.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>A new list containing the items of both lists.</returns>
         public static List<T> CombinedWith<T>(this List<T> list, List<T> other)
         {
@@ -45,9 +45,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the item at the specified index.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to get the item from.</param>
         /// <param name="index">The index of the item to get.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>The item at the index, or <c>default(T)</c> if the list is empty.</returns>
         public static T ItemAt<T>(this List<T> list, int index)
         {
@@ -61,9 +61,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Filters the list to only contain items that satisfy a predicate.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to filter.</param>
         /// <param name="predicate">The predicate to use.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>A new list with the filtered items removed.</returns>
         public static List<T> Filter<T>(this List<T> list, Predicate<T> predicate)
         {
@@ -73,8 +73,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the first item in the list.
         /// </summary>
-        /// <param name="list">The list to get the item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to get the item from.</param>
         /// <returns>The first item in the list, or <c>default(T)</c> if the list is empty.</returns>
         public static T First<T>(this List<T> list)
         {
@@ -88,9 +88,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the first item in the list that satisfies a predicate.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to get the item from.</param>
         /// <param name="predicate">The predicate to use.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>The first item in the list that satisfies the predicate, or <c>default(T)</c> if no item satisfies the predicate.</returns>
         public static T First<T>(this List<T> list, Predicate<T> predicate)
         {
@@ -107,8 +107,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the first non-null item in the list.
         /// </summary>
-        /// <param name="list">The list to get the item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to get the item from.</param>
         /// <returns>The first non-null item in the list, or <c>default(T)</c> if all items are null.</returns>
         public static T FirstNonNull<T>(this List<T> list) where T: class
         {
@@ -126,9 +126,9 @@ namespace Zigurous.DataStructures
         /// Invokes an <see cref="Action{T}"/> for each item in the list.
         /// The item and index are passed as parameters.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to iterate over.</param>
         /// <param name="action">The action to invoke.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         public static void For<T>(this List<T> list, Action<(T item, int index)> action)
         {
             for (int i = 0; i < list.Count; i++) {
@@ -139,9 +139,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Checks if any item in the list satisfies a predicate.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to search in.</param>
         /// <param name="predicate">The predicate to use.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>True if any item satisfies the predicate.</returns>
         public static bool IsAny<T>(this List<T> list, Predicate<T> predicate)
         {
@@ -158,9 +158,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Checks if each item in the list satisfies a predicate.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to search in.</param>
         /// <param name="predicate">The predicate to use.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>True if all items satisfy the predicate.</returns>
         public static bool IsEach<T>(this List<T> list, Predicate<T> predicate)
         {
@@ -177,8 +177,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Checks if the list is empty.
         /// </summary>
-        /// <param name="list">The list to check.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to check.</param>
         /// <returns>True if the list is empty.</returns>
         public static bool IsEmpty<T>(this List<T> list)
         {
@@ -188,8 +188,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Checks if the list is not empty.
         /// </summary>
-        /// <param name="list">The list to check.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to check.</param>
         /// <returns>True if the list is not empty.</returns>
         public static bool IsNotEmpty<T>(this List<T> list)
         {
@@ -199,9 +199,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Checks if the specified index is within the bounds of the list.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to check.</param>
         /// <param name="index">The index to check.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>True if the index is within the bounds of the list.</returns>
         public static bool IsInBounds<T>(this List<T> list, int index)
         {
@@ -211,9 +211,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Checks if the specified index is out of bounds of the list.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to check.</param>
         /// <param name="index">The index to check.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>True if the index is out of bounds of the list.</returns>
         public static bool IsNotInBounds<T>(this List<T> list, int index)
         {
@@ -223,11 +223,11 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Joins the items of the list into a string with a delimiter.
         /// </summary>
+        /// <typeparam name="T">The type of the array.</typeparam>
         /// <param name="array">The array to join.</param>
         /// <param name="delimiter">The delimiter to use.</param>
         /// <param name="startIndex">The index to start at.</param>
         /// <param name="endIndex">The index to end at.</param>
-        /// <typeparam name="T">The type of the array.</typeparam>
         /// <returns>The joined string.</returns>
         public static string Join<T>(this List<T> list, string delimiter, int startIndex = 0, int endIndex = int.MaxValue)
         {
@@ -255,8 +255,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the last item in the list.
         /// </summary>
-        /// <param name="list">The list to get the item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to get the item from.</param>
         /// <returns>The last item in the list, or <c>default(T)</c> if the list is empty.</returns>
         public static T Last<T>(this List<T> list)
         {
@@ -270,9 +270,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the last item in the list that satisfies a predicate.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to get the item from.</param>
         /// <param name="predicate">The predicate to use.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>The last item in the list that satisfies the predicate, or <c>default(T)</c> if no item satisfies the predicate.</returns>
         public static T Last<T>(this List<T> list, Predicate<T> predicate)
         {
@@ -291,8 +291,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns the last non-null item in the list.
         /// </summary>
-        /// <param name="list">The list to get the item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to get the item from.</param>
         /// <returns>The last non-null item in the list, or <c>default(T)</c> if all items are null.</returns>
         public static T LastNonNull<T>(this List<T> list) where T: class
         {
@@ -311,10 +311,10 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Maps the items of the list to a new list using a converter function.
         /// </summary>
-        /// <param name="list">The list to map.</param>
-        /// <param name="converter">The converter to use.</param>
         /// <typeparam name="TInput">The type of the input list.</typeparam>
         /// <typeparam name="TOutput">The type of the output list.</typeparam>
+        /// <param name="list">The list to map.</param>
+        /// <param name="converter">The converter to use.</param>
         /// <returns>A new list with the converted items.</returns>
         public static List<TOutput> Map<TInput, TOutput>(this List<TInput> list, Converter<TInput, TOutput> converter)
         {
@@ -324,8 +324,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Filters out all null items from the list.
         /// </summary>
-        /// <param name="list">The list to filter.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to filter.</param>
         /// <returns>A new list with all null items removed.</returns>
         public static List<T> NonNull<T>(this List<T> list) where T: class
         {
@@ -339,8 +339,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Returns a random item from the list.
         /// </summary>
-        /// <param name="list">The list to get the random item from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to get the random item from.</param>
         /// <returns>A random item from the list, or <c>default(T)</c> if the list is empty.</returns>
         public static T Random<T>(this List<T> list)
         {
@@ -354,21 +354,21 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// A function delegate that reduces a list into a single value.
         /// </summary>
-        /// <param name="sum">The current sum.</param>
-        /// <param name="item">The current item being reduced.</param>
         /// <typeparam name="TSum">The type of the reduced value.</typeparam>
         /// <typeparam name="TItem">The type of items in the list.</typeparam>
+        /// <param name="sum">The current sum.</param>
+        /// <param name="item">The current item being reduced.</param>
         /// <returns>The reduced value.</returns>
         public delegate TSum Reducer<TSum, TItem>(TSum sum, TItem item);
 
         /// <summary>
         /// Reduces the items of the list to a single value.
         /// </summary>
+        /// <typeparam name="TSum">The type of the reduced value.</typeparam>
+        /// <typeparam name="TItem">The type of items in the list.</typeparam>
         /// <param name="list">The list to reduce.</param>
         /// <param name="initialValue">The initial value to use.</param>
         /// <param name="reducer">The reducer to use.</param>
-        /// <typeparam name="TSum">The type of the reduced value.</typeparam>
-        /// <typeparam name="TItem">The type of items in the list.</typeparam>
         /// <returns>The reduced value.</returns>
         public static TSum Reduce<TItem, TSum>(this List<TItem> list, TSum initialValue, Reducer<TSum, TItem> reducer)
         {
@@ -384,8 +384,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Removes the first item in the list.
         /// </summary>
-        /// <param name="list">The list to remove from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to remove from.</param>
         public static void RemoveFirst<T>(this List<T> list)
         {
             if (list.Count > 0) {
@@ -396,8 +396,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Removes the last item in the list.
         /// </summary>
-        /// <param name="list">The list to remove from.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to remove from.</param>
         public static void RemoveLast<T>(this List<T> list)
         {
             if (list.Count > 0) {
@@ -408,8 +408,8 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Reverses the order of the items in the list.
         /// </summary>
-        /// <param name="list">The list to reverse.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to reverse.</param>
         /// <returns>A new list with the order of the items reversed.</returns>
         public static List<T> Reversed<T>(this List<T> list)
         {
@@ -426,8 +426,8 @@ namespace Zigurous.DataStructures
         /// Shuffles the list in place.
         /// </summary>
         /// <remarks>The shuffle is done using the Fisher-Yates algorithm.</remarks>
-        /// <param name="list">The list to shuffle.</param>
         /// <typeparam name="T">The type of the list.</typeparam>
+        /// <param name="list">The list to shuffle.</param>
         public static void Shuffle<T>(this List<T> list)
         {
             int n = list.Count;
@@ -445,9 +445,9 @@ namespace Zigurous.DataStructures
         /// Shuffles the list in place using the given random number generator.
         /// </summary>
         /// <remarks>The shuffle is done using the Fisher-Yates algorithm.</remarks>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to shuffle.</param>
         /// <param name="rng">The random number generator to use.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         public static void Shuffle<T>(this List<T> list, Random rng)
         {
             int n = list.Count;
@@ -464,9 +464,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Filters the list to only contain items that satisfy a predicate.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to filter.</param>
         /// <param name="predicate">The predicate to use.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>A new list with the filtered items removed.</returns>
         public static List<T> Where<T>(this List<T> list, Predicate<T> predicate)
         {
@@ -476,9 +476,9 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Wraps an index to either end of the list if it is out of bounds.
         /// </summary>
+        /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to wrap.</param>
         /// <param name="index">The index to wrap.</param>
-        /// <typeparam name="T">The type of the list.</typeparam>
         /// <returns>The wrapped index.</returns>
         public static int WrapIndex<T>(this List<T> list, int index)
         {

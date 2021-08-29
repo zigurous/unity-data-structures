@@ -11,10 +11,10 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Filters the dictionary by a predicate.
         /// </summary>
-        /// <param name="dictionary">The dictionary to filter.</param>
-        /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
         /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+        /// <param name="dictionary">The dictionary to filter.</param>
+        /// <param name="predicate">The predicate to use.</param>
         /// <returns>A new dictionary with the filtered key-value pairs removed.</returns>
         public static Dictionary<TKey, TValue> Where<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, Predicate<KeyValuePair<TKey, TValue>> predicate)
         {
@@ -33,10 +33,10 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Filters the dictionary keys by a predicate.
         /// </summary>
-        /// <param name="keys">The keys to filter.</param>
-        /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
         /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+        /// <param name="keys">The keys to filter.</param>
+        /// <param name="predicate">The predicate to use.</param>
         /// <returns>A new list with the filtered keys removed.</returns>
         public static List<TKey> Where<TKey, TValue>(this Dictionary<TKey, TValue>.KeyCollection keys, Predicate<TKey> predicate)
         {
@@ -55,10 +55,10 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// Filters the dictionary values by a predicate.
         /// </summary>
-        /// <param name="values">The values to filter.</param>
-        /// <param name="predicate">The predicate to use.</param>
         /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
         /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+        /// <param name="values">The values to filter.</param>
+        /// <param name="predicate">The predicate to use.</param>
         /// <returns>A new list with the filtered values removed.</returns>
         public static List<TValue> Where<TKey, TValue>(this Dictionary<TKey, TValue>.ValueCollection values, Predicate<TValue> predicate)
         {

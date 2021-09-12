@@ -27,7 +27,7 @@ namespace Zigurous.DataStructures
         /// within the same cycle will usually be identical.
         /// </remarks>
         /// <returns>The generated identifier.</returns>
-        public static long Temporal()
+        public static long UnixTime()
         {
             return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         }

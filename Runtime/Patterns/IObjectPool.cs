@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace Zigurous.DataStructures
+﻿namespace Zigurous.DataStructures
 {
     /// <summary>
     /// A type that can retrieve and recycle objects from a shared pool.
     /// </summary>
     /// <typeparam name="T">The type of object to be pooled.</typeparam>
-    public interface IObjectPool<T> : IDisposable where T: class
+    public interface IObjectPool<T> where T: class
     {
         /// <summary>
         /// Removes and returns an object from the pool.

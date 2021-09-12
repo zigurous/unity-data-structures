@@ -10,7 +10,7 @@ namespace Zigurous.DataStructures
     /// pool has reached capacity.
     /// </summary>
     /// <typeparam name="T">The type of object to pool.</typeparam>
-    public sealed class ObjectPool<T> : IObjectPool<T> where T: class, IDisposable
+    public sealed class ObjectPool<T> : IObjectPool<T>, IDisposable where T: class
     {
         /// <summary>
         /// A function delegate that creates a new instance of <typeparamref name="T"/>.

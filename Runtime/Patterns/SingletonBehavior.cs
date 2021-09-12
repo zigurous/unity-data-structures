@@ -54,7 +54,10 @@ namespace Zigurous.DataStructures
         /// <returns>True if an instance is available, false otherwise.</returns>
         public static bool HasInstance => _instance != null;
 
-        private SingletonBehavior() {}
+        /// <summary>
+        /// Constructs a new instance of the class.
+        /// </summary>
+        protected SingletonBehavior() {}
 
         /// <summary>
         /// Initializes the singleton or destroys this instance if one already

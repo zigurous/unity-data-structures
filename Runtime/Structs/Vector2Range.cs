@@ -12,7 +12,7 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private Vector2 _min;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector2 min
         {
             get => _min;
@@ -23,17 +23,17 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private Vector2 _max;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector2 max
         {
             get => _max;
             set => _max = value;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector2 delta => _max - _min;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector2 median => (_min + _max) / 2;
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Zigurous.DataStructures
             _max = max;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector2 Random()
         {
             return new Vector2(
@@ -55,7 +55,7 @@ namespace Zigurous.DataStructures
                 UnityEngine.Random.Range(_min.y, _max.y));
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector2 value)
         {
@@ -63,7 +63,7 @@ namespace Zigurous.DataStructures
                    value.y >= _min.y && value.y <= _max.y;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector2 value, bool includeMin, bool includeMax)
         {
@@ -71,7 +71,7 @@ namespace Zigurous.DataStructures
                    value.y.IsBetween(_min.y, _max.y, includeMin, includeMax);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public Vector2 Clamp(Vector2 value)
         {

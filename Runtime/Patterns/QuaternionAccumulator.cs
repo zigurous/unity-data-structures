@@ -15,11 +15,11 @@ namespace Zigurous.DataStructures
             this.total = Quaternion.identity;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to add to the total.</param>
         protected override Quaternion Add(Quaternion value) => this.total * value;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to subtract from the total.</param>
         protected override Quaternion Subtract(Quaternion value) => this.total * Quaternion.Inverse(value);
 

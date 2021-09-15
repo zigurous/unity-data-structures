@@ -40,14 +40,14 @@ namespace Zigurous.DataStructures
             _max = max;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(T value)
         {
             return value.IsBetween(_min, _max, true, true);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(T value, bool includeMin, bool includeMax)
         {

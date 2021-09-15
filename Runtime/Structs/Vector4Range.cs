@@ -16,24 +16,24 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private Vector4 _max;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector4 min
         {
             get => _min;
             set => _min = value;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector4 max
         {
             get => _max;
             set => _max = value;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector4 delta => _max - _min;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector4 median => (_min + _max) / 2;
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Zigurous.DataStructures
             _max = max;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Vector4 Random()
         {
             return new Vector4(
@@ -57,7 +57,7 @@ namespace Zigurous.DataStructures
                 UnityEngine.Random.Range(_min.w, _max.w));
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector4 value)
         {
@@ -67,7 +67,7 @@ namespace Zigurous.DataStructures
                    value.w >= _min.w && value.w <= _max.w;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector4 value, bool includeMin, bool includeMax)
         {
@@ -77,7 +77,7 @@ namespace Zigurous.DataStructures
                    value.w.IsBetween(_min.w, _max.w, includeMin, includeMax);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public Vector4 Clamp(Vector4 value)
         {

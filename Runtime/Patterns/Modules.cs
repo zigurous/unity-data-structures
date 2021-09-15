@@ -71,7 +71,7 @@ namespace Zigurous.DataStructures
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="module">The module to register.</param>
         public bool Register(T module)
         {
@@ -88,7 +88,7 @@ namespace Zigurous.DataStructures
             return true;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="module">The module to unregister.</param>
         public bool Unregister(T module)
         {
@@ -104,7 +104,7 @@ namespace Zigurous.DataStructures
             return false;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="module">The module to check for registration.</param>
         public bool IsRegistered(T module)
         {

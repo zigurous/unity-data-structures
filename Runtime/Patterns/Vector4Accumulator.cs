@@ -7,11 +7,11 @@ namespace Zigurous.DataStructures
     /// </summary>
     public sealed class Vector4Accumulator : ValueAccumulator<Vector4>
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to add to the total.</param>
         protected override Vector4 Add(Vector4 value) => this.total + value;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to subtract from the total.</param>
         protected override Vector4 Subtract(Vector4 value) => this.total - value;
 

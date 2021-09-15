@@ -46,24 +46,24 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private float _max;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public float min
         {
             get => _min;
             set => _min = value;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public float max
         {
             get => _max;
             set => _max = value;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public float delta => _max - _min;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public float median => (_min + _max) / 2f;
 
         /// <summary>
@@ -77,27 +77,27 @@ namespace Zigurous.DataStructures
             _max = max;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public float Random()
         {
             return UnityEngine.Random.Range(_min, _max);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(float value)
         {
             return value >= _min && value <= _max;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(float value, bool includeMin, bool includeMax)
         {
             return value.IsBetween(_min, _max, includeMin, includeMax);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public float Clamp(float value)
         {

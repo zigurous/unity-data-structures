@@ -51,24 +51,24 @@ namespace Zigurous.DataStructures
         [SerializeField]
         private Color _max;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Color min
         {
             get => _min;
             set => _min = value;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Color max
         {
             get => _max;
             set => _max = value;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Color delta => _max - _min;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Color median => (_min + _max) / 2;
 
         /// <summary>
@@ -82,13 +82,13 @@ namespace Zigurous.DataStructures
             _max = max;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Color Random()
         {
             return Color.Lerp(_min, _max, UnityEngine.Random.value);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Color value)
         {
@@ -98,7 +98,7 @@ namespace Zigurous.DataStructures
                    value.a >= _min.a && value.a <= _max.a;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Color value, bool includeMin, bool includeMax)
         {
@@ -108,7 +108,7 @@ namespace Zigurous.DataStructures
                    value.a.IsBetween(_min.a, _max.a, includeMin, includeMax);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public Color Clamp(Color value)
         {

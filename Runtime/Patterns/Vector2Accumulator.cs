@@ -7,6 +7,14 @@ namespace Zigurous.DataStructures
     /// </summary>
     public sealed class Vector2Accumulator : ValueAccumulator<Vector2>
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public Vector2Accumulator() : base()
+        {
+            this.total = Vector2.zero;
+        }
+
         /// <inheritdoc/>
         /// <param name="value">The value to add to the total.</param>
         protected override Vector2 Add(Vector2 value) => this.total + value;

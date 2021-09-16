@@ -44,9 +44,9 @@ namespace Zigurous.DataStructures
         /// accumulated value is updated based on the difference between the new
         /// and old value.
         /// </summary>
-        /// <param name="value">The value to set.</param>
         /// <param name="identifier">The identifier of the value.</param>
-        public void SetValue(T value, int identifier)
+        /// <param name="value">The value to set.</param>
+        public void SetValue(int identifier, T value)
         {
             T currentValue;
 

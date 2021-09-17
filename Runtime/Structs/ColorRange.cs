@@ -43,12 +43,12 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static ColorRange transparent => new ColorRange(new Color(0f, 0f, 0f, 0f), new Color(0f, 0f, 0f, 0f));
 
-        [Tooltip("The lower bound of the range.")]
         [SerializeField]
+        [Tooltip("The lower bound of the range.")]
         private Color _min;
 
-        [Tooltip("The upper bound of the range.")]
         [SerializeField]
+        [Tooltip("The upper bound of the range.")]
         private Color _max;
 
         /// <inheritdoc/>

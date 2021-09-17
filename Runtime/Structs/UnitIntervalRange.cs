@@ -23,14 +23,14 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static UnitIntervalRange minMax => new UnitIntervalRange(0f, 1f);
 
-        [Tooltip("The lower bound of the range.")]
-        [Range(0f, 1f)]
         [SerializeField]
+        [Range(0f, 1f)]
+        [Tooltip("The lower bound of the range.")]
         private float _min;
 
-        [Tooltip("The upper bound of the range.")]
-        [Range(0f, 1f)]
         [SerializeField]
+        [Range(0f, 1f)]
+        [Tooltip("The upper bound of the range.")]
         private float _max;
 
         /// <inheritdoc/>

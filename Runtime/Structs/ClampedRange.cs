@@ -8,12 +8,12 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct ClampedRange : INumberRange<float>
     {
-        [Tooltip("The lower bound of the range.")]
         [SerializeField]
+        [Tooltip("The lower bound of the range.")]
         private float _min;
 
-        [Tooltip("The upper bound of the range.")]
         [SerializeField]
+        [Tooltip("The upper bound of the range.")]
         private float _max;
 
         /// <inheritdoc/>

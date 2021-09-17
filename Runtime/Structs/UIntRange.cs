@@ -23,12 +23,12 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static UIntRange minMax => new UIntRange(uint.MinValue, uint.MaxValue);
 
-        [Tooltip("The lower bound of the range.")]
         [SerializeField]
+        [Tooltip("The lower bound of the range.")]
         private uint _min;
 
-        [Tooltip("The upper bound of the range.")]
         [SerializeField]
+        [Tooltip("The upper bound of the range.")]
         private uint _max;
 
         /// <inheritdoc/>

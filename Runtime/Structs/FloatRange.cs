@@ -38,12 +38,12 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static FloatRange minMax => new FloatRange(float.MinValue, float.MaxValue);
 
-        [Tooltip("The lower bound of the range.")]
         [SerializeField]
+        [Tooltip("The lower bound of the range.")]
         private float _min;
 
-        [Tooltip("The upper bound of the range.")]
         [SerializeField]
+        [Tooltip("The upper bound of the range.")]
         private float _max;
 
         /// <inheritdoc/>

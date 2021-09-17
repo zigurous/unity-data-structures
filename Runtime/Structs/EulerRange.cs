@@ -33,14 +33,14 @@ namespace Zigurous.DataStructures
         /// </summary>
         public static EulerRange fullRange => new EulerRange(-360f, 360f);
 
-        [Tooltip("The lower bound of the range.")]
-        [Range(-360f, 360f)]
         [SerializeField]
+        [Range(-360f, 360f)]
+        [Tooltip("The lower bound of the range.")]
         private float _min;
 
-        [Tooltip("The upper bound of the range.")]
-        [Range(-360f, 360f)]
         [SerializeField]
+        [Range(-360f, 360f)]
+        [Tooltip("The upper bound of the range.")]
         private float _max;
 
         /// <inheritdoc/>

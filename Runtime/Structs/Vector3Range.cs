@@ -8,12 +8,12 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct Vector3Range : INumberRange<Vector3>
     {
-        [Tooltip("The lower bound of the range.")]
         [SerializeField]
+        [Tooltip("The lower bound of the range.")]
         private Vector3 _min;
 
-        [Tooltip("The upper bound of the range.")]
         [SerializeField]
+        [Tooltip("The upper bound of the range.")]
         private Vector3 _max;
 
         /// <inheritdoc/>

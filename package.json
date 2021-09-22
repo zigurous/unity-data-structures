@@ -4,16 +4,16 @@
   "displayName": "Data Structures",
   "description": "The Data Structures package contains common data structures and design pattern implementations for Unity projects. It also contains dozens of class extensions for common collection types and interfaces.",
   "unity": "2019.4",
-  "keywords": [
-    "datastructures",
-    "designpatterns",
-    "extensions",
-    "scripts"
-  ],
   "repository": "https://github.com/zigurous/unity-data-structures",
   "documentationUrl": "https://docs.zigurous.com/com.zigurous.datastructures",
   "changelogUrl": "https://docs.zigurous.com/com.zigurous.datastructures/changelog",
   "licensesUrl": "https://docs.zigurous.com/com.zigurous.datastructures/license",
+  "keywords": [
+    "data structures",
+    "design patterns",
+    "extensions",
+    "structs"
+  ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@zigurous"
   },

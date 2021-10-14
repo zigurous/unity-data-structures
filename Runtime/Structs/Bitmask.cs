@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Zigurous.DataStructures
@@ -169,7 +169,7 @@ namespace Zigurous.DataStructures
         public override string ToString()
         {
             string binary = System.Convert.ToString(this.mask, 2);
-            return binary.PadLeft(64 - binary.Length, '0');
+            return binary.PadLeft(32, '0');
         }
 
         /// <summary>

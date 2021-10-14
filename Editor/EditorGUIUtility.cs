@@ -5,10 +5,9 @@ namespace Zigurous.DataStructures.Editor
 {
     internal static class EditorGUIUtility
     {
-        internal const float standardHorizontalSpacing = 4f;
-
         internal static float singleLineHeight => UnityEditor.EditorGUIUtility.singleLineHeight;
         internal static float standardVerticalSpacing => UnityEditor.EditorGUIUtility.standardVerticalSpacing;
+        internal const float standardHorizontalSpacing = 4f;
 
         internal static Rect GetFieldRect(Rect position, int columns)
         {

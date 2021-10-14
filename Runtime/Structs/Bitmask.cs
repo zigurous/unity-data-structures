@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Zigurous.DataStructures
@@ -14,7 +14,6 @@ namespace Zigurous.DataStructures
         /// The bitmask represented as a 32-bit integer.
         /// </summary>
         [SerializeField]
-        [HideInInspector]
         private int mask;
 
         /// <summary>

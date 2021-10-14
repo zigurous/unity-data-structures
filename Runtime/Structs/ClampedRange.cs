@@ -8,27 +8,23 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct ClampedRange : INumberRange<float>
     {
-        [SerializeField]
-        [Tooltip("The lower bound of the range.")]
-        private float _min;
-
-        [SerializeField]
-        [Tooltip("The upper bound of the range.")]
-        private float _max;
-
         /// <inheritdoc/>
         public float min
         {
-            get => _min;
-            set => _min = this.clamp.Clamp(value);
+            get => this.range.min;
+            set => this.range.min = this.clamp.Clamp(value);
         }
 
         /// <inheritdoc/>
         public float max
         {
-            get => _max;
-            set => _max = this.clamp.Clamp(value);
+            get => this.range.max;
+            set => this.range.max = this.clamp.Clamp(value);
         }
+
+        [SerializeField]
+        [Tooltip("The min and max values of the range.")]
+        private FloatRange range;
 
         /// <summary>
         /// The clamping values of the range.
@@ -37,10 +33,10 @@ namespace Zigurous.DataStructures
         public FloatRange clamp;
 
         /// <inheritdoc/>
-        public float delta => _max - _min;
+        public float delta => this.max - this.min;
 
         /// <inheritdoc/>
-        public float median => (_min + _max) / 2f;
+        public float median => (this.min + this.max) / 2f;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -51,38 +47,35 @@ namespace Zigurous.DataStructures
         /// <param name="clampUpper">The upper clamping bound of the range.</param>
         public ClampedRange(float min = 0f, float max = 1f, float clampLower = 0f, float clampUpper = 1f)
         {
-            FloatRange clamp = new FloatRange(clampLower, clampUpper);
-            this.clamp = clamp;
-
-            _min = clamp.Clamp(min);
-            _max = clamp.Clamp(max);
+            this.clamp = new FloatRange(clampLower, clampUpper);
+            this.range = new FloatRange(this.clamp.Clamp(min), this.clamp.Clamp(max));
         }
 
         /// <inheritdoc/>
         public float Random()
         {
-            return UnityEngine.Random.Range(_min, _max);
+            return UnityEngine.Random.Range(this.min, this.max);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(float value)
         {
-            return value >= _min && value <= _max;
+            return value >= this.min && value <= this.max;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(float value, bool includeMin, bool includeMax)
         {
-            return value.IsBetween(_min, _max, includeMin, includeMax);
+            return value.IsBetween(this.min, this.max, includeMin, includeMax);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public float Clamp(float value)
         {
-            return Mathf.Clamp(value, _min, _max);
+            return Mathf.Clamp(value, this.min, this.max);
         }
 
     }

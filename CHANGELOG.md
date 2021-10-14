@@ -5,12 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.5.1] - TBD
+## [1.5.1] - 2021/10/14
 
 ### Changed
 
 - Set initial total amount for all value accumulators in default constructor
 - Swapped `ValueAccumulator<T>.SetValue` parameter order to more closely align with other Unity conventions
+- Rewrote and added new editor property drawers for data structures
+- Reduced string padding on `Bitmask.ToString()`
 
 ## [1.5.0] - 2021/09/12
 

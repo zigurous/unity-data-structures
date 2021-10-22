@@ -12,16 +12,16 @@ namespace Zigurous.DataStructures
         /// </summary>
         public Vector3Accumulator() : base()
         {
-            this.total = Vector3.zero;
+            total = Vector3.zero;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to add to the total.</param>
-        protected override Vector3 Add(Vector3 value) => this.total + value;
+        protected override Vector3 Add(Vector3 value) => total + value;
 
         /// <inheritdoc/>
         /// <param name="value">The value to subtract from the total.</param>
-        protected override Vector3 Subtract(Vector3 value) => this.total - value;
+        protected override Vector3 Subtract(Vector3 value) => total - value;
 
     }
 

@@ -31,12 +31,12 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// The number of objects currently being used (Read only).
         /// </summary>
-        public int activeCount => this.activeItems.Count;
+        public int activeCount => activeItems.Count;
 
         /// <summary>
         /// The number of objects available to be reused (Read only).
         /// </summary>
-        public int availableCount => this.pool.Count;
+        public int availableCount => pool.Count;
 
         /// <summary>
         /// The maximum number of objects that can be generated.
@@ -131,9 +131,9 @@ namespace Zigurous.DataStructures
         /// </summary>
         public void Dispose()
         {
-            this.pool.Clear();
-            this.activeItems.Clear();
-            this.generator = null;
+            pool.Clear();
+            activeItems.Clear();
+            generator = null;
         }
 
         /// <summary>
@@ -149,11 +149,11 @@ namespace Zigurous.DataStructures
         {
             if (cleanup != null)
             {
-                while (this.pool.Count > 0) {
-                    cleanup(this.pool.Dequeue());
+                while (pool.Count > 0) {
+                    cleanup(pool.Dequeue());
                 }
 
-                foreach (T item in this.activeItems) {
+                foreach (T item in activeItems) {
                     cleanup(item);
                 }
             }
@@ -172,27 +172,27 @@ namespace Zigurous.DataStructures
         {
             T item = null;
 
-            if (this.activeItems.Count >= this.maxCapacity)
+            if (activeItems.Count >= maxCapacity)
             {
-                if (this.reuseActive)
+                if (reuseActive)
                 {
-                    item = this.activeItems[0];
-                    this.activeItems.RemoveAt(0);
+                    item = activeItems[0];
+                    activeItems.RemoveAt(0);
                 }
             }
             else
             {
-                if (this.pool.Count > 0) {
-                    item = this.pool.Dequeue();
+                if (pool.Count > 0) {
+                    item = pool.Dequeue();
                 }
 
-                if (item == null && this.generator != null) {
-                    item = this.generator.Invoke();
+                if (item == null && generator != null) {
+                    item = generator.Invoke();
                 }
             }
 
             if (item != null) {
-                this.activeItems.Add(item);
+                activeItems.Add(item);
             }
 
             return item;
@@ -206,8 +206,8 @@ namespace Zigurous.DataStructures
         {
             if (item != null)
             {
-                this.activeItems.Remove(item);
-                this.pool.Enqueue(item);
+                activeItems.Remove(item);
+                pool.Enqueue(item);
             }
         }
 
@@ -216,8 +216,8 @@ namespace Zigurous.DataStructures
         /// </summary>
         public void Empty()
         {
-            this.activeItems.Clear();
-            this.pool.Clear();
+            activeItems.Clear();
+            pool.Clear();
         }
 
         /// <summary>
@@ -233,11 +233,11 @@ namespace Zigurous.DataStructures
         {
             if (cleanup != null)
             {
-                while (this.pool.Count > 0) {
-                    cleanup(this.pool.Dequeue());
+                while (pool.Count > 0) {
+                    cleanup(pool.Dequeue());
                 }
 
-                foreach (T item in this.activeItems) {
+                foreach (T item in activeItems) {
                     cleanup(item);
                 }
             }

@@ -33,7 +33,7 @@ namespace Zigurous.DataStructures
         /// <returns>True if the bitmask contains the flag, false otherwise.</returns>
         public bool HasFlag(int flag)
         {
-            return (this.mask & flag) == flag;
+            return (mask & flag) == flag;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Zigurous.DataStructures
         /// <returns>True if the bitmask contains any of the flags, false otherwise.</returns>
         public bool HasAnyFlag(int flags)
         {
-            return (this.mask & flags) != 0;
+            return (mask & flags) != 0;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Zigurous.DataStructures
         /// <returns>True if the bitmask contains only the given flags, false otherwise.</returns>
         public bool HasOnlyFlags(int flags)
         {
-            return ((this.mask ^ flags) & flags) == 0;
+            return ((mask ^ flags) & flags) == 0;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Zigurous.DataStructures
         /// <returns>The nth bit of the bitmask.</returns>
         public int Get(int n)
         {
-            return (this.mask >> n) & 1;
+            return (mask >> n) & 1;
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Zigurous.DataStructures
         /// <param name="n">The nth bit to set.</param>
         public void Set(int n)
         {
-            this.mask |= 1 << n;
+            mask |= 1 << n;
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Zigurous.DataStructures
         /// <param name="n">The nth bit to clear.</param>
         public void Clear(int n)
         {
-            this.mask &= ~(1 << n);
+            mask &= ~(1 << n);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Zigurous.DataStructures
         /// <param name="n">The nth bit to toggle.</param>
         public void Toggle(int n)
         {
-            this.mask ^= 1 << n;
+            mask ^= 1 << n;
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Zigurous.DataStructures
         /// <param name="x">The value to set the bit to.</param>
         public void Change(int n, int x)
         {
-            this.mask = (this.mask & ~(1 << n)) | (x << n);
+            mask = (mask & ~(1 << n)) | (x << n);
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace Zigurous.DataStructures
         /// <returns>The hash code of the bitmask.</returns>
         public override int GetHashCode()
         {
-            return this.mask.GetHashCode();
+            return mask.GetHashCode();
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Zigurous.DataStructures
         /// <returns>The bitmask as a string.</returns>
         public override string ToString()
         {
-            string binary = System.Convert.ToString(this.mask, 2);
+            string binary = System.Convert.ToString(mask, 2);
             return binary.PadLeft(32, '0');
         }
 

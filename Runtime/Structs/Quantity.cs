@@ -64,7 +64,7 @@ namespace Zigurous.DataStructures
         /// <returns>The hash code of the quantity.</returns>
         public override int GetHashCode()
         {
-            return (this.entity, this.amount).GetHashCode();
+            return (entity, amount).GetHashCode();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Zigurous.DataStructures
         /// <returns>The quantity as a string.</returns>
         public override string ToString()
         {
-            return $"{this.amount.ToString()} {this.entity.ToString()}";
+            return $"{amount.ToString()} {entity.ToString()}";
         }
 
         /// <summary>

@@ -104,7 +104,7 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// The area of the grid (rows * columns) (Read only).
         /// </summary>
-        public int area => System.Math.Abs(this.rows * this.columns);
+        public int area => System.Math.Abs(rows * columns);
 
         /// <summary>
         /// Creates a new grid size with the specified rows and columns.
@@ -179,7 +179,7 @@ namespace Zigurous.DataStructures
         /// <returns>The hash code of the grid size.</returns>
         public override int GetHashCode()
         {
-            return (this.rows, this.columns).GetHashCode();
+            return (rows, columns).GetHashCode();
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Zigurous.DataStructures
         /// <returns>The grid size as a string.</returns>
         public override string ToString()
         {
-            return $"{this.rows.ToString()}x{this.columns.ToString()}";
+            return $"{rows.ToString()}x{columns.ToString()}";
         }
 
         /// <summary>

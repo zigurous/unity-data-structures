@@ -62,9 +62,9 @@ namespace Zigurous.DataStructures
             {
                 switch (index)
                 {
-                    case 0: return this.x;
-                    case 1: return this.y;
-                    case 2: return this.z;
+                    case 0: return x;
+                    case 1: return y;
+                    case 2: return z;
                     default: throw new IndexOutOfRangeException();
                 }
             }
@@ -72,9 +72,9 @@ namespace Zigurous.DataStructures
             {
                 switch (index)
                 {
-                    case 0: this.x = value; break;
-                    case 1: this.y = value; break;
-                    case 2: this.z = value; break;
+                    case 0: x = value; break;
+                    case 1: y = value; break;
+                    case 2: z = value; break;
                     default: throw new IndexOutOfRangeException();
                 }
             }
@@ -125,7 +125,7 @@ namespace Zigurous.DataStructures
         /// <returns>The hash code of the tuple.</returns>
         public override int GetHashCode()
         {
-            return (this.x, this.y, this.z).GetHashCode();
+            return (x, y, z).GetHashCode();
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Zigurous.DataStructures
         /// <returns>The tuple as a string.</returns>
         public override string ToString()
         {
-            return $"{this.x.ToString()}, {this.y.ToString()}, {this.z.ToString()}";
+            return $"{x.ToString()}, {y.ToString()}, {z.ToString()}";
         }
 
         /// <summary>

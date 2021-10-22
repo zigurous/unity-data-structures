@@ -7,11 +7,11 @@
     {
         /// <inheritdoc/>
         /// <param name="value">The value to add to the total.</param>
-        protected override double Add(double value) => this.total + value;
+        protected override double Add(double value) => total + value;
 
         /// <inheritdoc/>
         /// <param name="value">The value to subtract from the total.</param>
-        protected override double Subtract(double value) => this.total - value;
+        protected override double Subtract(double value) => total - value;
 
     }
 

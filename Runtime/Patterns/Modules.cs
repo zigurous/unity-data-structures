@@ -27,13 +27,13 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// The amount of modules registered to the entity (Read only).
         /// </summary>
-        public int count => this.items.Count;
+        public int count => items.Count;
 
         /// <summary>
         /// Returns the module at the specified index.
         /// </summary>
         /// <param name="index">The index of the module to return.</param>
-        public T this[int index] => this.items.ItemAt(index);
+        public T this[int index] => items.ItemAt(index);
 
         // Prevent use of default constructor.
         private Modules() {}
@@ -75,14 +75,14 @@ namespace Zigurous.DataStructures
         /// <param name="module">The module to register.</param>
         public bool Register(T module)
         {
-            if (module == null || this.items.Contains(module)) {
+            if (module == null || items.Contains(module)) {
                 return false;
             }
 
-            this.items.Add(module);
+            items.Add(module);
 
-            if (this.registered != null) {
-                this.registered.Invoke(module);
+            if (registered != null) {
+                registered.Invoke(module);
             }
 
             return true;
@@ -92,10 +92,10 @@ namespace Zigurous.DataStructures
         /// <param name="module">The module to unregister.</param>
         public bool Unregister(T module)
         {
-            if (module != null && this.items.Remove(module))
+            if (module != null && items.Remove(module))
             {
-                if (this.unregistered != null) {
-                    this.unregistered.Invoke(module);
+                if (unregistered != null) {
+                    unregistered.Invoke(module);
                 }
 
                 return true;
@@ -108,7 +108,7 @@ namespace Zigurous.DataStructures
         /// <param name="module">The module to check for registration.</param>
         public bool IsRegistered(T module)
         {
-            return this.items.Contains(module);
+            return items.Contains(module);
         }
 
     }

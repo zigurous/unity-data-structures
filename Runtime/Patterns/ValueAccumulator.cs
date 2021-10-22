@@ -21,7 +21,7 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// The number of unique values being accumulated (Read only).
         /// </summary>
-        public int count => this.values.Count;
+        public int count => values.Count;
 
         /// <summary>
         /// Returns the value stored with the specified identifier.
@@ -32,7 +32,7 @@ namespace Zigurous.DataStructures
         {
             T value;
 
-            if (this.values.TryGetValue(identifier, out value)) {
+            if (values.TryGetValue(identifier, out value)) {
                 return value;
             } else {
                 return default(T);
@@ -50,16 +50,16 @@ namespace Zigurous.DataStructures
         {
             T currentValue;
 
-            if (this.values.TryGetValue(identifier, out currentValue))
+            if (values.TryGetValue(identifier, out currentValue))
             {
-                this.total = Subtract(currentValue);
-                this.total = Add(value);
-                this.values[identifier] = value;
+                total = Subtract(currentValue);
+                total = Add(value);
+                values[identifier] = value;
             }
             else
             {
-                this.total = Add(value);
-                this.values.Add(identifier, value);
+                total = Add(value);
+                values.Add(identifier, value);
             }
         }
 
@@ -72,10 +72,10 @@ namespace Zigurous.DataStructures
         {
             T value;
 
-            if (this.values.TryGetValue(identifier, out value))
+            if (values.TryGetValue(identifier, out value))
             {
-                this.total = Subtract(value);
-                this.values.Remove(identifier);
+                total = Subtract(value);
+                values.Remove(identifier);
             }
         }
 
@@ -84,8 +84,8 @@ namespace Zigurous.DataStructures
         /// </summary>
         public void Clear()
         {
-            this.values.Clear();
-            this.total = default(T);
+            values.Clear();
+            total = default(T);
         }
 
         /// <summary>

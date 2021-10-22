@@ -104,7 +104,7 @@ namespace Zigurous.DataStructures
         /// <summary>
         /// The area of the entity (width * height) (Read only).
         /// </summary>
-        public int area => System.Math.Abs(this.width * this.height);
+        public int area => System.Math.Abs(width * height);
 
         /// <summary>
         /// Creates a new size with the specified width and height.
@@ -179,7 +179,7 @@ namespace Zigurous.DataStructures
         /// <returns>The hash code of the size.</returns>
         public override int GetHashCode()
         {
-            return (this.width, this.height).GetHashCode();
+            return (width, height).GetHashCode();
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Zigurous.DataStructures
         /// <returns>The size as a string.</returns>
         public override string ToString()
         {
-            return $"{this.width.ToString()}x{this.height.ToString()}";
+            return $"{width.ToString()}x{height.ToString()}";
         }
 
         /// <summary>

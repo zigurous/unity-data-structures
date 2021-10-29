@@ -36,32 +36,32 @@ namespace Zigurous.DataStructures
         [SerializeField]
         [Range(-360f, 360f)]
         [Tooltip("The lower bound of the range.")]
-        private float _min;
+        private float m_Min;
 
         [SerializeField]
         [Range(-360f, 360f)]
         [Tooltip("The upper bound of the range.")]
-        private float _max;
+        private float m_Max;
 
         /// <inheritdoc/>
         public float min
         {
-            get => _min;
-            set => _min = EulerRange.Wrap(value, -360f, 360f);
+            get => m_Min;
+            set => m_Min = EulerRange.Wrap(value, -360f, 360f);
         }
 
         /// <inheritdoc/>
         public float max
         {
-            get => _max;
-            set => _max = EulerRange.Wrap(value, -360f, 360f);
+            get => m_Max;
+            set => m_Max = EulerRange.Wrap(value, -360f, 360f);
         }
 
         /// <inheritdoc/>
-        public float delta => _max - _min;
+        public float delta => max - min;
 
         /// <inheritdoc/>
-        public float median => (_min + _max) / 2f;
+        public float median => (min + max) / 2f;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -70,35 +70,35 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         public EulerRange(float min = -360f, float max = 360f)
         {
-            _min = EulerRange.Wrap(min, -360f, 360f);
-            _max = EulerRange.Wrap(max, -360f, 360f);
+            m_Min = EulerRange.Wrap(min, -360f, 360f);
+            m_Max = EulerRange.Wrap(max, -360f, 360f);
         }
 
         /// <inheritdoc/>
         public float Random()
         {
-            return UnityEngine.Random.Range(_min, _max);
+            return UnityEngine.Random.Range(min, max);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(float value)
         {
-            return value >= _min && value <= _max;
+            return value >= min && value <= max;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(float value, bool includeMin, bool includeMax)
         {
-            return value.IsBetween(_min, _max, includeMin, includeMax);
+            return value.IsBetween(min, max, includeMin, includeMax);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public float Clamp(float value)
         {
-            return Mathf.Clamp(value, _min, _max);
+            return Mathf.Clamp(value, min, max);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Zigurous.DataStructures
         /// <returns>The wrapped value.</returns>
         public float Wrap(float value)
         {
-            return EulerRange.Wrap(value, _min, _max);
+            return EulerRange.Wrap(value, min, max);
         }
 
         private static float Wrap(float value, float min, float max)

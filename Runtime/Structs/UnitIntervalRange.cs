@@ -26,32 +26,32 @@ namespace Zigurous.DataStructures
         [SerializeField]
         [Range(0f, 1f)]
         [Tooltip("The lower bound of the range.")]
-        private float _min;
+        private float m_Min;
 
         [SerializeField]
         [Range(0f, 1f)]
         [Tooltip("The upper bound of the range.")]
-        private float _max;
+        private float m_Max;
 
         /// <inheritdoc/>
         public float min
         {
-            get => _min;
-            set => _min = Mathf.Clamp01(value);
+            get => m_Min;
+            set => m_Min = Mathf.Clamp01(value);
         }
 
         /// <inheritdoc/>
         public float max
         {
-            get => _max;
-            set => _max = Mathf.Clamp01(value);
+            get => m_Max;
+            set => m_Max = Mathf.Clamp01(value);
         }
 
         /// <inheritdoc/>
-        public float delta => _max - _min;
+        public float delta => max - min;
 
         /// <inheritdoc/>
-        public float median => (_min + _max) / 2f;
+        public float median => (min + max) / 2f;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -60,35 +60,35 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         public UnitIntervalRange(float min = 0f, float max = 1f)
         {
-            _min = Mathf.Clamp01(min);
-            _max = Mathf.Clamp01(max);
+            m_Min = Mathf.Clamp01(min);
+            m_Max = Mathf.Clamp01(max);
         }
 
         /// <inheritdoc/>
         public float Random()
         {
-            return UnityEngine.Random.Range(_min, _max);
+            return UnityEngine.Random.Range(min, max);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(float value)
         {
-            return value >= _min && value <= _max;
+            return value >= min && value <= max;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(float value, bool includeMin, bool includeMax)
         {
-            return value.IsBetween(_min, _max, includeMin, includeMax);
+            return value.IsBetween(min, max, includeMin, includeMax);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public float Clamp(float value)
         {
-            return Mathf.Clamp(value, _min, _max);
+            return Mathf.Clamp(value, min, max);
         }
 
     }

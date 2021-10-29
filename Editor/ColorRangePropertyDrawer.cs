@@ -15,8 +15,8 @@ namespace Zigurous.DataStructures.Editor
             int indentLevel = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
 
-            position = ColorField(position, property.FindPropertyRelative("_min"));
-            position = ColorField(position, property.FindPropertyRelative("_max"));
+            position = ColorField(position, property.FindPropertyRelative("m_Min"));
+            position = ColorField(position, property.FindPropertyRelative("m_Max"));
 
             EditorGUI.indentLevel = indentLevel;
             EditorGUI.EndProperty();

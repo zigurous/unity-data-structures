@@ -10,31 +10,31 @@ namespace Zigurous.DataStructures
     {
         [SerializeField]
         [Tooltip("The lower bound of the range.")]
-        private Vector3 _min;
+        private Vector3 m_Min;
 
         [SerializeField]
         [Tooltip("The upper bound of the range.")]
-        private Vector3 _max;
+        private Vector3 m_Max;
 
         /// <inheritdoc/>
         public Vector3 min
         {
-            get => _min;
-            set => _min = value;
+            get => m_Min;
+            set => m_Min = value;
         }
 
         /// <inheritdoc/>
         public Vector3 max
         {
-            get => _max;
-            set => _max = value;
+            get => m_Max;
+            set => m_Max = value;
         }
 
         /// <inheritdoc/>
-        public Vector3 delta => _max - _min;
+        public Vector3 delta => max - min;
 
         /// <inheritdoc/>
-        public Vector3 median => (_min + _max) / 2;
+        public Vector3 median => (min + max) / 2;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -43,44 +43,44 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         public Vector3Range(Vector3 min, Vector3 max)
         {
-            _min = min;
-            _max = max;
+            m_Min = min;
+            m_Max = max;
         }
 
         /// <inheritdoc/>
         public Vector3 Random()
         {
             return new Vector3(
-                UnityEngine.Random.Range(_min.x, _max.x),
-                UnityEngine.Random.Range(_min.y, _max.y),
-                UnityEngine.Random.Range(_min.z, _max.z));
+                UnityEngine.Random.Range(min.x, max.x),
+                UnityEngine.Random.Range(min.y, max.y),
+                UnityEngine.Random.Range(min.z, max.z));
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector3 value)
         {
-            return value.x >= _min.x && value.x <= _max.x &&
-                   value.y >= _min.y && value.y <= _max.y &&
-                   value.z >= _min.z && value.z <= _max.z;
+            return value.x >= min.x && value.x <= max.x &&
+                   value.y >= min.y && value.y <= max.y &&
+                   value.z >= min.z && value.z <= max.z;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector3 value, bool includeMin, bool includeMax)
         {
-            return value.x.IsBetween(_min.x, _max.x, includeMin, includeMax) &&
-                   value.y.IsBetween(_min.y, _max.y, includeMin, includeMax) &&
-                   value.z.IsBetween(_min.z, _max.z, includeMin, includeMax);
+            return value.x.IsBetween(min.x, max.x, includeMin, includeMax) &&
+                   value.y.IsBetween(min.y, max.y, includeMin, includeMax) &&
+                   value.z.IsBetween(min.z, max.z, includeMin, includeMax);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public Vector3 Clamp(Vector3 value)
         {
-            value.x = Mathf.Clamp(value.x, _min.x, _max.x);
-            value.y = Mathf.Clamp(value.y, _min.y, _max.y);
-            value.z = Mathf.Clamp(value.z, _min.z, _max.z);
+            value.x = Mathf.Clamp(value.x, min.x, max.x);
+            value.y = Mathf.Clamp(value.y, min.y, max.y);
+            value.z = Mathf.Clamp(value.z, min.z, max.z);
             return value;
         }
 

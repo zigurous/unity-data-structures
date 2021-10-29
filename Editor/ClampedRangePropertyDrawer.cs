@@ -25,11 +25,11 @@ namespace Zigurous.DataStructures.Editor
             position = RangeProperty(position, range);
             position = RangeProperty(position, clamp);
 
-            SerializedProperty rangeMin = range.FindPropertyRelative("_min");
-            SerializedProperty rangeMax = range.FindPropertyRelative("_max");
+            SerializedProperty rangeMin = range.FindPropertyRelative("m_Min");
+            SerializedProperty rangeMax = range.FindPropertyRelative("m_Max");
 
-            SerializedProperty clampMin = clamp.FindPropertyRelative("_min");
-            SerializedProperty clampMax = clamp.FindPropertyRelative("_max");
+            SerializedProperty clampMin = clamp.FindPropertyRelative("m_Min");
+            SerializedProperty clampMax = clamp.FindPropertyRelative("m_Max");
 
             rangeMin.floatValue = Mathf.Clamp(rangeMin.floatValue, clampMin.floatValue, clampMax.floatValue);
             rangeMax.floatValue = Mathf.Clamp(rangeMax.floatValue, clampMin.floatValue, clampMax.floatValue);
@@ -51,8 +51,8 @@ namespace Zigurous.DataStructures.Editor
 
             EditorGUI.indentLevel = 0;
 
-            field = FloatField(field, property.FindPropertyRelative("_min"));
-            field = FloatField(field, property.FindPropertyRelative("_max"));
+            field = FloatField(field, property.FindPropertyRelative("m_Min"));
+            field = FloatField(field, property.FindPropertyRelative("m_Max"));
 
             EditorGUI.indentLevel = indentLevel;
             EditorGUI.EndProperty();

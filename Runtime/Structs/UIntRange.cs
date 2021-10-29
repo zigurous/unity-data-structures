@@ -25,31 +25,31 @@ namespace Zigurous.DataStructures
 
         [SerializeField]
         [Tooltip("The lower bound of the range.")]
-        private uint _min;
+        private uint m_Min;
 
         [SerializeField]
         [Tooltip("The upper bound of the range.")]
-        private uint _max;
+        private uint m_Max;
 
         /// <inheritdoc/>
         public uint min
         {
-            get => _min;
-            set => _min = value;
+            get => m_Min;
+            set => m_Min = value;
         }
 
         /// <inheritdoc/>
         public uint max
         {
-            get => _max;
-            set => _max = value;
+            get => m_Max;
+            set => m_Max = value;
         }
 
         /// <inheritdoc/>
-        public uint delta => _max - _min;
+        public uint delta => max - min;
 
         /// <inheritdoc/>
-        public uint median => (_min + _max) / 2;
+        public uint median => (min + max) / 2;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -58,8 +58,8 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         public UIntRange(uint min, uint max)
         {
-            _min = min;
-            _max = max;
+            m_Min = min;
+            m_Max = max;
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Zigurous.DataStructures
         /// <returns>A random value in the range [inclusive, exclusive).</returns>
         public uint Random()
         {
-            return (uint)UnityEngine.Random.Range((int)_min, (int)_max);
+            return (uint)UnityEngine.Random.Range((int)min, (int)max);
         }
 
         /// <summary>
@@ -77,28 +77,28 @@ namespace Zigurous.DataStructures
         /// <returns>A random value in the range [inclusive, inclusive].</returns>
         public uint RandomInclusive()
         {
-            return (uint)UnityEngine.Random.Range((int)_min, (int)_max + 1);
+            return (uint)UnityEngine.Random.Range((int)min, (int)max + 1);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(uint value)
         {
-            return value >= _min && value < _max;
+            return value >= min && value < max;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(uint value, bool includeMin, bool includeMax)
         {
-            return value.IsBetween(_min, _max, includeMin, includeMax);
+            return value.IsBetween(min, max, includeMin, includeMax);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public uint Clamp(uint value)
         {
-            return value < _min ? _min : (value > _max ? _max : value);
+            return value < min ? min : (value > max ? max : value);
         }
 
     }

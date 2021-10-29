@@ -45,31 +45,31 @@ namespace Zigurous.DataStructures
 
         [SerializeField]
         [Tooltip("The lower bound of the range.")]
-        private Color _min;
+        private Color m_Min;
 
         [SerializeField]
         [Tooltip("The upper bound of the range.")]
-        private Color _max;
+        private Color m_Max;
 
         /// <inheritdoc/>
         public Color min
         {
-            get => _min;
-            set => _min = value;
+            get => m_Min;
+            set => m_Min = value;
         }
 
         /// <inheritdoc/>
         public Color max
         {
-            get => _max;
-            set => _max = value;
+            get => m_Max;
+            set => m_Max = value;
         }
 
         /// <inheritdoc/>
-        public Color delta => _max - _min;
+        public Color delta => max - min;
 
         /// <inheritdoc/>
-        public Color median => (_min + _max) / 2;
+        public Color median => (min + max) / 2;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -78,44 +78,44 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         public ColorRange(Color min, Color max)
         {
-            _min = min;
-            _max = max;
+            m_Min = min;
+            m_Max = max;
         }
 
         /// <inheritdoc/>
         public Color Random()
         {
-            return Color.Lerp(_min, _max, UnityEngine.Random.value);
+            return Color.Lerp(min, max, UnityEngine.Random.value);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Color value)
         {
-            return value.r >= _min.r && value.r <= _max.r &&
-                   value.g >= _min.g && value.g <= _max.g &&
-                   value.b >= _min.b && value.b <= _max.b &&
-                   value.a >= _min.a && value.a <= _max.a;
+            return value.r >= min.r && value.r <= max.r &&
+                   value.g >= min.g && value.g <= max.g &&
+                   value.b >= min.b && value.b <= max.b &&
+                   value.a >= min.a && value.a <= max.a;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Color value, bool includeMin, bool includeMax)
         {
-            return value.r.IsBetween(_min.r, _max.r, includeMin, includeMax) &&
-                   value.g.IsBetween(_min.g, _max.g, includeMin, includeMax) &&
-                   value.b.IsBetween(_min.b, _max.b, includeMin, includeMax) &&
-                   value.a.IsBetween(_min.a, _max.a, includeMin, includeMax);
+            return value.r.IsBetween(min.r, max.r, includeMin, includeMax) &&
+                   value.g.IsBetween(min.g, max.g, includeMin, includeMax) &&
+                   value.b.IsBetween(min.b, max.b, includeMin, includeMax) &&
+                   value.a.IsBetween(min.a, max.a, includeMin, includeMax);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public Color Clamp(Color value)
         {
-            value.r = Mathf.Clamp(value.r, _min.r, _max.r);
-            value.g = Mathf.Clamp(value.g, _min.g, _max.g);
-            value.b = Mathf.Clamp(value.b, _min.b, _max.b);
-            value.a = Mathf.Clamp(value.a, _min.a, _max.a);
+            value.r = Mathf.Clamp(value.r, min.r, max.r);
+            value.g = Mathf.Clamp(value.g, min.g, max.g);
+            value.b = Mathf.Clamp(value.b, min.b, max.b);
+            value.a = Mathf.Clamp(value.a, min.a, max.a);
             return value;
         }
 

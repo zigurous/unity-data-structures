@@ -9,16 +9,16 @@ namespace Zigurous.DataStructures
     [System.Serializable]
     public struct Range<T> : IRange<T> where T: IComparable<T>
     {
-        private T _min;
-        private T _max;
+        private T m_Min;
+        private T m_Max;
 
         /// <summary>
         /// The lower bound of the range.
         /// </summary>
         public T min
         {
-            get => _min;
-            set => _min = value;
+            get => m_Min;
+            set => m_Min = value;
         }
 
         /// <summary>
@@ -26,8 +26,8 @@ namespace Zigurous.DataStructures
         /// </summary>
         public T max
         {
-            get => _max;
-            set => _max = value;
+            get => m_Max;
+            set => m_Max = value;
         }
 
         /// <summary>
@@ -37,22 +37,22 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         public Range(T min = default(T), T max = default(T))
         {
-            _min = min;
-            _max = max;
+            m_Min = min;
+            m_Max = max;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(T value)
         {
-            return value.IsBetween(_min, _max, true, true);
+            return value.IsBetween(min, max, true, true);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(T value, bool includeMin, bool includeMax)
         {
-            return value.IsBetween(_min, _max, includeMin, includeMax);
+            return value.IsBetween(min, max, includeMin, includeMax);
         }
 
     }

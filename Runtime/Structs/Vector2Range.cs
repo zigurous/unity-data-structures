@@ -10,31 +10,31 @@ namespace Zigurous.DataStructures
     {
         [SerializeField]
         [Tooltip("The lower bound of the range.")]
-        private Vector2 _min;
+        private Vector2 m_Min;
 
         [SerializeField]
         [Tooltip("The upper bound of the range.")]
-        private Vector2 _max;
+        private Vector2 m_Max;
 
         /// <inheritdoc/>
         public Vector2 min
         {
-            get => _min;
-            set => _min = value;
+            get => m_Min;
+            set => m_Min = value;
         }
 
         /// <inheritdoc/>
         public Vector2 max
         {
-            get => _max;
-            set => _max = value;
+            get => m_Max;
+            set => m_Max = value;
         }
 
         /// <inheritdoc/>
-        public Vector2 delta => _max - _min;
+        public Vector2 delta => max - min;
 
         /// <inheritdoc/>
-        public Vector2 median => (_min + _max) / 2;
+        public Vector2 median => (min + max) / 2;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -43,40 +43,40 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         public Vector2Range(Vector2 min, Vector2 max)
         {
-            _min = min;
-            _max = max;
+            m_Min = min;
+            m_Max = max;
         }
 
         /// <inheritdoc/>
         public Vector2 Random()
         {
             return new Vector2(
-                UnityEngine.Random.Range(_min.x, _max.x),
-                UnityEngine.Random.Range(_min.y, _max.y));
+                UnityEngine.Random.Range(min.x, max.x),
+                UnityEngine.Random.Range(min.y, max.y));
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector2 value)
         {
-            return value.x >= _min.x && value.x <= _max.x &&
-                   value.y >= _min.y && value.y <= _max.y;
+            return value.x >= min.x && value.x <= max.x &&
+                   value.y >= min.y && value.y <= max.y;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector2 value, bool includeMin, bool includeMax)
         {
-            return value.x.IsBetween(_min.x, _max.x, includeMin, includeMax) &&
-                   value.y.IsBetween(_min.y, _max.y, includeMin, includeMax);
+            return value.x.IsBetween(min.x, max.x, includeMin, includeMax) &&
+                   value.y.IsBetween(min.y, max.y, includeMin, includeMax);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public Vector2 Clamp(Vector2 value)
         {
-            value.x = Mathf.Clamp(value.x, _min.x, _max.x);
-            value.y = Mathf.Clamp(value.y, _min.y, _max.y);
+            value.x = Mathf.Clamp(value.x, min.x, max.x);
+            value.y = Mathf.Clamp(value.y, min.y, max.y);
             return value;
         }
 

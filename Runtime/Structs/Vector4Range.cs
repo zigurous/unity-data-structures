@@ -10,31 +10,31 @@ namespace Zigurous.DataStructures
     {
         [SerializeField]
         [Tooltip("The lower bound of the range.")]
-        private Vector4 _min;
+        private Vector4 m_Min;
 
         [SerializeField]
         [Tooltip("The upper bound of the range.")]
-        private Vector4 _max;
+        private Vector4 m_Max;
 
         /// <inheritdoc/>
         public Vector4 min
         {
-            get => _min;
-            set => _min = value;
+            get => m_Min;
+            set => m_Min = value;
         }
 
         /// <inheritdoc/>
         public Vector4 max
         {
-            get => _max;
-            set => _max = value;
+            get => m_Max;
+            set => m_Max = value;
         }
 
         /// <inheritdoc/>
-        public Vector4 delta => _max - _min;
+        public Vector4 delta => max - min;
 
         /// <inheritdoc/>
-        public Vector4 median => (_min + _max) / 2;
+        public Vector4 median => (min + max) / 2;
 
         /// <summary>
         /// Creates a new range with the specified values.
@@ -43,48 +43,48 @@ namespace Zigurous.DataStructures
         /// <param name="max">The upper bound of the range.</param>
         public Vector4Range(Vector4 min, Vector4 max)
         {
-            _min = min;
-            _max = max;
+            m_Min = min;
+            m_Max = max;
         }
 
         /// <inheritdoc/>
         public Vector4 Random()
         {
             return new Vector4(
-                UnityEngine.Random.Range(_min.x, _max.x),
-                UnityEngine.Random.Range(_min.y, _max.y),
-                UnityEngine.Random.Range(_min.z, _max.z),
-                UnityEngine.Random.Range(_min.w, _max.w));
+                UnityEngine.Random.Range(min.x, max.x),
+                UnityEngine.Random.Range(min.y, max.y),
+                UnityEngine.Random.Range(min.z, max.z),
+                UnityEngine.Random.Range(min.w, max.w));
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector4 value)
         {
-            return value.x >= _min.x && value.x <= _max.x &&
-                   value.y >= _min.y && value.y <= _max.y &&
-                   value.z >= _min.z && value.z <= _max.z &&
-                   value.w >= _min.w && value.w <= _max.w;
+            return value.x >= min.x && value.x <= max.x &&
+                   value.y >= min.y && value.y <= max.y &&
+                   value.z >= min.z && value.z <= max.z &&
+                   value.w >= min.w && value.w <= max.w;
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to check.</param>
         public bool Includes(Vector4 value, bool includeMin, bool includeMax)
         {
-            return value.x.IsBetween(_min.x, _max.x, includeMin, includeMax) &&
-                   value.y.IsBetween(_min.y, _max.y, includeMin, includeMax) &&
-                   value.z.IsBetween(_min.z, _max.z, includeMin, includeMax) &&
-                   value.w.IsBetween(_min.w, _max.w, includeMin, includeMax);
+            return value.x.IsBetween(min.x, max.x, includeMin, includeMax) &&
+                   value.y.IsBetween(min.y, max.y, includeMin, includeMax) &&
+                   value.z.IsBetween(min.z, max.z, includeMin, includeMax) &&
+                   value.w.IsBetween(min.w, max.w, includeMin, includeMax);
         }
 
         /// <inheritdoc/>
         /// <param name="value">The value to clamp.</param>
         public Vector4 Clamp(Vector4 value)
         {
-            value.x = Mathf.Clamp(value.x, _min.x, _max.x);
-            value.y = Mathf.Clamp(value.y, _min.y, _max.y);
-            value.z = Mathf.Clamp(value.z, _min.z, _max.z);
-            value.w = Mathf.Clamp(value.w, _min.w, _max.w);
+            value.x = Mathf.Clamp(value.x, min.x, max.x);
+            value.y = Mathf.Clamp(value.y, min.y, max.y);
+            value.z = Mathf.Clamp(value.z, min.z, max.z);
+            value.w = Mathf.Clamp(value.w, min.w, max.w);
             return value;
         }
 

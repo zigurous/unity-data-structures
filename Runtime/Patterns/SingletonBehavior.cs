@@ -60,8 +60,7 @@ namespace Zigurous.DataStructures
         protected SingletonBehavior() {}
 
         /// <summary>
-        /// Initializes the singleton or destroys this instance if one already
-        /// exists.
+        /// Unity lifecycle method to handle initialization.
         /// </summary>
         protected virtual void Awake()
         {
@@ -76,7 +75,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Destroys the singleton instance.
+        /// Unity lifecycle method to handle cleanup.
         /// </summary>
         protected virtual void OnDestroy()
         {

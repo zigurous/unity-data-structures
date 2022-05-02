@@ -60,7 +60,7 @@ namespace Zigurous.DataStructures
         protected SingletonBehavior() {}
 
         /// <summary>
-        /// Unity lifecycle method to handle initialization.
+        /// A Unity lifecycle method called when the behavior is initialized.
         /// </summary>
         protected virtual void Awake()
         {
@@ -75,7 +75,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Unity lifecycle method to handle cleanup.
+        /// A Unity lifecycle method called when the behavior is destroyed.
         /// </summary>
         protected virtual void OnDestroy()
         {
@@ -87,7 +87,7 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// A callback invoked when the singleton is first initialized.
+        /// A callback invoked when the singleton is initialized.
         /// </summary>
         protected virtual void OnSingletonInitialized() {}
 

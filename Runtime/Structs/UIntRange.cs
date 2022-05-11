@@ -101,6 +101,19 @@ namespace Zigurous.DataStructures
             return value < min ? min : (value > max ? max : value);
         }
 
+        /// <inheritdoc/>
+        public uint Lerp(float t)
+        {
+            return (uint)Mathf.Lerp(min, max, t);
+        }
+
+        /// <inheritdoc/>
+        /// <param name="value">The value within the range you want to calculate.</param>
+        public float InverseLerp(uint value)
+        {
+            return Mathf.InverseLerp(min, max, value);
+        }
+
     }
 
 }

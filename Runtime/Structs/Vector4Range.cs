@@ -88,6 +88,21 @@ namespace Zigurous.DataStructures
             return value;
         }
 
+        /// <inheritdoc/>
+        public Vector4 Lerp(float t)
+        {
+            return Vector4.Lerp(min, max, t);
+        }
+
+        /// <inheritdoc/>
+        /// <param name="value">The value within the range you want to calculate.</param>
+        public float InverseLerp(Vector4 value)
+        {
+            Vector4 AB = max - min;
+            Vector4 AV = value - min;
+            return Vector4.Dot(AV, AB) / Vector4.Dot(AB, AB);
+        }
+
     }
 
 }

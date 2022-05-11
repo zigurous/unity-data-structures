@@ -12,7 +12,6 @@ namespace Zigurous.DataStructures
         /// <inheritdoc/>
         /// <param name="value">The value to subtract from the total.</param>
         protected override float Subtract(float value) => total - value;
-
     }
 
 }

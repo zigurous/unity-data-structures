@@ -7,13 +7,8 @@ namespace Zigurous.DataStructures
     /// </summary>
     public sealed class QuaternionAccumulator : ValueAccumulator<Quaternion>
     {
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public QuaternionAccumulator() : base()
-        {
-            total = Quaternion.identity;
-        }
+        /// <inheritdoc/>
+        protected override Quaternion defaultValue => Quaternion.identity;
 
         /// <inheritdoc/>
         /// <param name="value">The value to add to the total.</param>
@@ -22,7 +17,6 @@ namespace Zigurous.DataStructures
         /// <inheritdoc/>
         /// <param name="value">The value to subtract from the total.</param>
         protected override Quaternion Subtract(Quaternion value) => total * Quaternion.Inverse(value);
-
     }
 
 }

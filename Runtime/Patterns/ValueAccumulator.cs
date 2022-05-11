@@ -24,6 +24,20 @@ namespace Zigurous.DataStructures
         public int count => values.Count;
 
         /// <summary>
+        /// The default value of <typeparamref name="T"/>.
+        /// </summary>
+        protected virtual T defaultValue => default(T);
+
+        /// <summary>
+        /// Creates a new instance of the value accumulator.
+        /// </summary>
+        public ValueAccumulator()
+        {
+            values = new Dictionary<int, T>();
+            total = defaultValue;
+        }
+
+        /// <summary>
         /// Returns the value stored with the specified identifier.
         /// </summary>
         /// <param name="identifier">The identifier of the stored value.</param>
@@ -35,7 +49,7 @@ namespace Zigurous.DataStructures
             if (values.TryGetValue(identifier, out value)) {
                 return value;
             } else {
-                return default(T);
+                return defaultValue;
             }
         }
 
@@ -85,7 +99,7 @@ namespace Zigurous.DataStructures
         public void Clear()
         {
             values.Clear();
-            total = default(T);
+            total = defaultValue;
         }
 
         /// <summary>

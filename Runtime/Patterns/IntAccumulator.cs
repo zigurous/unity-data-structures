@@ -12,7 +12,6 @@
         /// <inheritdoc/>
         /// <param name="value">The value to subtract from the total.</param>
         protected override int Subtract(int value) => total - value;
-
     }
 
 }

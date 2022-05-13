@@ -55,6 +55,11 @@ namespace Zigurous.DataStructures
         public static bool HasInstance => instance != null;
 
         /// <summary>
+        /// Whether the singleton is currently unloading.
+        /// </summary>
+        public static bool Unloading => isUnloading;
+
+        /// <summary>
         /// Constructs a new instance of the class.
         /// </summary>
         protected SingletonBehavior() {}

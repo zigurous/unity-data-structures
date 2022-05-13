@@ -23,7 +23,7 @@ namespace Zigurous.DataStructures
         /// previous cycles.
         /// </summary>
         /// <remarks>
-        /// This should not be used to guarentee uniqueness since ids generated
+        /// This should not be used to guarantee uniqueness since ids generated
         /// within the same cycle will usually be identical.
         /// </remarks>
         /// <returns>The generated identifier.</returns>

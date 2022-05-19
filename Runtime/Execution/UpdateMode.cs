@@ -1,4 +1,4 @@
-﻿namespace Zigurous.DataStructures.Execution
+﻿namespace Zigurous.DataStructures
 {
     /// <summary>
     /// An update mode a behavior can run with.

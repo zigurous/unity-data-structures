@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Zigurous.DataStructures.Execution
+namespace Zigurous.DataStructures
 {
     /// <summary>
     /// An update strategy executed during the fixed update loop.

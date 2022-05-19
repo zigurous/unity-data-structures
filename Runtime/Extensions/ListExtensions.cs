@@ -123,8 +123,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Invokes an <see cref="Action{T}"/> for each item in the list.
-        /// The item and index are passed as parameters.
+        /// Invokes an action for each item in the list. The item and index are
+        /// passed as parameters.
         /// </summary>
         /// <typeparam name="T">The type of the list.</typeparam>
         /// <param name="list">The list to iterate over.</param>

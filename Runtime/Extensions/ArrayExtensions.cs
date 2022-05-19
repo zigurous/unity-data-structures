@@ -229,8 +229,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Invokes an <see cref="Action{T}"/> for each element in the array.
-        /// The element and index are passed as parameters.
+        /// Invokes an action for each element in the array. The element and
+        /// index are passed as parameters.
         /// </summary>
         /// <typeparam name="T">The type of the array.</typeparam>
         /// <param name="array">The array to iterate over.</param>
@@ -243,8 +243,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Invokes an <see cref="Action{T}"/> for each element in the array.
-        /// The element is passed as a parameter.
+        /// Invokes an action for each element in the array. The element is
+        /// passed as a parameter.
         /// </summary>
         /// <typeparam name="T">The type of the array.</typeparam>
         /// <param name="array">The array to iterate over.</param>

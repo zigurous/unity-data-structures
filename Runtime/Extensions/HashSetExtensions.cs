@@ -28,8 +28,8 @@ namespace Zigurous.DataStructures
         }
 
         /// <summary>
-        /// Invokes an <see cref="Action{T}"/> on each element in the set.
-        /// The element is passed as a parameter.
+        /// Invokes an action on each element in the set. The element is passed
+        /// as a parameter.
         /// </summary>
         /// <typeparam name="T">The type of the elements in the set.</typeparam>
         /// <param name="set">The set to iterate over.</param>

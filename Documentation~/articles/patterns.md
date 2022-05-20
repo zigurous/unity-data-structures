@@ -13,7 +13,7 @@ Design patterns are commonly used in association with data structures. The **Dat
 A singleton behavior that can be used to ensure that only one instance of a class is created.
 
 ```csharp
-class ExampleBehavior : SingletonBehavior<Sample>
+class ExampleBehavior : SingletonBehavior<ExampleBehavior>
 ```
 
 <hr/>

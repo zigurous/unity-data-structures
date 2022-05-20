@@ -13,7 +13,27 @@ Design patterns are commonly used in association with data structures. The **Dat
 A singleton behavior that can be used to ensure that only one instance of a class is created.
 
 ```csharp
-public class Sample : SingletonBehavior<Sample>
+class ExampleBehavior : SingletonBehavior<Sample>
+```
+
+<hr/>
+
+### [UpdateBehavior](/api/Zigurous.DataStructures/UpdateBehavior)
+
+Allows a behavior to change the update mode without extra overhead or performance costs.
+
+```csharp
+class ExampleBehavior : UpdateBehavior
+```
+
+<hr/>
+
+### [Modules](/api/Zigurous.DataStructures/Modules-1)
+
+Manages a list of registered entity modules.
+
+```csharp
+Modules<ExampleModule> modules = new Modules<ExampleModule>(8);
 ```
 
 <hr/>
@@ -22,22 +42,22 @@ public class Sample : SingletonBehavior<Sample>
 
 Reuses objects from a shared pool to prevent instantiating new objects. The object pool can have a set capacity or it can grow in size.
 
-<hr/>
-
-### [Modules](/api/Zigurous.DataStructures/Modules-1)
-
-Manages a list of registered entity modules.
+```csharp
+ObjectPool<ExampleObject> pool = new ObjectPool<ExampleObject>(8);
+```
 
 <hr/>
 
 ### [ValueAccumulator](/api/Zigurous.DataStructures/ValueAccumulator-1)
 
-Accumulates a set of stored values into a single total value.
+Accumulates a set of stored values into a single total value. Supported types:
 
-- [DoubleAccumulator](/api/Zigurous.DataStructures/DoubleAccumulator)
-- [FloatAccumulator](/api/Zigurous.DataStructures/FloatAccumulator)
-- [IntAccumulator](/api/Zigurous.DataStructures/IntAccumulator)
-- [QuaternionAccumulator](/api/Zigurous.DataStructures/QuaternionAccumulator)
-- [Vector2Accumulator](/api/Zigurous.DataStructures/Vector2Accumulator)
-- [Vector3Accumulator](/api/Zigurous.DataStructures/Vector3Accumulator)
-- [Vector4Accumulator](/api/Zigurous.DataStructures/Vector4Accumulator)
+- Double
+- Float
+- Int
+- Quaternion
+- Vector2
+- Vector2Int
+- Vector3
+- Vector3Int
+- Vector4

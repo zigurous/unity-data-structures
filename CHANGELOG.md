@@ -11,7 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - New update mode strategy pattern to allow behaviors to switch between update modes while maintaining performance and overhead
   - Behaviors with the same update mode are grouped to reduce the number of update calls
-  - Import `Zigurous.DataStructures.Execution` to use this new feature
 - Added lerp functions to `INumberRange` types
 - Added overridable `defaultValue` property to `ValueAccumulator<T>`
 

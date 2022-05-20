@@ -8,18 +8,24 @@ The **Data Structures** package contains common data structures and design patte
 
 <hr/>
 
-## 📌 Overview
+## Overview
 
-- [Scripting API](/api/Zigurous.DataStructures)
-- [Installation](/manual/installation)
-- [Changelog](/changelog)
-- [License](/license)
+#### ⚙️ [Installation](/installation)
+
+#### 🧰 [Scripting API](/api/Zigurous.DataStructures)
+
+#### 📋 [Changelog](/changelog)
+
+#### ⚖️ [License](/license)
 
 <hr/>
 
-## 📖 Reference
+## Reference
 
-- [Data Structures](/manual/structs)
-- [Design Patterns](/manual/patterns)
-- [Extension Methods](/manual/extensions)
-- [Utility Classes](/manual/utilities)
+#### 💾 [Data Structures](/manual/structs)
+
+#### 🧬 [Design Patterns](/manual/patterns)
+
+#### 🔌 [Extension Methods](/manual/extensions)
+
+#### 🔧 [Utility Classes](/manual/utilities)

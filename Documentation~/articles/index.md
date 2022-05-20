@@ -28,4 +28,4 @@ The **Data Structures** package contains common data structures and design patte
 
 #### 🔌 [Extension Methods](/manual/extensions)
 
-#### 🔧 [Utility Classes](/manual/utilities)
+#### 🛠️ [Utility Classes](/manual/utilities)
